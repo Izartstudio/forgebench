@@ -61,6 +61,15 @@ export function HomeHero() {
           sizes="(max-width: 767px) 100vw, 66.111vw"
           className={styles.visualImage}
         />
+        <Image
+          src="/images/home/hero-graph.png"
+          alt="Forgebench architecture connecting AI applications and coding assistants to governed models and MCP servers"
+          width={903}
+          height={420}
+          priority
+          sizes="(max-width: 767px) 92vw, 61vw"
+          className={styles.heroGraph}
+        />
       </div>
 
       <div className={styles.credentials}>

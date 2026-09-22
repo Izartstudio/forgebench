@@ -254,13 +254,15 @@
   .item.active {
     height: auto;
     flex: none;
+    overflow: hidden;
   }
 
   .mobileMedia {
     display: block;
-    width: 100%;
+    width: calc(100% + 4rem);
     min-height: min(82vw, 30rem);
     margin-top: 1.5rem;
+    margin-left: -2rem;
     background: linear-gradient(
       180deg,
       #ed452e 0%,
@@ -271,6 +273,7 @@
   }
 
   .panelInner {
+    overflow: visible;
     padding-bottom: 0;
   }
 }
@@ -296,5 +299,10 @@
 
   .panel p {
     font-size: 0.9375rem;
+  }
+
+  .mobileMedia {
+    width: calc(100% + 2.5rem);
+    margin-left: -1.25rem;
   }
 }
