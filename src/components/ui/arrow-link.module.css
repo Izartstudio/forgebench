@@ -27,10 +27,34 @@
 }
 
 .arrow {
-  font-size: 1.1rem;
-  font-weight: 300;
-  line-height: 0.8;
+  position: relative;
+  width: 0.875rem;
+  height: 0.875rem;
+  flex: 0 0 auto;
   transition: transform 250ms ease;
+}
+
+.arrow::before {
+  position: absolute;
+  top: 50%;
+  left: 0.0625rem;
+  width: 0.95rem;
+  height: 1px;
+  background: currentColor;
+  content: "";
+  transform: rotate(-45deg);
+  transform-origin: center;
+}
+
+.arrow::after {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 0.5rem;
+  height: 0.5rem;
+  border-top: 1px solid currentColor;
+  border-right: 1px solid currentColor;
+  content: "";
 }
 
 @media (hover: hover) {

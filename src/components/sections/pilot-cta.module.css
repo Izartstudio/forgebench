@@ -107,8 +107,33 @@
     color 250ms ease;
 }
 
-.button span:last-child {
-  font-size: 1rem;
+.buttonArrow {
+  position: relative;
+  width: 0.875rem;
+  height: 0.875rem;
+  flex: 0 0 auto;
+}
+
+.buttonArrow::before {
+  position: absolute;
+  top: 50%;
+  left: 0.0625rem;
+  width: 0.95rem;
+  height: 1px;
+  background: currentColor;
+  content: "";
+  transform: rotate(-45deg);
+}
+
+.buttonArrow::after {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 0.5rem;
+  height: 0.5rem;
+  border-top: 1px solid currentColor;
+  border-right: 1px solid currentColor;
+  content: "";
 }
 
 @media (hover: hover) {

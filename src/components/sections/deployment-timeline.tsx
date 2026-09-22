@@ -140,7 +140,7 @@ export function DeploymentTimeline() {
                       phase.title
                     )}
                   </span>
-                  <i aria-hidden="true">→</i>
+                  <i aria-hidden="true" />
                 </span>
               </article>
             );

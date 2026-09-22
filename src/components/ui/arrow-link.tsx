@@ -21,9 +21,7 @@ export function ArrowLink({
       className={`${styles.link} ${styles[variant]} ${className ?? ""}`}
     >
       <span>{children}</span>
-      <span className={styles.arrow} aria-hidden="true">
-        ↗
-      </span>
+      <span className={styles.arrow} aria-hidden="true" />
     </Link>
   );
 }

@@ -31,7 +31,7 @@ export function PilotCta() {
           <p>Four weeks. Your environment. Evidence at every phase.</p>
           <a href="#contact" className={styles.button}>
             <span>Start a Pilot</span>
-            <span aria-hidden="true">↗</span>
+            <span className={styles.buttonArrow} aria-hidden="true" />
           </a>
         </aside>
       </div>
