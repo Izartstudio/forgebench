@@ -1,0 +1,48 @@
+.link {
+  display: inline-flex;
+  min-height: 2.75rem;
+  align-items: center;
+  justify-content: center;
+  gap: 1.1rem;
+  color: var(--color-text);
+  font-size: 0.875rem;
+  line-height: 1;
+  text-decoration: none;
+  transition:
+    background-color 250ms ease,
+    color 250ms ease,
+    opacity 250ms ease;
+}
+
+.dark {
+  min-width: 11rem;
+  min-height: 3.125rem;
+  padding-inline: 1.25rem;
+  background: var(--color-text);
+  color: #fff;
+}
+
+.plain {
+  padding-inline: 0.25rem;
+}
+
+.arrow {
+  font-size: 1.1rem;
+  font-weight: 300;
+  line-height: 0.8;
+  transition: transform 250ms ease;
+}
+
+@media (hover: hover) {
+  .dark:hover {
+    background: #de5246;
+  }
+
+  .plain:hover {
+    color: #de5246;
+  }
+
+  .link:hover .arrow {
+    transform: translate(0.2rem, -0.2rem);
+  }
+}

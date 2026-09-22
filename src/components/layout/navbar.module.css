@@ -1,0 +1,171 @@
+.header {
+  position: relative;
+  z-index: 20;
+  display: grid;
+  height: 5.5625rem;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  gap: 2rem;
+  padding-inline: 2.5rem;
+  background: var(--color-background);
+}
+
+.menuButton,
+.mobileNavigation {
+  display: none;
+}
+
+.brand {
+  display: block;
+  width: 6.6875rem;
+  text-decoration: none;
+}
+
+.brand img {
+  width: 100%;
+  height: auto;
+}
+
+.navigation {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  margin-left: 0.1rem;
+}
+
+.navigation a {
+  color: var(--color-text);
+  font-size: 0.875rem;
+  text-decoration: none;
+}
+
+.actions {
+  display: flex;
+  align-items: center;
+  gap: 1.75rem;
+}
+
+.secondaryAction {
+  min-width: 7.5rem;
+}
+
+.primaryAction {
+  min-width: 11rem;
+  white-space: nowrap;
+}
+
+@media (hover: hover) {
+  .navigation a {
+    transition: color 200ms ease;
+  }
+
+  .navigation a:hover {
+    color: #de5246;
+  }
+}
+
+@media (max-width: 68rem) {
+  .header {
+    gap: 1.5rem;
+    padding-inline: 1.5rem;
+  }
+
+  .navigation {
+    gap: 1.25rem;
+  }
+
+  .actions {
+    gap: 0.75rem;
+  }
+}
+
+@media (max-width: 58rem) {
+  .navigation,
+  .secondaryAction {
+    display: none;
+  }
+
+  .header {
+    grid-template-columns: 1fr auto;
+  }
+
+  .menuButton {
+    display: flex;
+    width: 2.75rem;
+    height: 2.75rem;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 0.3rem;
+    padding: 0;
+    border: 1px solid var(--color-border);
+    background: transparent;
+  }
+
+  .menuButton span {
+    width: 1.1rem;
+    height: 1px;
+    background: var(--color-text);
+    transition:
+      transform 250ms ease,
+      opacity 200ms ease;
+  }
+
+  .menuOpen span:first-child {
+    transform: translateY(0.4rem) rotate(45deg);
+  }
+
+  .menuOpen span:nth-child(2) {
+    opacity: 0;
+  }
+
+  .menuOpen span:last-child {
+    transform: translateY(-0.4rem) rotate(-45deg);
+  }
+
+  .mobileNavigation {
+    position: absolute;
+    top: 100%;
+    right: 0;
+    left: 0;
+    display: grid;
+    max-height: 0;
+    overflow: hidden;
+    padding-inline: 1.5rem;
+    background: var(--color-background);
+    opacity: 0;
+    transition:
+      max-height 450ms cubic-bezier(0.22, 1, 0.36, 1),
+      opacity 250ms ease;
+  }
+
+  .mobileNavigationOpen {
+    max-height: 30rem;
+    padding-bottom: 1.5rem;
+    opacity: 1;
+  }
+
+  .mobileNavigation a {
+    padding: 1rem 0;
+    border-bottom: 1px solid var(--color-border);
+    text-decoration: none;
+  }
+}
+
+@media (max-width: 30rem) {
+  .header {
+    height: 4.75rem;
+    padding-inline: 1rem;
+  }
+
+  .primaryAction {
+    min-width: auto;
+    min-height: 2.75rem;
+    padding-inline: 0.75rem;
+    font-size: 0.75rem;
+  }
+
+  .actions {
+    gap: 0.5rem;
+  }
+}

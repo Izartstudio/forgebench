@@ -1,0 +1,270 @@
+.hero {
+  display: grid;
+  grid-template-columns: minmax(22rem, 33.8889%) minmax(0, 66.1111%);
+  background: var(--color-background);
+}
+
+.lead {
+  position: relative;
+  min-height: clamp(32rem, calc(100svh - 5.5625rem - 9.8125rem), 40.875rem);
+}
+
+.copy {
+  position: absolute;
+  top: 12.875rem;
+  left: 3.3125rem;
+}
+
+.eyebrow {
+  margin-bottom: 1rem;
+  color: var(--color-text-muted);
+  font-size: 0.875rem;
+  font-weight: 700;
+  letter-spacing: 0.075em;
+  line-height: 1;
+  text-transform: uppercase;
+}
+
+.title {
+  display: flex;
+  align-items: flex-start;
+  flex-direction: column;
+  color: var(--color-text);
+  font-size: clamp(2.35rem, 2.8vw, 2.625rem);
+  font-weight: 300;
+  letter-spacing: -0.045em;
+  line-height: 1.15;
+}
+
+.title > span:first-child {
+  display: inline-flex;
+  min-width: 10.5em;
+  min-height: 1.15em;
+  align-items: center;
+  margin-left: -0.8125rem;
+  margin-bottom: 0.625rem;
+  padding: 0.5625rem 0.8125rem 0.5rem;
+  background: var(--color-accent-soft);
+  color: #de5246;
+  font-weight: 400;
+}
+
+.title > span:first-child > span {
+  white-space: nowrap;
+}
+
+.title > span:first-child > i {
+  width: 1px;
+  height: 0.9em;
+  margin-left: 0.1em;
+  background: currentColor;
+  animation: typewriter-cursor 800ms steps(1) infinite;
+}
+
+@keyframes typewriter-cursor {
+  50% {
+    opacity: 0;
+  }
+}
+
+.actions {
+  display: flex;
+  align-items: center;
+  gap: 1.65rem;
+  margin-top: 1.625rem;
+}
+
+.visual {
+  position: relative;
+  min-height: clamp(32rem, calc(100svh - 5.5625rem - 9.8125rem), 40.875rem);
+  overflow: hidden;
+}
+
+.visualImage {
+  object-fit: cover;
+}
+
+.credentials {
+  display: grid;
+  min-height: 9.8125rem;
+  grid-column: 1 / -1;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  border-top: var(--border-width) solid var(--color-border);
+}
+
+.statement,
+.credential {
+  display: flex;
+  align-items: center;
+  min-width: 0;
+  border-right: var(--border-width) solid var(--color-border);
+}
+
+.statement {
+  gap: 1.25rem;
+  padding-inline: 2.5rem;
+  background: var(--color-accent-soft);
+  font-size: 1.25rem;
+  line-height: 1.2;
+}
+
+.dot {
+  width: 0.625rem;
+  height: 0.625rem;
+  flex: 0 0 auto;
+  border-radius: 50%;
+  background: #de5246;
+}
+
+.credential {
+  justify-content: center;
+}
+
+.logoSwap {
+  display: grid;
+  place-items: center;
+}
+
+.logoSwap img {
+  grid-area: 1 / 1;
+  transition: opacity 250ms ease;
+}
+
+.hoverLogo {
+  opacity: 0;
+}
+
+.credential:hover .logoSwap img:first-child {
+  opacity: 0;
+}
+
+.credential:hover .hoverLogo {
+  opacity: 1;
+}
+
+.credential:last-child {
+  border-right: 0;
+}
+
+@media (max-width: 64rem) {
+  .hero {
+    grid-template-columns: 42% 58%;
+  }
+
+  .copy {
+    left: 2rem;
+  }
+
+  .title {
+    font-size: clamp(2rem, 4vw, 2.5rem);
+  }
+}
+
+@media (max-width: 47.9375rem) {
+  .hero {
+    display: block;
+  }
+
+  .lead {
+    min-height: 29rem;
+  }
+
+  .copy {
+    top: 7rem;
+    right: 1.5rem;
+    left: 1.5rem;
+  }
+
+  .visual {
+    min-height: min(68.8vw, 32rem);
+  }
+
+  .credentials {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .statement {
+    min-height: 8rem;
+    grid-column: 1 / -1;
+    border-right: 0;
+    border-bottom: var(--border-width) solid var(--color-border);
+  }
+
+  .credential {
+    min-height: 7.5rem;
+  }
+}
+
+@media (max-width: 30rem) {
+  .lead {
+    min-height: 26rem;
+  }
+
+  .copy {
+    top: 5rem;
+    right: 1rem;
+    left: 1rem;
+  }
+
+  .title {
+    font-size: clamp(2rem, 10vw, 2.5rem);
+  }
+
+  .actions {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 0.625rem;
+  }
+
+  .statement {
+    min-height: 4.5rem;
+    padding-inline: 1rem;
+    font-size: 1rem;
+    white-space: nowrap;
+  }
+
+  .statement br {
+    display: none;
+  }
+
+  .credential {
+    min-height: 6.5rem;
+  }
+}
+
+@media (max-width: 22rem) {
+  .lead {
+    min-height: 24rem;
+  }
+
+  .copy {
+    top: 4rem;
+  }
+
+  .title {
+    font-size: 2rem;
+  }
+
+  .title > span:first-child {
+    min-width: 10.5em;
+  }
+
+  .credentials {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .statement {
+    gap: 0.75rem;
+  }
+
+  .credential img {
+    max-width: 75%;
+    max-height: 3.75rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .title > span:first-child > i {
+    animation: none;
+  }
+}

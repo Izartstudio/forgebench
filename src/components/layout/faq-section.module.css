@@ -1,0 +1,220 @@
+.section {
+  padding: 0 2.5rem 7.5rem;
+  background: transparent;
+}
+
+.panel {
+  display: grid;
+  grid-template-columns: 24.5625rem minmax(0, 1fr);
+  padding: 4rem 4.5rem 4rem 2.5rem;
+  background: #fff;
+  color: #1a1a1a;
+}
+
+.intro > p {
+  margin-bottom: 1.5rem;
+  font-size: 0.625rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.intro h2 {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  font-size: 2rem;
+  font-weight: 400;
+  letter-spacing: -0.03em;
+  line-height: 1;
+}
+
+.intro h2 span {
+  color: #de5246;
+}
+
+.accordion {
+  min-width: 0;
+}
+
+.item {
+  height: 4.5rem;
+  overflow: hidden;
+  border-bottom: 1px solid #e6e6e6;
+  transition: height 650ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.item.active {
+  height: auto;
+}
+
+.trigger {
+  display: flex;
+  width: 100%;
+  height: 4.5rem;
+  align-items: center;
+  justify-content: space-between;
+  gap: 2rem;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: #1a1a1a;
+  cursor: pointer;
+  font: inherit;
+  font-size: 1rem;
+  text-align: left;
+}
+
+.active .trigger {
+  height: auto;
+  padding-block: 1.25rem;
+}
+
+.indicator {
+  position: relative;
+  width: 1rem;
+  height: 1rem;
+  flex: 0 0 auto;
+  color: #666;
+}
+
+.indicator::before,
+.indicator::after {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  width: 100%;
+  height: 1px;
+  background: currentColor;
+  content: "";
+}
+
+.indicator::after {
+  transform: rotate(90deg);
+  transition:
+    transform 450ms cubic-bezier(0.22, 1, 0.36, 1),
+    opacity 250ms ease;
+}
+
+.active .indicator::after {
+  transform: rotate(0deg);
+  opacity: 0;
+}
+
+.answer {
+  display: grid;
+  grid-template-rows: 0fr;
+  opacity: 0;
+  transform: translateY(-0.4rem);
+  transition:
+    grid-template-rows 650ms cubic-bezier(0.22, 1, 0.36, 1),
+    opacity 300ms ease,
+    transform 500ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.active .answer {
+  grid-template-rows: 1fr;
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.answer > div {
+  min-height: 0;
+  overflow: hidden;
+}
+
+.answer p {
+  max-width: 48rem;
+  padding-bottom: 1.25rem;
+  padding-right: 2rem;
+  color: #565656;
+  font-size: 0.875rem;
+  line-height: 1.4;
+}
+
+@media (max-width: 60rem) {
+  .section {
+    min-height: auto;
+    padding: 0 1.5rem 4rem;
+  }
+
+  .panel {
+    min-height: auto;
+    grid-template-columns: 1fr;
+    gap: 3rem;
+    padding: 3rem 2rem;
+  }
+
+  .item,
+  .item.active {
+    height: auto;
+    min-height: 5.5rem;
+  }
+
+  .trigger,
+  .trigger {
+    height: auto;
+    min-height: 5.5rem;
+    padding-block: 1rem;
+  }
+
+  .active .trigger {
+    min-height: 0;
+    padding-block: 1.25rem;
+  }
+
+  .active .answer {
+    padding-bottom: 0;
+  }
+}
+
+@media (max-width: 36rem) {
+  .section {
+    padding: 0 1rem 1rem;
+  }
+
+  .panel {
+    padding: 2.5rem 1.25rem;
+  }
+
+  .intro h2 {
+    font-size: 1.75rem;
+  }
+
+  .trigger {
+    gap: 1rem;
+    font-size: 0.9375rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .item,
+  .indicator::after,
+  .answer {
+    transition-duration: 0.01ms;
+  }
+}
+
+@media (max-width: 22rem) {
+  .section {
+    padding-right: 0.75rem;
+    padding-left: 0.75rem;
+  }
+
+  .panel {
+    padding: 2rem 1rem;
+  }
+
+  .intro h2 {
+    font-size: 1.5rem;
+  }
+
+  .trigger {
+    font-size: 0.875rem;
+  }
+
+  .answer p {
+    padding-right: 0.75rem;
+    font-size: 0.8125rem;
+  }
+}

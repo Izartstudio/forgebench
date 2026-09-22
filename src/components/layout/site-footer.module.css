@@ -1,0 +1,166 @@
+.footer {
+  position: relative;
+  height: 43.75rem;
+  overflow: hidden;
+  padding: 5rem 3.125rem 3rem;
+  background: transparent;
+  color: #fcfcfc;
+}
+
+.links {
+  position: relative;
+  z-index: 2;
+  display: grid;
+  grid-template-columns: 1fr 1fr auto;
+  gap: 4rem;
+}
+
+.group {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.group h2 {
+  margin: 0 0 1.75rem;
+  font-size: 0.875rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.group a {
+  margin-bottom: 0.75rem;
+  font-size: 1rem;
+  text-decoration: none;
+  transition:
+    color 200ms ease,
+    transform 200ms ease;
+}
+
+@media (hover: hover) {
+  .group a:hover {
+    color: #ff897d;
+    transform: translateX(0.2rem);
+  }
+}
+
+.wordmark {
+  position: absolute;
+  z-index: 0;
+  top: 18.8125rem;
+  left: 0;
+  width: 100%;
+  height: 17rem;
+  object-fit: cover;
+}
+
+.brandLine {
+  position: absolute;
+  z-index: 2;
+  top: 27rem;
+  left: 3.125rem;
+  font-size: 1rem;
+  line-height: 1.4;
+}
+
+.brandLine img {
+  display: block;
+  width: 20.0625rem;
+  height: auto;
+  margin-top: 1.25rem;
+}
+
+.mobileBrandLine {
+  display: none;
+}
+
+.legal {
+  position: absolute;
+  right: 3.125rem;
+  bottom: 3rem;
+  left: 3.125rem;
+  display: grid;
+  align-items: center;
+  grid-template-columns: auto 1fr auto;
+  gap: 1.5rem;
+  font-size: 0.875rem;
+}
+
+.legal span {
+  height: 1px;
+  background: #e6e6e6;
+}
+
+@media (max-width: 48rem) {
+  .footer {
+    display: flex;
+    height: auto;
+    min-height: 0;
+    flex-direction: column;
+    padding: 4rem 1.5rem 2rem;
+  }
+
+  .links {
+    order: 1;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem 2rem;
+  }
+
+  .group:last-child {
+    grid-column: 1;
+    grid-row: 2;
+  }
+
+  .wordmark {
+    display: none;
+  }
+
+  .desktopBrandLine {
+    display: none;
+  }
+
+  .mobileBrandLine {
+    position: relative;
+    z-index: 2;
+    top: auto;
+    left: auto;
+    display: block;
+    grid-column: 1 / -1;
+    grid-row: 3;
+    margin: 1rem 0 0;
+  }
+
+  .mobileBrandLine img {
+    width: min(100%, 12rem);
+  }
+
+  .legal {
+    position: relative;
+    right: auto;
+    bottom: auto;
+    left: auto;
+    grid-template-columns: 1fr;
+    gap: 0.75rem;
+    order: 4;
+  }
+
+  .legal span {
+    display: none;
+  }
+}
+
+@media (max-width: 32rem) {
+  .links {
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+  }
+
+  .group h2 {
+    margin-bottom: 1rem;
+  }
+
+  .group a {
+    font-size: 0.875rem;
+  }
+}
