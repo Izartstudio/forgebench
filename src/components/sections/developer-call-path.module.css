@@ -1,0 +1,371 @@
+.section {
+  position: relative;
+  height: 500svh;
+  background: var(--color-background);
+}
+
+.sticky {
+  position: sticky;
+  top: 0;
+  height: 100svh;
+  overflow: hidden;
+  padding: 2.5rem 0 1.8125rem 2.5rem;
+  background: var(--color-background);
+}
+
+.timeline {
+  display: flex;
+  height: 2.5625rem;
+  align-items: flex-start;
+  margin-bottom: 2.5rem;
+  padding-right: 2.5rem;
+}
+
+.timeline button {
+  display: flex;
+  min-width: 0;
+  flex: 1;
+  align-items: center;
+  gap: 1.5rem;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: rgb(222 82 70 / 28%);
+  cursor: pointer;
+  font: inherit;
+  font-size: 0.875rem;
+  line-height: 1;
+  text-align: left;
+  transition: color 200ms ease;
+}
+
+.timeline button:last-child {
+  flex: 0 0 auto;
+}
+
+.timeline i {
+  position: relative;
+  display: block;
+  height: 1px;
+  flex: 1;
+  overflow: hidden;
+  background: rgb(222 82 70 / 22%);
+}
+
+.timeline .activeTab {
+  color: var(--color-text);
+}
+
+.timeline i b {
+  position: absolute;
+  inset: 0;
+  background: var(--color-accent);
+  transform: scaleX(var(--timeline-progress));
+  transform-origin: left;
+}
+
+.timeline i .timelineAutoProgress {
+  animation: call-path-timeline 6.5s linear both;
+}
+
+@keyframes call-path-timeline {
+  from {
+    transform: scaleX(0);
+  }
+
+  to {
+    transform: scaleX(1);
+  }
+}
+
+.viewport {
+  height: calc(100svh - 9.375rem);
+  width: 100%;
+  overflow: hidden;
+}
+
+.track {
+  display: flex;
+  height: 100%;
+  gap: 1.25rem;
+  transform: translate3d(calc(-1 * var(--carousel-offset)), 0, 0);
+  transition: transform 700ms cubic-bezier(0.22, 1, 0.36, 1);
+  will-change: transform;
+}
+
+.trackInstant {
+  transition: none;
+}
+
+.card {
+  position: relative;
+  isolation: isolate;
+  flex: 0 0 calc(100vw - 5rem);
+  height: 100%;
+  overflow: hidden;
+  background: linear-gradient(
+    166deg,
+    #ed452e 0%,
+    #de2e1c 24%,
+    #94120f 37%,
+    #42090d 46%,
+    #21050a 60%,
+    #140306 100%
+  );
+  color: white;
+}
+
+.card::after {
+  position: absolute;
+  inset: -1px;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.67' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='.1'/%3E%3C/svg%3E");
+  background-repeat: repeat;
+  background-size: 11.25rem 11.25rem;
+  content: "";
+  mix-blend-mode: screen;
+  opacity: 0.55;
+  pointer-events: none;
+}
+
+.dashboard {
+  position: absolute;
+  z-index: 1;
+  top: 6.6667%;
+  right: -2px;
+  display: block;
+  width: calc(54.0441% + 2px);
+  height: 56%;
+  backface-visibility: hidden;
+  object-fit: cover;
+  object-position: top left;
+  transform: translateZ(0);
+}
+
+.frameHeading {
+  position: absolute;
+  z-index: 2;
+  top: 7.2%;
+  left: 3.8235%;
+  width: 38%;
+}
+
+.eyebrow {
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  line-height: 1.2;
+  text-transform: uppercase;
+}
+
+.frameHeading h2 {
+  margin-top: 1.75rem;
+  font-size: clamp(1.65rem, 2.35vw, 2rem);
+  font-weight: 400;
+  letter-spacing: -0.035em;
+  line-height: 1.42;
+}
+
+.brands {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  margin-top: 2rem;
+}
+
+.brands img {
+  width: auto;
+  height: auto;
+}
+
+.brands img:first-child {
+  width: 8.5rem;
+}
+
+.brands img:last-child {
+  width: 5.4375rem;
+}
+
+.points {
+  position: absolute;
+  z-index: 2;
+  right: 3.8235%;
+  bottom: 6.9333%;
+  left: 3.8235%;
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
+.points > div {
+  min-height: 7.375rem;
+  padding: 0 2.25rem;
+  border-right: 1px solid rgb(230 230 230 / 25%);
+}
+
+.points > div:first-child {
+  padding-left: 0;
+}
+
+.points > div:last-child {
+  padding-right: 0;
+  border-right: 0;
+}
+
+.threePoints {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.points span {
+  color: var(--color-accent);
+  font-size: 1.25rem;
+}
+
+.points h3 {
+  margin-top: 1.5rem;
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.2;
+}
+
+.points p {
+  max-width: 17.5rem;
+  margin-top: 0.875rem;
+  color: rgb(238 238 238 / 75%);
+  font-size: 0.875rem;
+  line-height: 1.25;
+}
+
+@media (max-width: 56.25rem) {
+  .section {
+    height: 500svh;
+  }
+
+  .sticky {
+    padding: 1rem 0 0.5rem 1rem;
+  }
+
+  .timeline {
+    height: 2rem;
+    margin-bottom: 1rem;
+    padding-right: 1rem;
+  }
+
+  .timeline button {
+    gap: 0.5rem;
+    font-size: 0.75rem;
+  }
+
+  .viewport {
+    height: calc(100svh - 4.5rem);
+  }
+
+  .card {
+    flex-basis: calc(100vw - 2.5rem);
+    height: 100%;
+    overflow-y: auto;
+    padding: 2rem 1.5rem 5rem;
+    overscroll-behavior: contain;
+  }
+
+  .dashboard {
+    display: none;
+  }
+
+  .frameHeading,
+  .points {
+    position: relative;
+    inset: auto;
+    width: auto;
+  }
+
+  .frameHeading h2 {
+    max-width: 32rem;
+    margin-top: 1.75rem;
+    font-size: clamp(1.75rem, 7vw, 2.5rem);
+    font-weight: 400;
+    letter-spacing: -0.035em;
+    line-height: 1.28;
+  }
+
+  .brands {
+    margin-top: 1.5rem;
+    gap: 1rem;
+  }
+
+  .brands img:first-child {
+    width: 7rem;
+  }
+
+  .brands img:last-child {
+    width: 4.5rem;
+  }
+
+  .points {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    margin-top: auto;
+    padding-top: 2rem;
+  }
+
+  .points > div {
+    min-height: 8.75rem;
+    padding: 1.25rem;
+    border-top: 1px solid rgb(230 230 230 / 25%);
+    border-right: 1px solid rgb(230 230 230 / 25%);
+  }
+
+  .points > div:nth-child(even),
+  .points > div:last-child {
+    border-right: 0;
+  }
+
+  .points span {
+    color: var(--color-accent);
+    font-size: 1rem;
+  }
+
+  .points h3 {
+    margin-top: 1.25rem;
+    font-size: 0.875rem;
+    font-weight: 400;
+    line-height: 1.2;
+  }
+
+  .points p {
+    margin-top: 0.75rem;
+    color: rgb(238 238 238 / 75%);
+    font-size: 0.75rem;
+    line-height: 1.35;
+  }
+}
+
+@media (max-width: 30rem) {
+  .card {
+    padding: 1.5rem 1rem 5rem;
+  }
+
+  .frameHeading h2 {
+    margin-top: 1.25rem;
+    font-size: 1.75rem;
+    line-height: 1.2;
+  }
+
+  .points {
+    grid-template-columns: 1fr;
+    padding-top: 1.25rem;
+  }
+
+  .points > div,
+  .points > div:nth-child(even) {
+    min-height: auto;
+    padding: 1rem 0;
+    border-right: 0;
+  }
+
+  .points h3 {
+    margin-top: 0.75rem;
+  }
+
+  .points p {
+    margin-top: 0.5rem;
+  }
+}

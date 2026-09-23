@@ -31,7 +31,10 @@ export function SiteFooter() {
             <h2>{group.title}</h2>
             {group.links.map((link) => (
               <a href="#" key={link}>
-                {link}
+                {link.replace(" ↗", "")}
+                {link.endsWith(" ↗") && (
+                  <span className={styles.footerArrow} aria-hidden="true" />
+                )}
               </a>
             ))}
           </div>

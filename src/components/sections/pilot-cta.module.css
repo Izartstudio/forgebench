@@ -108,38 +108,21 @@
 }
 
 .buttonArrow {
-  position: relative;
-  width: 0.875rem;
-  height: 0.875rem;
+  width: 0.6875rem;
+  height: 0.6875rem;
   flex: 0 0 auto;
-}
-
-.buttonArrow::before {
-  position: absolute;
-  top: 50%;
-  left: 0.0625rem;
-  width: 0.95rem;
-  height: 1px;
-  background: currentColor;
-  content: "";
-  transform: rotate(-45deg);
-}
-
-.buttonArrow::after {
-  position: absolute;
-  top: 0;
-  right: 0;
-  width: 0.5rem;
-  height: 0.5rem;
-  border-top: 1px solid currentColor;
-  border-right: 1px solid currentColor;
-  content: "";
+  background: url("/icons/arrow.svg") center / contain no-repeat;
+  transition: filter 250ms ease;
 }
 
 @media (hover: hover) {
   .button:hover {
     background: #de5246;
     color: #fff;
+  }
+
+  .button:hover .buttonArrow {
+    filter: invert(1);
   }
 }
 

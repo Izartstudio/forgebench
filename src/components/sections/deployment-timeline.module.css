@@ -224,37 +224,66 @@
 }
 
 .collapsedLabel i {
-  position: relative;
-  width: 2rem;
-  height: 1rem;
+  width: 0.6875rem;
+  height: 0.6875rem;
   flex: 0 0 auto;
-  color: #de5246;
-}
-
-.collapsedLabel i::before {
-  position: absolute;
-  top: 50%;
-  right: 0;
-  width: 100%;
-  height: 1px;
-  background: currentColor;
-  content: "";
-}
-
-.collapsedLabel i::after {
-  position: absolute;
-  top: 50%;
-  right: 0;
-  width: 0.55rem;
-  height: 0.55rem;
-  border-top: 1px solid currentColor;
-  border-right: 1px solid currentColor;
-  content: "";
-  transform: translateY(-45%) rotate(45deg);
+  background: url("/icons/arrow.svg") center / contain no-repeat;
 }
 
 .active .collapsedLabel {
   opacity: 0;
+}
+
+.developers {
+  background: linear-gradient(
+    180deg,
+    #580907 0%,
+    #de2e1c 60.2839%,
+    #f6b2a9 74.1373%,
+    #f9d7d2 90.1747%,
+    #fbeeed 94.5624%,
+    #fbf6f5 96.3634%,
+    #fff 100%
+  );
+  color: #fff;
+}
+
+.developers .heading h2 span {
+  color: inherit;
+}
+
+.developers .workspace {
+  border: 1px solid rgb(255 255 255 / 40%);
+  background: rgb(255 255 255 / 10%);
+}
+
+.developers .foundations article {
+  border: 1px solid rgb(255 255 255 / 24%);
+  background: rgb(129 24 16 / 70%);
+}
+
+.developers .foundations h3,
+.developers .foundations p {
+  color: #fff;
+}
+
+.developers .phase,
+.developers .phase.active {
+  background: #fcfcfc;
+  color: #151211;
+}
+
+.developers .active .phaseBackground {
+  opacity: 0;
+}
+
+.developers .phase.active .phaseBackground {
+  opacity: 0;
+}
+
+.developers .exit {
+  border-top-color: var(--color-border);
+  color: #de5246;
 }
 
 @media (max-width: 64rem) {
@@ -423,7 +452,7 @@
   }
 
   .collapsedLabel i {
-    width: 1.5rem;
+    width: 0.6875rem;
   }
 }
 

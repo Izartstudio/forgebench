@@ -28,6 +28,16 @@ export function SiteMotion() {
       touchMultiplier: 1,
     });
 
+    const handleSynchronizedScroll = (event: Event) => {
+      const { top } = (event as CustomEvent<{ top: number }>).detail;
+      lenis.scrollTo(top, { immediate: true, force: true });
+    };
+
+    window.addEventListener(
+      "forgebench:synchronized-scroll",
+      handleSynchronizedScroll,
+    );
+
     let animationFrame = 0;
     const animateScroll = (time: number) => {
       lenis.raf(time);
@@ -67,6 +77,10 @@ export function SiteMotion() {
     return () => {
       observer?.disconnect();
       window.cancelAnimationFrame(animationFrame);
+      window.removeEventListener(
+        "forgebench:synchronized-scroll",
+        handleSynchronizedScroll,
+      );
       lenis.destroy();
     };
   }, []);

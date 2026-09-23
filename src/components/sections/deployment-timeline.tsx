@@ -21,7 +21,7 @@ const phases = [
     title: "Build & Govern",
     description:
       "Platform live: gateway, SSO and SCIM, provider keys and spend caps, pilot developer keys. Then on the same tenant: console telemetry, team import, data policy. Then agents — registered, MCP servers bound, tool policy and approval chains set.",
-    exit: "EXIT: Four proofs — a governed call under cap for every pilot developer; every pilot machine reporting into the console; an unbound tool call refused while a bound one succeeds; a rollback restoring a prior agent version.",
+    exit: "EXIT: Three proofs: one governed path for every machine and developer in the pilot, enforced ceilings, live agent version rollback.",
     image: "/images/home/deployment/week-2-3.png",
   },
   {
@@ -30,7 +30,7 @@ const phases = [
     title: "Review & Sign-off",
     description:
       "Signed usage export produced and verified by finance. Runbooks reviewed with your ops lead and the admin walkthrough delivered. Success criteria reviewed with security, finance and engineering.",
-    exit: "EXIT: One of two — criteria signed off and production scope agreed — or the tenant is decommissioned and its data deleted.",
+    exit: "EXIT: One of two — criteria signed off and production scope agreed",
     image: "/images/home/deployment/week-4.png",
   },
 ] as const;
@@ -53,11 +53,20 @@ const foundations = [
   },
 ] as const;
 
-export function DeploymentTimeline() {
+type DeploymentTimelineProps = {
+  variant?: "default" | "developers";
+};
+
+export function DeploymentTimeline({
+  variant = "default",
+}: DeploymentTimelineProps) {
   const [activePhase, setActivePhase] = useState(0);
 
   return (
-    <section className={styles.section} aria-labelledby="deployment-heading">
+    <section
+      className={`${styles.section} ${variant === "developers" ? styles.developers : ""}`}
+      aria-labelledby="deployment-heading"
+    >
       <header className={styles.heading}>
         <p>Deployment &amp; Implementation</p>
         <h2 id="deployment-heading">

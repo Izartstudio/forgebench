@@ -30,12 +30,23 @@
 }
 
 .group a {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
   margin-bottom: 0.75rem;
   font-size: 1rem;
   text-decoration: none;
   transition:
     color 200ms ease,
     transform 200ms ease;
+}
+
+.footerArrow {
+  width: 0.6875rem;
+  height: 0.6875rem;
+  flex: 0 0 auto;
+  background: url("/icons/arrow.svg") center / contain no-repeat;
+  filter: invert(1);
 }
 
 @media (hover: hover) {

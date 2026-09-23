@@ -27,34 +27,22 @@
 }
 
 .arrow {
-  position: relative;
-  width: 0.875rem;
-  height: 0.875rem;
+  width: 0.6875rem;
+  height: 0.6875rem;
   flex: 0 0 auto;
+  background-color: currentColor;
+  -webkit-mask: url("/icons/arrow.svg") center / contain no-repeat;
+  mask: url("/icons/arrow.svg") center / contain no-repeat;
   transition: transform 250ms ease;
 }
 
-.arrow::before {
-  position: absolute;
-  top: 50%;
-  left: 0.0625rem;
-  width: 0.95rem;
-  height: 1px;
-  background: currentColor;
-  content: "";
-  transform: rotate(-45deg);
-  transform-origin: center;
+.link:focus-visible {
+  outline: 2px solid currentColor;
+  outline-offset: 0.25rem;
 }
 
-.arrow::after {
-  position: absolute;
-  top: 0;
-  right: 0;
-  width: 0.5rem;
-  height: 0.5rem;
-  border-top: 1px solid currentColor;
-  border-right: 1px solid currentColor;
-  content: "";
+.link:active {
+  opacity: 0.72;
 }
 
 @media (hover: hover) {
