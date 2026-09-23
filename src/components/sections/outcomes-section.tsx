@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef } from "react";
 
 import styles from "./outcomes-section.module.css";
 
@@ -187,27 +187,35 @@ function AuditVisual() {
 
 export function OutcomesSection() {
   const sectionRef = useRef<HTMLElement>(null);
-  const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
     const section = sectionRef.current;
     if (!section) return;
 
+    const cards = section.querySelectorAll<HTMLElement>("[data-outcome-card]");
+
     const observer = new IntersectionObserver(
-      ([entry]) => {
-        setIsVisible(entry.isIntersecting);
+      (entries) => {
+        entries.forEach((entry) => {
+          if (!entry.isIntersecting) return;
+          entry.target.classList.add(styles.cardVisible);
+          observer.unobserve(entry.target);
+        });
       },
-      { threshold: 0 },
+      {
+        threshold: 0.45,
+        rootMargin: "0px 0px -8%",
+      },
     );
 
-    observer.observe(section);
+    cards.forEach((card) => observer.observe(card));
     return () => observer.disconnect();
   }, []);
 
   return (
     <section
       ref={sectionRef}
-      className={`${styles.section} ${isVisible ? styles.visible : ""}`}
+      className={styles.section}
       aria-labelledby="outcomes-heading"
     >
       <div className={styles.headingBlock}>
@@ -226,7 +234,11 @@ export function OutcomesSection() {
         </div>
         <div className={styles.grid}>
           {outcomes.map((outcome) => (
-            <article className={styles.outcome} key={outcome.number}>
+            <article
+              className={styles.outcome}
+              data-outcome-card
+              key={outcome.number}
+            >
               <header>
                 <span>{outcome.number}</span>
                 <h3>{outcome.title}</h3>

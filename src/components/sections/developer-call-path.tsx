@@ -165,6 +165,7 @@ export function DeveloperCallPath() {
   const activeFrameRef = useRef(0);
   const isTimelineActiveRef = useRef(false);
   const hasActivatedRef = useRef(false);
+  const geometryRef = useRef({ sectionTop: 0, scrollRange: 0 });
   const [activeFrame, setActiveFrame] = useState(0);
   const [carouselOffset, setCarouselOffset] = useState(0);
   const [isTimelineActive, setIsTimelineActive] = useState(false);
@@ -176,17 +177,22 @@ export function DeveloperCallPath() {
     return window.innerWidth - (isCompact ? 20 : 60);
   }, []);
 
-  const getFrameScrollTarget = useCallback((index: number) => {
+  const measureSection = useCallback(() => {
     const section = sectionRef.current;
-    if (!section) return null;
+    if (!section) return;
 
-    const scrollRange = section.offsetHeight - window.innerHeight;
-    const sectionTop = window.scrollY + section.getBoundingClientRect().top;
-    const target = sectionTop + (scrollRange * index) / (frames.length - 1);
+    geometryRef.current = {
+      sectionTop: window.scrollY + section.getBoundingClientRect().top,
+      scrollRange: Math.max(0, section.offsetHeight - window.innerHeight),
+    };
+  }, []);
 
-    return index === frames.length - 1
-      ? Math.max(sectionTop, target - 1)
-      : target;
+  const getFrameScrollTarget = useCallback((index: number) => {
+    const { scrollRange, sectionTop } = geometryRef.current;
+    if (scrollRange <= 0) return null;
+    const frameStep = scrollRange / (frames.length + 1);
+
+    return sectionTop + frameStep * (index + 1);
   }, []);
 
   const showFrame = useCallback(
@@ -220,20 +226,15 @@ export function DeveloperCallPath() {
   const updateFrameFromScroll = useCallback(() => {
     if (!isTimelineActiveRef.current) return;
 
-    const section = sectionRef.current;
-    if (!section) return;
-
-    const scrollRange = section.offsetHeight - window.innerHeight;
+    const { scrollRange, sectionTop } = geometryRef.current;
     if (scrollRange <= 0) return;
-
-    const sectionTop = window.scrollY + section.getBoundingClientRect().top;
-    const progress = Math.min(
-      1,
-      Math.max(0, (window.scrollY - sectionTop) / scrollRange),
-    );
+    const frameStep = scrollRange / (frames.length + 1);
     const targetFrame = Math.min(
       frames.length - 1,
-      Math.round(progress * (frames.length - 1)),
+      Math.max(
+        0,
+        Math.round((window.scrollY - sectionTop) / frameStep) - 1,
+      ),
     );
     const currentFrame = activeFrameRef.current;
 
@@ -253,6 +254,7 @@ export function DeveloperCallPath() {
 
     window.addEventListener("scroll", handleScroll, { passive: true });
     const handleResize = () => {
+      measureSection();
       setCarouselOffset(activeFrameRef.current * getCardStep());
     };
     window.addEventListener("resize", handleResize);
@@ -262,7 +264,7 @@ export function DeveloperCallPath() {
       window.removeEventListener("scroll", handleScroll);
       window.removeEventListener("resize", handleResize);
     };
-  }, [getCardStep, updateFrameFromScroll]);
+  }, [getCardStep, measureSection, updateFrameFromScroll]);
 
   useEffect(() => {
     const sticky = stickyRef.current;
@@ -276,7 +278,10 @@ export function DeveloperCallPath() {
 
         if (isActive && !hasActivatedRef.current) {
           hasActivatedRef.current = true;
+          measureSection();
           showFrame(0);
+        } else if (isActive) {
+          measureSection();
         }
       },
       { threshold: [0, 0.95, 1] },
@@ -284,7 +289,7 @@ export function DeveloperCallPath() {
 
     observer.observe(sticky);
     return () => observer.disconnect();
-  }, [showFrame]);
+  }, [measureSection, showFrame]);
 
   useEffect(() => {
     const navigation = window.performance.getEntriesByType("navigation")[0] as
@@ -362,7 +367,7 @@ export function DeveloperCallPath() {
 
         <div className={styles.viewport}>
           <div
-            className={`${styles.track} ${skipTrackTransition ? styles.trackInstant : ""}`}
+            className={`${styles.track} ${isTimelineActive ? styles.trackActive : ""} ${skipTrackTransition ? styles.trackInstant : ""}`}
             style={
               {
                 "--carousel-offset": `${carouselOffset}px`,
@@ -385,7 +390,7 @@ export function DeveloperCallPath() {
                   }
                   width={735}
                   height={420}
-                  sizes="(max-width: 900px) 0px, 54vw"
+                  sizes="(max-width: 900px) calc(100vw - 4.5rem), 54vw"
                   className={styles.dashboard}
                 />
                 <header className={styles.frameHeading}>
@@ -394,13 +399,13 @@ export function DeveloperCallPath() {
                   {item.brands && (
                     <div className={styles.brands} aria-label="GitHub and Jira">
                       <Image
-                        src="/images/developers/call-path/github.svg"
+                        src="/images/developers/call-path/github.webp"
                         alt="GitHub"
                         width={136}
                         height={67}
                       />
                       <Image
-                        src="/images/developers/call-path/jira.svg"
+                        src="/images/developers/call-path/jira.webp"
                         alt="Jira"
                         width={87}
                         height={38}

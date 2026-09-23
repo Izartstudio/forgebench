@@ -28,11 +28,11 @@ export function Navbar() {
         aria-label="Forgebench home"
       >
         <Image
-          src="/logos/nav-logo.svg"
+          src="/logos/nav-logo.webp"
           alt="Forgebench"
           width={107}
           height={20}
-          priority
+          sizes="107px"
         />
       </Link>
 

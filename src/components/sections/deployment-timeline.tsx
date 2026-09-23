@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { useState } from "react";
+import { useLayoutEffect, useRef, useState } from "react";
 
 import styles from "./deployment-timeline.module.css";
 
@@ -61,6 +61,61 @@ export function DeploymentTimeline({
   variant = "default",
 }: DeploymentTimelineProps) {
   const [activePhase, setActivePhase] = useState(0);
+  const phaseRefs = useRef<Array<HTMLElement | null>>([]);
+  const previousRectsRef = useRef<Map<number, DOMRect>>(new Map());
+  const movementAnimationsRef = useRef<Animation[]>([]);
+
+  useLayoutEffect(() => {
+    const previousRects = previousRectsRef.current;
+    if (previousRects.size === 0) return;
+
+    movementAnimationsRef.current.forEach((animation) => animation.cancel());
+    movementAnimationsRef.current = [];
+
+    phaseRefs.current.forEach((phase, index) => {
+      const previousRect = previousRects.get(index);
+      if (!phase || !previousRect) return;
+
+      const nextRect = phase.getBoundingClientRect();
+      const deltaX = previousRect.left - nextRect.left;
+      const deltaY = previousRect.top - nextRect.top;
+
+      if (Math.abs(deltaX) < 1 && Math.abs(deltaY) < 1) return;
+
+      movementAnimationsRef.current.push(
+        phase.animate(
+          [
+            { transform: `translate3d(${deltaX}px, ${deltaY}px, 0)` },
+            { transform: "translate3d(0, 0, 0)" },
+          ],
+          {
+            duration: 520,
+            easing: "cubic-bezier(0.22, 1, 0.36, 1)",
+          },
+        ),
+      );
+    });
+
+    previousRects.clear();
+  }, [activePhase]);
+
+  const selectPhase = (index: number) => {
+    if (index === activePhase) return;
+
+    const shouldAnimate =
+      window.matchMedia("(max-width: 56.25rem)").matches &&
+      !window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+    if (shouldAnimate) {
+      previousRectsRef.current = new Map(
+        phaseRefs.current.flatMap((phase, phaseIndex) =>
+          phase ? [[phaseIndex, phase.getBoundingClientRect()] as const] : [],
+        ),
+      );
+    }
+
+    setActivePhase(index);
+  };
 
   return (
     <section
@@ -103,6 +158,9 @@ export function DeploymentTimeline({
             return (
               <article
                 className={`${styles.phase} ${isActive ? styles.active : ""}`}
+                ref={(phase) => {
+                  phaseRefs.current[index] = phase;
+                }}
                 key={phase.week}
               >
                 <button
@@ -110,15 +168,17 @@ export function DeploymentTimeline({
                   className={styles.phaseHitbox}
                   aria-label={`Show ${phase.week}: ${phase.title}`}
                   aria-pressed={isActive}
-                  onClick={() => setActivePhase(index)}
+                  onClick={() => selectPhase(index)}
                 />
-                <Image
-                  className={styles.phaseBackground}
-                  src="/images/home/deployment/card-bg.png"
-                  alt=""
-                  fill
-                  sizes="(max-width: 767px) calc(100vw - 60px), 62vw"
-                />
+                {variant === "default" && (
+                  <Image
+                    className={styles.phaseBackground}
+                    src="/images/home/deployment/card-bg.png"
+                    alt=""
+                    fill
+                    sizes="(max-width: 767px) calc(100vw - 60px), 62vw"
+                  />
+                )}
 
                 <div className={styles.phaseTrigger}>
                   <span>{isActive ? phase.activeWeek : phase.week}</span>

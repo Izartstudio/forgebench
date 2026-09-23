@@ -150,11 +150,39 @@
   border-right: 0;
 }
 
-.integrationLogo {
-  width: auto;
+.integrationLogoFrame {
+  position: relative;
+  display: block;
   max-width: 72%;
-  height: auto;
   max-height: 1.875rem;
+}
+
+.integrationLogo {
+  object-fit: contain;
+  transition: opacity 240ms ease;
+}
+
+.integrationLogoDefault {
+  filter: grayscale(1) brightness(0);
+  opacity: 1;
+}
+
+.integrationLogoHover {
+  opacity: 0;
+}
+
+.integrationLogoCompact {
+  transform: scale(0.85);
+}
+
+.integration:hover .integrationLogoDefault,
+.integration:focus-within .integrationLogoDefault {
+  opacity: 0;
+}
+
+.integration:hover .integrationLogoHover,
+.integration:focus-within .integrationLogoHover {
+  opacity: 1;
 }
 
 @media (max-width: 64rem) {

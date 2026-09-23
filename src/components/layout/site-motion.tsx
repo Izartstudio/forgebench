@@ -1,6 +1,7 @@
 "use client";
 
 import Lenis from "lenis";
+import { usePathname } from "next/navigation";
 import { useEffect } from "react";
 
 const revealSelector = [
@@ -16,14 +17,47 @@ const revealSelector = [
 ].join(",");
 
 export function SiteMotion() {
+  const pathname = usePathname();
+
   useEffect(() => {
     const reducedMotion = window.matchMedia(
       "(prefers-reduced-motion: reduce)",
     ).matches;
+    const elements = Array.from(
+      document.querySelectorAll<HTMLElement>(revealSelector),
+    );
+
+    elements.forEach((element, index) => {
+      element.classList.add("text-reveal");
+      element.style.setProperty("--reveal-delay", `${(index % 3) * 45}ms`);
+    });
+
+    if (reducedMotion) {
+      elements.forEach((element) =>
+        element.classList.add("text-reveal-visible"),
+      );
+
+      const handleSynchronizedScroll = (event: Event) => {
+        const { top } = (event as CustomEvent<{ top: number }>).detail;
+        window.scrollTo({ top, behavior: "auto" });
+      };
+
+      window.addEventListener(
+        "forgebench:synchronized-scroll",
+        handleSynchronizedScroll,
+      );
+
+      return () => {
+        window.removeEventListener(
+          "forgebench:synchronized-scroll",
+          handleSynchronizedScroll,
+        );
+      };
+    }
 
     const lenis = new Lenis({
       duration: 1.05,
-      smoothWheel: !reducedMotion,
+      smoothWheel: true,
       wheelMultiplier: 0.9,
       touchMultiplier: 1,
     });
@@ -45,37 +79,21 @@ export function SiteMotion() {
     };
     animationFrame = window.requestAnimationFrame(animateScroll);
 
-    const elements = Array.from(
-      document.querySelectorAll<HTMLElement>(revealSelector),
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (!entry.isIntersecting) return;
+          entry.target.classList.add("text-reveal-visible");
+          observer.unobserve(entry.target);
+        });
+      },
+      { threshold: 0.08, rootMargin: "0px 0px -5%" },
     );
 
-    if (reducedMotion) {
-      elements.forEach((element) =>
-        element.classList.add("text-reveal-visible"),
-      );
-    }
-
-    const observer = reducedMotion
-      ? null
-      : new IntersectionObserver(
-          (entries) => {
-            entries.forEach((entry) => {
-              if (!entry.isIntersecting) return;
-              entry.target.classList.add("text-reveal-visible");
-              observer?.unobserve(entry.target);
-            });
-          },
-          { threshold: 0.08, rootMargin: "0px 0px -5%" },
-        );
-
-    elements.forEach((element, index) => {
-      element.classList.add("text-reveal");
-      element.style.setProperty("--reveal-delay", `${(index % 3) * 45}ms`);
-      observer?.observe(element);
-    });
+    elements.forEach((element) => observer.observe(element));
 
     return () => {
-      observer?.disconnect();
+      observer.disconnect();
       window.cancelAnimationFrame(animationFrame);
       window.removeEventListener(
         "forgebench:synchronized-scroll",
@@ -83,7 +101,7 @@ export function SiteMotion() {
       );
       lenis.destroy();
     };
-  }, []);
+  }, [pathname]);
 
   return null;
 }

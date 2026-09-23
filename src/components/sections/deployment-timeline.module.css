@@ -92,7 +92,6 @@
   flex-direction: column;
   overflow: hidden;
   background: #fff;
-  will-change: flex-basis;
   transition:
     flex-basis 420ms cubic-bezier(0.22, 1, 0.36, 1),
     background-color 180ms ease,
@@ -359,15 +358,16 @@
     height: auto;
     grid-template-columns: 1fr 1fr;
     gap: 0.25rem;
+    isolation: isolate;
   }
 
   .phase {
     min-height: 6rem;
     flex: none;
     transition:
-      min-height 450ms cubic-bezier(0.22, 1, 0.36, 1),
-      opacity 180ms ease,
-      transform 450ms cubic-bezier(0.22, 1, 0.36, 1);
+      min-height 520ms cubic-bezier(0.22, 1, 0.36, 1),
+      opacity 180ms ease;
+    backface-visibility: hidden;
     background: #fff;
     color: var(--color-text);
   }

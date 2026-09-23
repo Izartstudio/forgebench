@@ -24,31 +24,36 @@ export const metadata: Metadata = createMetadata({
 const integrations = [
   {
     name: "Claude",
-    src: "/images/developers/claude-logo.svg",
+    src: "/images/developers/claude-logo.webp",
+    hoverSrc: "/images/developers/claude-logo.webp",
     width: 92,
     height: 20,
   },
   {
     name: "Codex",
-    src: "/images/developers/codex-logo.svg",
+    src: "/images/developers/codex-logo.webp",
+    hoverSrc: "/images/developers/codex-hover.webp",
     width: 82,
     height: 20,
   },
   {
     name: "GitHub Copilot",
-    src: "/images/developers/copilot-logo.svg",
+    src: "/images/developers/copilot-logo.webp",
+    hoverSrc: "/images/developers/copilot-hover.webp",
     width: 87,
     height: 30,
   },
   {
     name: "Cursor",
-    src: "/images/developers/cursor-logo.svg",
+    src: "/images/developers/cursor-logo.webp",
+    hoverSrc: "/images/developers/cursor-hover.svg",
     width: 98,
     height: 24,
   },
   {
     name: "Kiro",
-    src: "/images/developers/kiro-logo.svg",
+    src: "/images/developers/kiro-logo.webp",
+    hoverSrc: "/images/developers/kiro-hover.webp",
     width: 70,
     height: 22,
   },
@@ -88,7 +93,7 @@ export default function DevelopersPage() {
                 src="/images/developers/hero-imagery.png"
                 alt="Forgebench routing and governance dashboard"
                 fill
-                priority
+                preload
                 sizes="(max-width: 767px) 96vw, 68vw"
                 className={styles.visualImage}
               />
@@ -104,13 +109,28 @@ export default function DevelopersPage() {
           <div className={styles.integrationList}>
             {integrations.map((integration) => (
               <div className={styles.integration} key={integration.name}>
-                <Image
-                  src={integration.src}
-                  alt={integration.name}
-                  width={integration.width}
-                  height={integration.height}
-                  className={styles.integrationLogo}
-                />
+                <span
+                  className={`${styles.integrationLogoFrame} ${integration.name === "Claude" || integration.name === "Codex" ? styles.integrationLogoCompact : ""}`}
+                  style={{
+                    width: integration.width,
+                    height: integration.height,
+                  }}
+                >
+                  <Image
+                    src={integration.src}
+                    alt={integration.name}
+                    fill
+                    sizes={`${integration.width}px`}
+                    className={`${styles.integrationLogo} ${styles.integrationLogoDefault}`}
+                  />
+                  <Image
+                    src={integration.hoverSrc}
+                    alt=""
+                    fill
+                    sizes={`${integration.width}px`}
+                    className={`${styles.integrationLogo} ${styles.integrationLogoHover}`}
+                  />
+                </span>
               </div>
             ))}
           </div>

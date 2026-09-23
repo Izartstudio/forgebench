@@ -15,10 +15,12 @@ export function ArrowLink({
   variant = "plain",
   className,
 }: ArrowLinkProps) {
+  const isDemoLink = href === "/demo";
+
   return (
     <Link
       href={href}
-      className={`${styles.link} ${styles[variant]} ${className ?? ""}`}
+      className={`${styles.link} ${styles[variant]} ${isDemoLink ? styles.underlined : ""} ${className ?? ""}`}
     >
       <span>{children}</span>
       <span className={styles.arrow} aria-hidden="true" />

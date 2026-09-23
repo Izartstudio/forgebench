@@ -164,20 +164,20 @@
   }
 
   .section::before {
-    top: -4rem;
-    right: -12rem;
-    width: 42rem;
-    height: 48rem;
+    top: -3rem;
+    right: -8rem;
+    width: 30rem;
+    height: 44rem;
     background: radial-gradient(
-      ellipse at 78% 8%,
+      ellipse at 90% 6%,
       #94120f 0%,
-      #de2e1c 15%,
-      #ed452e 27%,
-      #f6b2a9 45%,
-      rgb(251 238 237 / 44%) 61%,
-      rgb(252 252 252 / 0%) 78%
+      #de2e1c 11%,
+      #ed452e 20%,
+      #f6b2a9 38%,
+      rgb(251 238 237 / 40%) 56%,
+      rgb(252 252 252 / 0%) 74%
     );
-    filter: blur(3rem);
+    filter: blur(2.5rem);
   }
 
   .section::after {

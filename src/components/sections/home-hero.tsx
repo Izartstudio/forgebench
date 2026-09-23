@@ -7,25 +7,25 @@ import styles from "./home-hero.module.css";
 
 const credentials = [
   {
-    src: "/logos/iso-27001.svg",
+    src: "/logos/iso-27001.webp",
     alt: "ISO 27001 certified",
     width: 68,
     height: 75,
-    hoverSrc: "/logos/hover-iso-27001.svg",
+    hoverSrc: "/logos/hover-iso-27001.webp",
   },
   {
-    src: "/logos/iso-9001.svg",
+    src: "/logos/iso-9001.webp",
     alt: "ISO 9001 certified",
     width: 55,
     height: 61,
-    hoverSrc: "/logos/hover-iso-9001.svg",
+    hoverSrc: "/logos/hover-iso-9001.webp",
   },
   {
-    src: "/logos/aicpa-soc-2.svg",
+    src: "/logos/aicpa-soc-2.webp",
     alt: "AICPA SOC 2 compliant",
     width: 69,
     height: 50,
-    hoverSrc: "/logos/hover-aicpa.svg",
+    hoverSrc: "/logos/hover-aicpa.webp",
   },
 ] as const;
 
@@ -57,7 +57,7 @@ export function HomeHero() {
           src="/images/home/hero-background-card.png"
           alt=""
           fill
-          priority
+          preload
           sizes="(max-width: 767px) 100vw, 66.111vw"
           className={styles.visualImage}
         />
@@ -66,7 +66,7 @@ export function HomeHero() {
           alt="Forgebench architecture connecting AI applications and coding assistants to governed models and MCP servers"
           width={903}
           height={420}
-          priority
+          loading="eager"
           sizes="(max-width: 767px) 92vw, 61vw"
           className={styles.heroGraph}
         />

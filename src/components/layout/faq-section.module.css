@@ -38,24 +38,18 @@
 }
 
 .item {
-  height: 4.5rem;
   overflow: hidden;
   border-bottom: 1px solid #e6e6e6;
-  transition: height 650ms cubic-bezier(0.22, 1, 0.36, 1);
-}
-
-.item.active {
-  height: auto;
 }
 
 .trigger {
   display: flex;
   width: 100%;
-  height: 4.5rem;
+  min-height: 4.5rem;
   align-items: center;
   justify-content: space-between;
   gap: 2rem;
-  padding: 0;
+  padding: 1rem 0;
   border: 0;
   background: transparent;
   color: #1a1a1a;
@@ -63,11 +57,6 @@
   font: inherit;
   font-size: 1rem;
   text-align: left;
-}
-
-.active .trigger {
-  height: auto;
-  padding-block: 1.25rem;
 }
 
 .indicator {
@@ -107,9 +96,9 @@
   opacity: 0;
   transform: translateY(-0.4rem);
   transition:
-    grid-template-rows 650ms cubic-bezier(0.22, 1, 0.36, 1),
-    opacity 300ms ease,
-    transform 500ms cubic-bezier(0.22, 1, 0.36, 1);
+    grid-template-rows 520ms cubic-bezier(0.22, 1, 0.36, 1),
+    opacity 280ms ease,
+    transform 420ms cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 .active .answer {
@@ -145,22 +134,13 @@
     padding: 3rem 2rem;
   }
 
-  .item,
-  .item.active {
-    height: auto;
+  .item {
     min-height: 5.5rem;
   }
 
-  .trigger,
   .trigger {
-    height: auto;
     min-height: 5.5rem;
     padding-block: 1rem;
-  }
-
-  .active .trigger {
-    min-height: 0;
-    padding-block: 1.25rem;
   }
 
   .active .answer {

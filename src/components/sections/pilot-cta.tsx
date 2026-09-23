@@ -19,6 +19,7 @@ export function PilotCta() {
             <br className={styles.desktopBreak} /> and the two or three agents
             already running in production.
             <br />
+            <br />
             You don&apos;t commit to a platform to run it.
           </p>
         </div>

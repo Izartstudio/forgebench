@@ -43,7 +43,7 @@ export function SiteFooter() {
           <p>Every call governed.</p>
           <p>Every dollar accounted for.</p>
           <Image
-            src="/logos/logo-footer.svg"
+            src="/logos/logo-footer.webp"
             alt="Forgebench"
             width={321}
             height={60}
@@ -54,7 +54,7 @@ export function SiteFooter() {
 
       <Image
         className={styles.wordmark}
-        src="/logos/footer-logo.svg"
+        src="/logos/footer-logo.webp"
         alt="Forgebench"
         width={1440}
         height={272}
@@ -65,7 +65,7 @@ export function SiteFooter() {
         <p>Every call governed.</p>
         <p>Every dollar accounted for.</p>
         <Image
-          src="/logos/logo-footer.svg"
+          src="/logos/logo-footer.webp"
           alt="Forgebench"
           width={321}
           height={60}
