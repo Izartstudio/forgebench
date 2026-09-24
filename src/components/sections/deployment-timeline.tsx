@@ -206,7 +206,7 @@ export function DeploymentTimeline({
                 {variant === "default" && (
                   <Image
                     className={styles.phaseBackground}
-                    src="/images/home/deployment/card-bg.png"
+                    src="/images/home/deployment/card-bg.webp"
                     alt=""
                     fill
                     sizes="(max-width: 767px) calc(100vw - 60px), 62vw"

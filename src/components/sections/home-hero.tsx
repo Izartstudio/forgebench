@@ -32,7 +32,7 @@ export function HomeHero() {
 
       <div className={styles.visual}>
         <Image
-          src="/images/home/hero-background-card.png"
+          src="/images/home/hero-background-card.webp"
           alt=""
           fill
           preload
