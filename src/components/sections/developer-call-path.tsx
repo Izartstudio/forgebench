@@ -349,7 +349,7 @@ export function DeveloperCallPath({
   const viewportRef = useRef<HTMLDivElement>(null);
   const mobileScrollLockRef = useRef(false);
   const mobileScrollFrameRef = useRef(0);
-  const scrollIdleTimerRef = useRef<ReturnType<typeof window.setTimeout> | null>(null);
+  const scrollIdleTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const isUserScrollingRef = useRef(false);
   const activeFrameRef = useRef(0);
   const isTimelineActiveRef = useRef(false);
@@ -445,9 +445,9 @@ export function DeveloperCallPath({
     const handleScroll = () => {
       isUserScrollingRef.current = true;
       if (scrollIdleTimerRef.current !== null) {
-        window.clearTimeout(scrollIdleTimerRef.current);
+        clearTimeout(scrollIdleTimerRef.current);
       }
-      scrollIdleTimerRef.current = window.setTimeout(() => {
+      scrollIdleTimerRef.current = setTimeout(() => {
         isUserScrollingRef.current = false;
         scrollIdleTimerRef.current = null;
       }, 450);
@@ -466,7 +466,7 @@ export function DeveloperCallPath({
     return () => {
       window.cancelAnimationFrame(animationFrame);
       if (scrollIdleTimerRef.current !== null) {
-        window.clearTimeout(scrollIdleTimerRef.current);
+        clearTimeout(scrollIdleTimerRef.current);
       }
       window.removeEventListener("scroll", handleScroll);
       window.removeEventListener("resize", handleResize);
@@ -538,10 +538,10 @@ export function DeveloperCallPath({
   useEffect(() => {
     if (!isTimelineActive) return;
 
-    let timer: ReturnType<typeof window.setTimeout>;
+    let timer: ReturnType<typeof setTimeout>;
     const advanceWhenIdle = () => {
       if (isUserScrollingRef.current) {
-        timer = window.setTimeout(advanceWhenIdle, 500);
+        timer = setTimeout(advanceWhenIdle, 500);
         return;
       }
 
@@ -549,9 +549,9 @@ export function DeveloperCallPath({
       showFrame(activeFrame + 1, false, true);
     };
 
-    timer = window.setTimeout(advanceWhenIdle, frameDuration);
+    timer = setTimeout(advanceWhenIdle, frameDuration);
 
-    return () => window.clearTimeout(timer);
+    return () => clearTimeout(timer);
   }, [activeFrame, isTimelineActive, showFrame]);
 
   const selectFrame = (index: number) => {
