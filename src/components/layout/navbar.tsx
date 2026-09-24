@@ -10,7 +10,7 @@ import styles from "./navbar.module.css";
 
 const navigation = [
   { label: "For Developers", href: "/developers" },
-  { label: "For Agent", href: "/agents" },
+  { label: "For Agents", href: "/agents" },
   { label: "Resources", href: "/resources" },
   { label: "Pricing", href: "/pricing" },
   { label: "Company", href: "/company" },

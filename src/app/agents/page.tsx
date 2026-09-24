@@ -33,10 +33,10 @@ export default function AgentsPage() {
           description="Govern Every Call It Makes."
         >
           <div className={styles.routingFrame}>
-            <Image src="/images/agents/routing.webp" alt="Forgebench model routing dashboard" fill sizes="(max-width: 767px) 64vw, 43vw" quality={72} />
+            <Image src="/images/agents/routing.webp" alt="Forgebench model routing dashboard" fill preload unoptimized sizes="(max-width: 767px) 64vw, 43vw" />
           </div>
           <div className={styles.dashboardFrame}>
-            <Image src="/images/agents/dashboard.webp" alt="Forgebench agent governance dashboard" fill preload sizes="(max-width: 767px) 92vw, 58vw" quality={76} />
+            <Image src="/images/agents/dashboard.webp" alt="Forgebench agent governance dashboard" fill preload unoptimized sizes="(max-width: 767px) 92vw, 58vw" />
           </div>
         </AudienceHero>
         <CredentialsStrip />
