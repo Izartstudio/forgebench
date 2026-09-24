@@ -43,12 +43,15 @@ const panels = [
 ] as const;
 
 const panelDuration = 8000;
+const registryVideoDuration = 17250;
 
 export function PlatformAccordion() {
   const [activePanel, setActivePanel] = useState(0);
   const [timelineRun, setTimelineRun] = useState(0);
   const [isInView, setIsInView] = useState(false);
   const sectionRef = useRef<HTMLElement>(null);
+  const registryVideoRef = useRef<HTMLVideoElement>(null);
+  const mobileRegistryVideoRef = useRef<HTMLVideoElement>(null);
 
   useEffect(() => {
     const section = sectionRef.current;
@@ -69,9 +72,24 @@ export function PlatformAccordion() {
     const timer = window.setTimeout(() => {
       setActivePanel((current) => (current + 1) % panels.length);
       setTimelineRun((current) => current + 1);
-    }, panelDuration);
+    }, activePanel === 0 ? registryVideoDuration : panelDuration);
 
     return () => window.clearTimeout(timer);
+  }, [activePanel, isInView, timelineRun]);
+
+  useEffect(() => {
+    const videos = [registryVideoRef.current, mobileRegistryVideoRef.current];
+
+    if (isInView && activePanel === 0) {
+      videos.forEach((video) => {
+        if (!video || video.offsetParent === null) return;
+        video.currentTime = 0;
+        void video.play().catch(() => undefined);
+      });
+      return;
+    }
+
+    videos.forEach((video) => video?.pause());
   }, [activePanel, isInView, timelineRun]);
 
   const selectPanel = (index: number) => {
@@ -118,15 +136,29 @@ export function PlatformAccordion() {
                       <div
                         className={styles.mobileMedia}
                         data-panel={panel.title.toLowerCase()}
-                        aria-label={`${panel.title} video placeholder`}
-                      />
+                        aria-label={`${panel.title} product demonstration`}
+                      >
+                        {index === 0 && (
+                          <video
+                            ref={mobileRegistryVideoRef}
+                            className={styles.mobileRegistryVideo}
+                            muted
+                            playsInline
+                            preload="metadata"
+                            poster="/images/platform/registry-poster.jpg"
+                            aria-label="Forgebench Registry interface demonstration"
+                          >
+                            <source src="/videos/registry.webm" type="video/webm" />
+                          </video>
+                        )}
+                      </div>
                     </div>
                   </div>
                   {isActive && (
                     <span className={styles.timeline} aria-hidden="true">
                       <span
                         key={`${index}-${timelineRun}-${isInView}`}
-                        className={isInView ? styles.timelineProgress : ""}
+                        className={`${isInView ? styles.timelineProgress : ""} ${index === 0 ? styles.registryTimeline : ""}`}
                       />
                     </span>
                   )}
@@ -138,8 +170,24 @@ export function PlatformAccordion() {
           <div
             className={styles.media}
             data-active-panel={panels[activePanel].title.toLowerCase()}
-            aria-label={`${panels[activePanel].title} video placeholder`}
-          />
+            aria-label={`${panels[activePanel].title} product demonstration`}
+          >
+            <div
+              className={`${styles.registryVideoFrame} ${activePanel === 0 ? styles.registryVideoVisible : ""}`}
+            >
+              <video
+                ref={registryVideoRef}
+                className={styles.registryVideo}
+                muted
+                playsInline
+                preload="metadata"
+                poster="/images/platform/registry-poster.jpg"
+                aria-label="Forgebench Registry interface demonstration"
+              >
+                <source src="/videos/registry.webm" type="video/webm" />
+              </video>
+            </div>
+          </div>
         </div>
       </div>
     </section>
