@@ -454,6 +454,43 @@
   .collapsedLabel i {
     width: 0.6875rem;
   }
+
+  .developers .workspace {
+    padding: 1.125rem;
+  }
+
+  .developers .where {
+    margin-bottom: 1.5rem;
+    line-height: 1.45;
+  }
+
+  .developers .foundations {
+    gap: 0.875rem;
+  }
+
+  .developers .foundations article {
+    min-height: auto;
+    padding: 1.5rem 1.25rem;
+  }
+
+  .developers .foundations h3 {
+    margin-bottom: 1.5rem;
+    line-height: 1.2;
+  }
+
+  .developers .foundations strong,
+  .developers .foundations p {
+    line-height: 1.45;
+  }
+
+  .developers .foundations p {
+    margin-top: 0.875rem;
+  }
+
+  .developers .phasesLabel {
+    margin: 2.5rem 0 0.875rem;
+    line-height: 1.45;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {

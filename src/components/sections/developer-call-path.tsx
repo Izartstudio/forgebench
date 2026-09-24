@@ -162,6 +162,9 @@ function synchronizePageScroll(top: number) {
 export function DeveloperCallPath() {
   const sectionRef = useRef<HTMLElement>(null);
   const stickyRef = useRef<HTMLDivElement>(null);
+  const viewportRef = useRef<HTMLDivElement>(null);
+  const mobileScrollLockRef = useRef(false);
+  const mobileScrollFrameRef = useRef(0);
   const activeFrameRef = useRef(0);
   const isTimelineActiveRef = useRef(false);
   const hasActivatedRef = useRef(false);
@@ -207,7 +210,9 @@ export function DeveloperCallPath() {
       setCarouselOffset(normalizedIndex * getCardStep());
       setTimelineRun((current) => current + 1);
 
-      if (syncScroll) {
+      const isMobileCarousel = window.matchMedia("(max-width: 56.25rem)").matches;
+
+      if (syncScroll && !isMobileCarousel) {
         const target = getFrameScrollTarget(normalizedIndex);
         if (target !== null) {
           synchronizePageScroll(target);
@@ -225,6 +230,7 @@ export function DeveloperCallPath() {
 
   const updateFrameFromScroll = useCallback(() => {
     if (!isTimelineActiveRef.current) return;
+    if (window.matchMedia("(max-width: 56.25rem)").matches) return;
 
     const { scrollRange, sectionTop } = geometryRef.current;
     if (scrollRange <= 0) return;
@@ -265,6 +271,23 @@ export function DeveloperCallPath() {
       window.removeEventListener("resize", handleResize);
     };
   }, [getCardStep, measureSection, updateFrameFromScroll]);
+
+  useEffect(() => {
+    const viewport = viewportRef.current;
+    if (!viewport || !window.matchMedia("(max-width: 56.25rem)").matches) return;
+
+    mobileScrollLockRef.current = true;
+    viewport.scrollTo({
+      left: activeFrame * getCardStep(),
+      behavior: skipTrackTransition ? "auto" : "smooth",
+    });
+
+    const timer = window.setTimeout(() => {
+      mobileScrollLockRef.current = false;
+    }, skipTrackTransition ? 50 : 750);
+
+    return () => window.clearTimeout(timer);
+  }, [activeFrame, getCardStep, skipTrackTransition]);
 
   useEffect(() => {
     const sticky = stickyRef.current;
@@ -325,6 +348,25 @@ export function DeveloperCallPath() {
     showFrame(index);
   };
 
+  const handleMobileCarouselScroll = () => {
+    if (mobileScrollLockRef.current) return;
+
+    window.cancelAnimationFrame(mobileScrollFrameRef.current);
+    mobileScrollFrameRef.current = window.requestAnimationFrame(() => {
+      const viewport = viewportRef.current;
+      if (!viewport) return;
+
+      const nextFrame = Math.min(
+        frames.length - 1,
+        Math.max(0, Math.round(viewport.scrollLeft / getCardStep())),
+      );
+
+      if (nextFrame !== activeFrameRef.current) {
+        showFrame(nextFrame, false);
+      }
+    });
+  };
+
   return (
     <section
       ref={sectionRef}
@@ -365,7 +407,15 @@ export function DeveloperCallPath() {
           ))}
         </nav>
 
-        <div className={styles.viewport}>
+        <div
+          ref={viewportRef}
+          className={styles.viewport}
+          data-lenis-prevent
+          onScroll={handleMobileCarouselScroll}
+          onPointerDown={() => {
+            mobileScrollLockRef.current = false;
+          }}
+        >
           <div
             className={`${styles.track} ${isTimelineActive ? styles.trackActive : ""} ${skipTrackTransition ? styles.trackInstant : ""}`}
             style={
@@ -428,6 +478,12 @@ export function DeveloperCallPath() {
             ))}
           </div>
         </div>
+        <button
+          type="button"
+          className={styles.mobileNudge}
+          aria-label="Show next timeline card"
+          onClick={() => showFrame(activeFrame + 1, false)}
+        />
       </div>
     </section>
   );

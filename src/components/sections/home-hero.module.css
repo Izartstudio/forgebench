@@ -84,14 +84,8 @@
   object-fit: cover;
 }
 
-.heroGraph {
-  position: absolute;
-  z-index: 1;
-  top: 50%;
-  left: 50%;
-  width: min(92%, 56.5rem);
-  height: auto;
-  transform: translate(-50%, -50%);
+.visualImageMobile {
+  display: none;
 }
 
 .credentials {
@@ -193,11 +187,18 @@
   }
 
   .visual {
-    min-height: min(68.8vw, 32rem);
+    height: min(171.7vw, 47rem);
+    min-height: 0;
+    aspect-ratio: 276 / 474;
   }
 
-  .heroGraph {
-    width: 94%;
+  .visualImage {
+    display: none;
+  }
+
+  .visualImageMobile {
+    display: block;
+    object-fit: cover;
   }
 
   .credentials {

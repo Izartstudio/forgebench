@@ -100,6 +100,10 @@
   transition: none;
 }
 
+.mobileNudge {
+  display: none;
+}
+
 .card {
   position: relative;
   isolation: isolate;
@@ -239,10 +243,12 @@
 
 @media (max-width: 56.25rem) {
   .section {
-    height: 700svh;
+    height: auto;
   }
 
   .sticky {
+    position: relative;
+    top: auto;
     height: 100svh;
     padding: 1rem 0 0.5rem 1rem;
   }
@@ -260,6 +266,28 @@
 
   .viewport {
     height: calc(100svh - 4.5rem);
+    overflow-x: auto;
+    overflow-y: hidden;
+    scroll-behavior: smooth;
+    scroll-snap-type: x mandatory;
+    scrollbar-width: none;
+    touch-action: pan-x;
+    overscroll-behavior-x: contain;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .viewport::-webkit-scrollbar {
+    display: none;
+  }
+
+  .track {
+    width: max-content;
+    transform: none;
+    transition: none;
+  }
+
+  .trackActive {
+    will-change: auto;
   }
 
   .card {
@@ -269,6 +297,8 @@
     flex-direction: column;
     overflow: hidden;
     padding: 1.5rem 1.5rem 1rem;
+    scroll-snap-align: start;
+    scroll-snap-stop: always;
   }
 
   .dashboard {
@@ -354,6 +384,50 @@
     color: rgb(238 238 238 / 75%);
     font-size: 0.75rem;
     line-height: 1.35;
+  }
+
+  .mobileNudge {
+    position: absolute;
+    z-index: 8;
+    top: 50%;
+    right: 0.75rem;
+    display: block;
+    width: 1.75rem;
+    height: 1.75rem;
+    border: 1px solid rgb(222 82 70 / 55%);
+    border-radius: 50%;
+    background: #fff;
+    box-shadow: 0 0.35rem 1.25rem rgb(20 3 6 / 32%);
+    cursor: pointer;
+    transform: translateY(-50%);
+  }
+
+  .mobileNudge:focus-visible {
+    outline: 2px solid #de5246;
+    outline-offset: 0.2rem;
+  }
+
+  .mobileNudge::before {
+    position: absolute;
+    inset: 0.48rem;
+    background: #de5246;
+    content: "";
+    -webkit-mask: url("/icons/hover-arrow.svg") center / contain no-repeat;
+    mask: url("/icons/hover-arrow.svg") center / contain no-repeat;
+    animation: mobile-nudge 1.25s ease-in-out infinite;
+  }
+}
+
+@keyframes mobile-nudge {
+  0%,
+  100% {
+    opacity: 0.55;
+    transform: translateX(-0.18rem);
+  }
+
+  50% {
+    opacity: 1;
+    transform: translateX(0.18rem);
   }
 }
 

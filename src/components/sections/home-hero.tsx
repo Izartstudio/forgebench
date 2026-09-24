@@ -2,6 +2,7 @@ import Image from "next/image";
 
 import { ArrowLink } from "@/components/ui/arrow-link";
 import { TypewriterText } from "@/components/ui/typewriter-text";
+import { HeroArchitecture } from "./hero-architecture";
 
 import styles from "./home-hero.module.css";
 
@@ -62,14 +63,14 @@ export function HomeHero() {
           className={styles.visualImage}
         />
         <Image
-          src="/images/home/hero-graph.png"
-          alt="Forgebench architecture connecting AI applications and coding assistants to governed models and MCP servers"
-          width={903}
-          height={420}
+          src="/images/home/hero-background-mobile.webp"
+          alt=""
+          fill
           loading="eager"
-          sizes="(max-width: 767px) 92vw, 61vw"
-          className={styles.heroGraph}
+          sizes="100vw"
+          className={styles.visualImageMobile}
         />
+        <HeroArchitecture />
       </div>
 
       <div className={styles.credentials}>
