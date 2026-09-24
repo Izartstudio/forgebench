@@ -31,9 +31,9 @@ const integrations = [
   },
   {
     name: "Codex",
-    src: "/images/developers/codex-logo.webp",
-    hoverSrc: "/images/developers/codex-hover.webp",
-    width: 82,
+    src: "/images/developers/codex-logo.svg",
+    hoverSrc: "/images/developers/codex-hover.svg",
+    width: 112,
     height: 20,
   },
   {
@@ -53,7 +53,7 @@ const integrations = [
   {
     name: "Kiro",
     src: "/images/developers/kiro-logo.webp",
-    hoverSrc: "/images/developers/kiro-hover.webp",
+    hoverSrc: "/images/developers/kiro-hover-cropped.webp",
     width: 70,
     height: 22,
   },
@@ -110,7 +110,7 @@ export default function DevelopersPage() {
             {integrations.map((integration) => (
               <div className={styles.integration} key={integration.name}>
                 <span
-                  className={`${styles.integrationLogoFrame} ${integration.name === "Claude" || integration.name === "Codex" ? styles.integrationLogoCompact : ""}`}
+                  className={`${styles.integrationLogoFrame} ${integration.name === "Claude" ? styles.integrationLogoCompact : ""}`}
                   style={{
                     width: integration.width,
                     height: integration.height,

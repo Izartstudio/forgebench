@@ -286,6 +286,11 @@
     transition: none;
   }
 
+  .track::after {
+    flex: 0 0 1.5rem;
+    content: "";
+  }
+
   .trackActive {
     will-change: auto;
   }

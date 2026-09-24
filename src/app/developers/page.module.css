@@ -158,6 +158,8 @@
 }
 
 .integrationLogo {
+  width: 100% !important;
+  height: 100% !important;
   object-fit: contain;
   transition: opacity 240ms ease;
 }
@@ -175,14 +177,16 @@
   transform: scale(0.85);
 }
 
-.integration:hover .integrationLogoDefault,
-.integration:focus-within .integrationLogoDefault {
-  opacity: 0;
-}
+@media (hover: hover) and (pointer: fine) {
+  .integration:hover .integrationLogoDefault,
+  .integration:focus-within .integrationLogoDefault {
+    opacity: 0;
+  }
 
-.integration:hover .integrationLogoHover,
-.integration:focus-within .integrationLogoHover {
-  opacity: 1;
+  .integration:hover .integrationLogoHover,
+  .integration:focus-within .integrationLogoHover {
+    opacity: 1;
+  }
 }
 
 @media (max-width: 64rem) {

@@ -145,12 +145,14 @@
   opacity: 0;
 }
 
-.credential:hover .logoSwap img:first-child {
-  opacity: 0;
-}
+@media (hover: hover) and (pointer: fine) {
+  .credential:hover .logoSwap img:first-child {
+    opacity: 0;
+  }
 
-.credential:hover .hoverLogo {
-  opacity: 1;
+  .credential:hover .hoverLogo {
+    opacity: 1;
+  }
 }
 
 .credential:last-child {

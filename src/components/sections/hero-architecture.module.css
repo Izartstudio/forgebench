@@ -246,10 +246,19 @@
   }
 
   .sources,
-  .targets { display: grid; height: 100%; grid-template-columns: 1fr 1fr; gap: 2rem; }
+  .targets {
+    display: grid;
+    height: 100%;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.875rem;
+  }
   .sources { grid-row: 1; }
   .core { grid-row: 2; padding: 0.35rem; }
-  .targets { grid-row: 3; }
+  .targets {
+    grid-row: 3;
+    align-items: start;
+    padding-top: 0.75rem;
+  }
   .targets .targetCard:first-child { order: 2; }
   .desktopConnectors { display: none; }
   .mobileConnectors { display: block; }
