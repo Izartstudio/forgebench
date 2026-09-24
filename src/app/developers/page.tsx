@@ -7,9 +7,9 @@ import { SiteFooter } from "@/components/layout/site-footer";
 import { DeveloperCapabilities } from "@/components/sections/developer-capabilities";
 import { DeveloperCallPath } from "@/components/sections/developer-call-path";
 import { DeveloperExperience } from "@/components/sections/developer-experience";
+import { AudienceHero } from "@/components/sections/audience-hero";
 import { DeploymentTimeline } from "@/components/sections/deployment-timeline";
 import { PilotCta } from "@/components/sections/pilot-cta";
-import { ArrowLink } from "@/components/ui/arrow-link";
 import { createMetadata } from "@/lib/seo/metadata";
 
 import styles from "./page.module.css";
@@ -64,42 +64,16 @@ export default function DevelopersPage() {
     <>
       <Navbar />
       <main id="main-content">
-        <section className={styles.hero} aria-labelledby="developers-title">
-          <div className={styles.copy}>
-            <p className={styles.eyebrow}>
-              <span>Self-hosted deployment</span>
-              <i className={styles.eyebrowDot} aria-hidden="true" />
-              <span>Model agnostic</span>
-            </p>
-            <h1 id="developers-title">
-              Know Every Developer
-              <br />
-              {" "}Using AI In Your Org.
-            </h1>
-            <p className={styles.description}>
-              Govern Every Call. Trace ROI on Every Build.
-            </p>
-            <div className={styles.actions}>
-              <ArrowLink href="/sandbox" variant="dark">
-                Try The Sandbox
-              </ArrowLink>
-              <ArrowLink href="/demo">Book A Demo</ArrowLink>
-            </div>
-          </div>
-
-          <div className={styles.visual}>
-            <div className={styles.visualFrame}>
-              <Image
-                src="/images/developers/hero-imagery.png"
-                alt="Forgebench routing and governance dashboard"
-                fill
-                preload
-                sizes="(max-width: 767px) 96vw, 68vw"
-                className={styles.visualImage}
-              />
-            </div>
-          </div>
-        </section>
+        <AudienceHero
+          id="developers-title"
+          eyebrow={<>Self-hosted deployment <i aria-hidden="true" /> Model agnostic</>}
+          title={<>Know Every Developer<br /> Using AI In Your Org.</>}
+          description="Govern Every Call. Trace ROI on Every Build."
+          image={{
+            src: "/images/developers/hero-imagery.png",
+            alt: "Forgebench routing and governance dashboard",
+          }}
+        />
 
         <section className={styles.integrations} aria-label="Integrations">
           <div className={styles.integrationLabel}>

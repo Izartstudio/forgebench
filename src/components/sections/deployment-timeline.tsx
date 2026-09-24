@@ -54,12 +54,50 @@ const foundations = [
 ] as const;
 
 type DeploymentTimelineProps = {
-  variant?: "default" | "developers";
+  variant?: "default" | "developers" | "agents";
 };
+
+// Edit this block when the agents-page timeline needs its own copy.
+export const agentsTimelineCopy = {
+  eyebrow: "Deployment & Implementation",
+  headingStart: "Runs",
+  headingAccent: "In Your Environment.",
+  headingEnd: "Proved And Signed-Off In 4 Weeks.",
+  where:
+    "Where it runs. Your infrastructure, your identity provider, your policies.",
+  phasesLabel: "Three phases, each exiting on evidence.",
+  foundations,
+  phases,
+  phaseImages: [
+    "/images/home/deployment/week-1.png",
+    "/images/home/deployment/week-2-3.png",
+    "/images/home/deployment/week-4.png",
+  ],
+  phaseImageAlts: [
+    "Forgebench planning and setup overview",
+    "Forgebench agent governance implementation overview",
+    "Forgebench review and sign-off overview",
+  ],
+} as const;
 
 export function DeploymentTimeline({
   variant = "default",
 }: DeploymentTimelineProps) {
+  const copy = variant === "agents" ? agentsTimelineCopy : {
+    eyebrow: "Deployment & Implementation",
+    headingStart: "Runs",
+    headingAccent: "In Your Environment.",
+    headingEnd: "Proved And Signed-Off In 4 Weeks.",
+    where:
+      "Where it runs. Your infrastructure, your identity provider, your policies.",
+    phasesLabel: "Three phases, each exiting on evidence.",
+    foundations,
+    phases,
+    phaseImages: phases.map((phase) => phase.image),
+    phaseImageAlts: phases.map(
+      () => "Forgebench overview showing governed AI usage, budget and spend metrics",
+    ),
+  } as const;
   const [activePhase, setActivePhase] = useState(0);
   const phaseRefs = useRef<Array<HTMLElement | null>>([]);
   const previousRectsRef = useRef<Map<number, DOMRect>>(new Map());
@@ -119,26 +157,23 @@ export function DeploymentTimeline({
 
   return (
     <section
-      className={`${styles.section} ${variant === "developers" ? styles.developers : ""}`}
-      aria-labelledby="deployment-heading"
+      className={`${styles.section} ${variant === "developers" || variant === "agents" ? styles.developers : ""}`}
+      aria-labelledby={`${variant}-deployment-heading`}
     >
       <header className={styles.heading}>
-        <p>Deployment &amp; Implementation</p>
-        <h2 id="deployment-heading">
-          Runs <span>In Your Environment.</span>
+        <p>{copy.eyebrow}</p>
+        <h2 id={`${variant}-deployment-heading`}>
+          {copy.headingStart} <span>{copy.headingAccent}</span>
           <br />
-          Proved And Signed-Off In 4 Weeks.
+          {copy.headingEnd}
         </h2>
       </header>
 
       <div className={styles.workspace}>
-        <p className={styles.where}>
-          Where it runs. Your infrastructure, your identity provider, your
-          policies.
-        </p>
+        <p className={styles.where}>{copy.where}</p>
 
         <div className={styles.foundations}>
-          {foundations.map((item) => (
+          {copy.foundations.map((item) => (
             <article key={item.title}>
               <h3>{item.title}</h3>
               <strong>{item.lead}</strong>
@@ -147,12 +182,10 @@ export function DeploymentTimeline({
           ))}
         </div>
 
-        <p className={styles.phasesLabel}>
-          Three phases, each exiting on evidence.
-        </p>
+        <p className={styles.phasesLabel}>{copy.phasesLabel}</p>
 
         <div className={styles.phases}>
-          {phases.map((phase, index) => {
+          {copy.phases.map((phase, index) => {
             const isActive = activePhase === index;
 
             return (
@@ -189,8 +222,8 @@ export function DeploymentTimeline({
                   <p>{phase.description}</p>
                   <Image
                     className={styles.productImage}
-                    src={phase.image}
-                    alt="Forgebench overview showing governed AI usage, budget and spend metrics"
+                    src={copy.phaseImages[index]}
+                    alt={copy.phaseImageAlts[index]}
                     width={623}
                     height={339}
                     sizes="(max-width: 767px) calc(100vw - 92px), 46vw"

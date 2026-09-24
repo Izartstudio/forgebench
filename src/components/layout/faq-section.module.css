@@ -33,6 +33,23 @@
   color: #de5246;
 }
 
+.actions {
+  display: flex;
+  align-items: flex-start;
+  flex-direction: column;
+  gap: 0.65rem;
+  margin-top: 2.25rem;
+}
+
+.actions > a:first-child {
+  min-width: 11.0625rem;
+}
+
+.actions > a:last-child {
+  min-height: 2rem;
+  padding-left: 0;
+}
+
 .accordion {
   min-width: 0;
 }

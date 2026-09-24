@@ -61,6 +61,45 @@ const capabilities: readonly Capability[] = [
   },
 ];
 
+const agentCapabilities = [
+  {
+    category: "Coverage",
+    title: "One Governed Path",
+    description:
+      "Every call routed through Forgebench, on the agent's own credential. No agent holds a provider key.",
+  },
+  {
+    category: "Registry",
+    title: "An inventory of every agent",
+    description:
+      "Owner, state, version, tools, spend against ceiling — registered before its first call.",
+  },
+  {
+    category: "Policy",
+    title: "Permissions and guardrails, set centrally",
+    description:
+      "The tools and MCP servers an agent may reach, and what may leave your perimeter. Bound at registration, enforced on every call.",
+  },
+  {
+    category: "Control & Attribution",
+    title: "A ceiling before the spend",
+    description:
+      "Caps per model, agent and key, enforced before the round-trip. Whichever cap is reached first refuses the next call.",
+  },
+  {
+    category: "Guardrails",
+    title: "Input-output safety reviews",
+    description:
+      "PII, secrets and denylist checks off the response path. Flagged against the agent, never blocking.",
+  },
+  {
+    category: "Auditability",
+    title: "Tamper-evident audit record",
+    description:
+      "Every call and every operator action, hash-linked. Editing an entry is detectable.",
+  },
+] as const;
+
 const capabilityIcons = {
   governed: {
     src: "/images/developers/capability-governed.svg",
@@ -74,7 +113,52 @@ const capabilityIcons = {
   },
 } as const;
 
-export function DeveloperCapabilities() {
+type DeveloperCapabilitiesProps = {
+  variant?: "developers" | "agents";
+};
+
+export function DeveloperCapabilities({
+  variant = "developers",
+}: DeveloperCapabilitiesProps) {
+  if (variant === "agents") {
+    return (
+      <section
+        className={`${styles.section} ${styles.agentsSection}`}
+        aria-labelledby="agent-capabilities-title"
+      >
+        <div className={`${styles.introduction} ${styles.agentsIntroduction}`}>
+          <h2 id="agent-capabilities-title" className={styles.heading}>
+            <span>Six Capabilities</span> That Fence
+            <br />
+            Your Agents
+          </h2>
+          <p className={styles.summary}>
+            Forgebench Gives Every Agent Its Own Credential, Its Own Ceiling
+            <br />
+            And Its Own Record — So You Can See, Live, Every Call It Makes,
+            <br />
+            Who Owns It, And What It Costs.
+          </p>
+        </div>
+
+        <div className={`${styles.gridFrame} ${styles.agentsGridFrame}`}>
+          <div className={`${styles.grid} ${styles.agentsGrid}`}>
+            {agentCapabilities.map((capability, index) => (
+              <article
+                className={`${styles.card} ${styles.agentCard} ${index % 2 === 0 ? styles.plain : styles.soft}`}
+                key={capability.title}
+              >
+                <p className={styles.category}>{capability.category}</p>
+                <h3>{capability.title}</h3>
+                <p className={styles.description}>{capability.description}</p>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
+    );
+  }
+
   return (
     <section className={styles.section} aria-labelledby="capabilities-title">
       <div className={styles.introduction}>

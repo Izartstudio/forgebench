@@ -9,9 +9,8 @@ import { ArrowLink } from "@/components/ui/arrow-link";
 import styles from "./navbar.module.css";
 
 const navigation = [
-  { label: "Product", href: "/product" },
-  { label: "Solutions", href: "/solutions" },
-  { label: "Developers", href: "/developers" },
+  { label: "For Developers", href: "/developers" },
+  { label: "For Agent", href: "/agents" },
   { label: "Resources", href: "/resources" },
   { label: "Pricing", href: "/pricing" },
   { label: "Company", href: "/company" },

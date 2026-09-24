@@ -11,9 +11,11 @@ import {
 
 import styles from "./developer-call-path.module.css";
 
-type Frame = {
+export type CallPathFrame = {
   eyebrow: string;
   title: string;
+  image?: string;
+  imageAlt?: string;
   brands?: true;
   points: readonly {
     title: string;
@@ -21,7 +23,7 @@ type Frame = {
   }[];
 };
 
-const frames: readonly Frame[] = [
+export const developerCallPathFrames: readonly CallPathFrame[] = [
   {
     eyebrow: "Governed · Credentials and ceilings",
     title: "Three Hundred Developers. Three Hundred Budgets. One Pass.",
@@ -149,6 +151,178 @@ const frames: readonly Frame[] = [
   },
 ];
 
+// This is the agents-page content source. Replace any frame text or image here
+// without changing the developer page or the shared animation component.
+export const agentsCallPathFrames: readonly CallPathFrame[] = [
+  {
+    eyebrow: "Registry · How an agent gets governed",
+    title: "One Short Form, Before The Agent’s First Call",
+    image: "/images/developers/call-path/dashboard.png",
+    imageAlt: "Forgebench agent registry and governance dashboard",
+    points: [
+      {
+        title: "Register",
+        description:
+          "Name the agent, name its owner, and tag it to the features it serves.",
+      },
+      {
+        title: "Provision",
+        description:
+          "A unique agent identity is minted, and tool bindings are added to its allowlist.",
+      },
+      {
+        title: "Inventory Row",
+        description:
+          "The agent appears with owner, tags, state, version and last seen. Listed, but not active.",
+      },
+      {
+        title: "Governed On First Call",
+        description:
+          "The first call flips it live; there's no separate path for an agent.",
+      },
+    ],
+  },
+  {
+    eyebrow: "Coverage · The governed call path",
+    title: "Every Call, One Route. Refused Before It Costs Anything.",
+    image: "/images/developers/call-path/dashboard.png",
+    imageAlt: "Forgebench governed agent call-path dashboard",
+    points: [
+      {
+        title: "Credential Authenticated",
+        description:
+          "The agent's identity and policy are resolved from its own credential.",
+      },
+      {
+        title: "Audit Record Opened",
+        description: "Before a provider is ever contacted.",
+      },
+      {
+        title: "Rate And Budget Checked",
+        description:
+          "Per model, agent and key, each enforced independently. Whichever cap is reached first refuses the call.",
+      },
+      {
+        title: "Metered And Recorded",
+        description:
+          "Actual cost is attributed to the named agent as it's incurred, and guardrail checks run on the recorded call.",
+      },
+    ],
+  },
+  {
+    eyebrow: "Policy · Federation and tool authorization",
+    title: "An Agent Reaches What You Bind It To, And Nothing Else",
+    image: "/images/developers/call-path/dashboard.png",
+    imageAlt: "Forgebench agent policy and tool authorization dashboard",
+    points: [
+      {
+        title: "Bound At Registration",
+        description:
+          "The MCP servers and tools an agent may reach are an allowlist, decided when it's registered.",
+      },
+      {
+        title: "Enforced On Every Call",
+        description:
+          "Guardrails flag and record a violation; nothing is blocked mid-flight.",
+      },
+      {
+        title: "Three Decisions Per Tool",
+        description:
+          "Allow, deny, or require approval — with a justification requirement where you need one.",
+      },
+      {
+        title: "Revocable Live",
+        description:
+          "Revoke a tool or an entire MCP server during an incident. It takes effect on the next tool call, with no deploy.",
+      },
+    ],
+  },
+  {
+    eyebrow: "Control · Cost control at the agent level",
+    title: "A Ceiling That Refuses The Call, And A Number That Reconciles With The Invoice.",
+    image: "/images/developers/call-path/dashboard.png",
+    imageAlt: "Forgebench agent cost-control dashboard",
+    points: [
+      {
+        title: "Three Dimensions, Enforced Independently",
+        description:
+          "A cap per model, per agent and per key. Each is checked on the same call, and whichever is reached first refuses it.",
+      },
+      {
+        title: "Enforced Before The Round-Trip",
+        description:
+          "A refused call reaches no provider and costs nothing — a refusal, not a report after the money is gone.",
+      },
+      {
+        title: "Recorded Cost Is Actual, Not Estimated",
+        description:
+          "Reconciled to the cost the gateway reports for the call, so attribution and the provider invoice agree.",
+      },
+      {
+        title: "Attribution Beyond The Credential",
+        description:
+          "Spend rolls up by agent, owner, model, key and the product feature the agent serves — not only by the key it used.",
+      },
+    ],
+  },
+  {
+    eyebrow: "Auditability · The record",
+    title: "One Record. Every Governed Call And Every Operator Action.",
+    image: "/images/developers/call-path/dashboard.png",
+    imageAlt: "Forgebench tamper-evident agent audit dashboard",
+    points: [
+      {
+        title: "Hash-Linked Entries",
+        description:
+          "Each entry is cryptographically linked to the one before it, so editing or deleting an entry breaks the chain and the break is detectable. The chain is re-verifiable on demand.",
+      },
+      {
+        title: "Append-Only Record",
+        description:
+          "Model calls, tool calls, registrations, credential changes, policy edits, pauses and retirements — one list, in order, append-only.",
+      },
+      {
+        title: "Evidence Surface For The Whole Call",
+        description:
+          "Agent, version, prompt version, credential, model, tokens, actual cost, latency and outcome, plus the guardrail, rate-limit and budget result, all in one console.",
+      },
+      {
+        title: "A Refusal Is Diagnosable",
+        description:
+          "A refused call names what refused it — guardrail, rate limit or budget — so an incident can be diagnosed live, without writing a query.",
+      },
+    ],
+  },
+  {
+    eyebrow: "Guardrails · Safety and governance record",
+    title: "A Governance Loop That Feeds Your Security Posture",
+    image: "/images/developers/call-path/dashboard.png",
+    imageAlt: "Forgebench agent guardrails and governance dashboard",
+    points: [
+      {
+        title: "What Is Checked",
+        description:
+          "Personal data, secrets and credentials, and a per-tenant denylist of banned terms and competitor names check on the recorded input and output.",
+      },
+      {
+        title: "Two Modes, Never Three",
+        description:
+          "Flag surfaces and records a violation; log records it quietly. Nothing is blocked or redacted mid-flight.",
+      },
+      {
+        title: "A Named Reason, Not A Silent Miss",
+        description:
+          "Every flagged call names the check that fired — which check, in which direction, on which agent.",
+      },
+      {
+        title: "Tighten Without Shipping",
+        description:
+          "Policy changes take effect on the next call, and a platform default covers any agent nobody has configured.",
+      },
+    ],
+  },
+];
+
 const frameDuration = 6500;
 
 function synchronizePageScroll(top: number) {
@@ -159,12 +333,24 @@ function synchronizePageScroll(top: number) {
   );
 }
 
-export function DeveloperCallPath() {
+type DeveloperCallPathProps = {
+  variant?: "developers" | "agents";
+  frames?: readonly CallPathFrame[];
+};
+
+export function DeveloperCallPath({
+  variant = "developers",
+  frames: suppliedFrames,
+}: DeveloperCallPathProps = {}) {
+  const frames = suppliedFrames ??
+    (variant === "agents" ? agentsCallPathFrames : developerCallPathFrames);
   const sectionRef = useRef<HTMLElement>(null);
   const stickyRef = useRef<HTMLDivElement>(null);
   const viewportRef = useRef<HTMLDivElement>(null);
   const mobileScrollLockRef = useRef(false);
   const mobileScrollFrameRef = useRef(0);
+  const scrollIdleTimerRef = useRef<ReturnType<typeof window.setTimeout> | null>(null);
+  const isUserScrollingRef = useRef(false);
   const activeFrameRef = useRef(0);
   const isTimelineActiveRef = useRef(false);
   const hasActivatedRef = useRef(false);
@@ -199,10 +385,12 @@ export function DeveloperCallPath() {
   }, []);
 
   const showFrame = useCallback(
-    (index: number, syncScroll = true) => {
+    (index: number, syncScroll = true, cyclicAdvance = false) => {
       const normalizedIndex = (index + frames.length) % frames.length;
       const isWrapping =
-        activeFrameRef.current === frames.length - 1 && normalizedIndex === 0;
+        cyclicAdvance &&
+        activeFrameRef.current === frames.length - 1 &&
+        normalizedIndex === 0;
 
       activeFrameRef.current = normalizedIndex;
       setSkipTrackTransition(isWrapping);
@@ -246,14 +434,24 @@ export function DeveloperCallPath() {
 
     if (targetFrame === currentFrame) return;
 
-    const nextFrame =
-      currentFrame + (targetFrame > currentFrame ? 1 : -1);
-    showFrame(nextFrame);
+    // The user's scroll position is the source of truth here. Updating it again
+    // creates a feedback loop with smooth scrolling and makes the sticky frame
+    // visibly jump between adjacent positions.
+    showFrame(targetFrame, false);
   }, [showFrame]);
 
   useEffect(() => {
     let animationFrame = 0;
     const handleScroll = () => {
+      isUserScrollingRef.current = true;
+      if (scrollIdleTimerRef.current !== null) {
+        window.clearTimeout(scrollIdleTimerRef.current);
+      }
+      scrollIdleTimerRef.current = window.setTimeout(() => {
+        isUserScrollingRef.current = false;
+        scrollIdleTimerRef.current = null;
+      }, 450);
+
       window.cancelAnimationFrame(animationFrame);
       animationFrame = window.requestAnimationFrame(updateFrameFromScroll);
     };
@@ -267,6 +465,9 @@ export function DeveloperCallPath() {
 
     return () => {
       window.cancelAnimationFrame(animationFrame);
+      if (scrollIdleTimerRef.current !== null) {
+        window.clearTimeout(scrollIdleTimerRef.current);
+      }
       window.removeEventListener("scroll", handleScroll);
       window.removeEventListener("resize", handleResize);
     };
@@ -302,7 +503,7 @@ export function DeveloperCallPath() {
         if (isActive && !hasActivatedRef.current) {
           hasActivatedRef.current = true;
           measureSection();
-          showFrame(0);
+          showFrame(0, false);
         } else if (isActive) {
           measureSection();
         }
@@ -327,7 +528,7 @@ export function DeveloperCallPath() {
 
       const bounds = section.getBoundingClientRect();
       if (bounds.top <= 0 && bounds.bottom >= window.innerHeight) {
-        showFrame(0);
+        showFrame(0, false);
       }
     }, 800);
 
@@ -337,9 +538,18 @@ export function DeveloperCallPath() {
   useEffect(() => {
     if (!isTimelineActive) return;
 
-    const timer = window.setTimeout(() => {
-      showFrame(activeFrame + 1);
-    }, frameDuration);
+    let timer: ReturnType<typeof window.setTimeout>;
+    const advanceWhenIdle = () => {
+      if (isUserScrollingRef.current) {
+        timer = window.setTimeout(advanceWhenIdle, 500);
+        return;
+      }
+
+      // Auto-advance the cards without moving the page underneath the user.
+      showFrame(activeFrame + 1, false, true);
+    };
+
+    timer = window.setTimeout(advanceWhenIdle, frameDuration);
 
     return () => window.clearTimeout(timer);
   }, [activeFrame, isTimelineActive, showFrame]);
@@ -371,7 +581,11 @@ export function DeveloperCallPath() {
     <section
       ref={sectionRef}
       className={styles.section}
-      aria-label="Developer governance and measurement"
+      aria-label={
+        variant === "agents"
+          ? "Agent governance and measurement"
+          : "Developer governance and measurement"
+      }
     >
       <div ref={stickyRef} className={styles.sticky}>
         <nav className={styles.timeline} aria-label="Capability frames">
@@ -432,10 +646,14 @@ export function DeveloperCallPath() {
                 key={item.title}
               >
                 <Image
-                  src="/images/developers/call-path/dashboard.png"
+                  src={
+                    item.image ??
+                    "/images/developers/call-path/dashboard.png"
+                  }
                   alt={
                     index === activeFrame
-                      ? "Forgebench dashboard showing calls, spend, budget and model usage"
+                      ? item.imageAlt ??
+                        "Forgebench dashboard showing calls, spend, budget and model usage"
                       : ""
                   }
                   width={735}
@@ -482,7 +700,7 @@ export function DeveloperCallPath() {
           type="button"
           className={styles.mobileNudge}
           aria-label="Show next timeline card"
-          onClick={() => showFrame(activeFrame + 1, false)}
+          onClick={() => showFrame(activeFrame + 1, false, true)}
         />
       </div>
     </section>

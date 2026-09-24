@@ -1,0 +1,179 @@
+.section {
+  display: grid;
+  min-height: 36.875rem;
+  grid-template-columns: 46.7% minmax(0, 53.3%);
+  padding: 7.5rem 2.5rem 5rem;
+  background: var(--color-background);
+  color: var(--color-text);
+}
+
+.introduction {
+  display: flex;
+  min-width: 0;
+  flex-direction: column;
+}
+
+.eyebrow {
+  margin-bottom: 2rem;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.introduction h2 {
+  font-size: clamp(2.25rem, 3vw, 2.75rem);
+  font-weight: 400;
+  letter-spacing: -0.04em;
+  line-height: 1.28;
+}
+
+.introduction h2 span {
+  color: #de5246;
+}
+
+.certifications {
+  display: flex;
+  align-items: center;
+  gap: 2.75rem;
+  margin-top: auto;
+  padding: 3rem 0 1.25rem 0.5rem;
+}
+
+.logoSwap {
+  display: grid;
+  width: 4.25rem;
+  height: 4.25rem;
+  place-items: center;
+}
+
+.logoSwap:nth-child(2) {
+  width: 3.5rem;
+  height: 3.5rem;
+}
+
+.logoSwap img {
+  width: 100%;
+  height: 100%;
+  grid-area: 1 / 1;
+  object-fit: contain;
+  transition: opacity 250ms ease;
+}
+
+.hoverLogo {
+  opacity: 0;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .logoSwap:hover img:first-child {
+    opacity: 0;
+  }
+
+  .logoSwap:hover .hoverLogo {
+    opacity: 1;
+  }
+}
+
+.principles {
+  align-self: center;
+}
+
+.principle {
+  padding: 2rem 0;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.principle:first-child {
+  padding-top: 0;
+}
+
+.principle:last-child {
+  border-bottom: 0;
+}
+
+.principle h3 {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  font-size: 1.25rem;
+  font-weight: 400;
+  line-height: 1.2;
+  transition: color 200ms ease;
+}
+
+.principle h3 img {
+  width: 1.5rem;
+  height: 1.5rem;
+  object-fit: contain;
+}
+
+.principle p {
+  margin-top: 0.75rem;
+  color: var(--color-text-muted);
+  font-size: 1rem;
+  line-height: 1.22;
+}
+
+@media (hover: hover) {
+  .principle:hover h3 {
+    color: #de5246;
+  }
+}
+
+@media (max-width: 64rem) {
+  .section {
+    grid-template-columns: 43% minmax(0, 57%);
+    padding-inline: 2rem;
+  }
+
+  .principle {
+    padding-block: 1.75rem;
+  }
+}
+
+@media (max-width: 47.9375rem) {
+  .section {
+    display: block;
+    min-height: auto;
+    padding: 5rem 1.5rem;
+  }
+
+  .certifications {
+    margin-top: 1rem;
+    padding-block: 2rem;
+  }
+
+  .principles {
+    margin-top: 1rem;
+  }
+
+  .principle:first-child {
+    padding-top: 2rem;
+    border-top: 1px solid var(--color-border);
+  }
+}
+
+@media (max-width: 30rem) {
+  .section {
+    padding: 4rem 1rem;
+  }
+
+  .introduction h2 {
+    font-size: clamp(2rem, 10vw, 2.5rem);
+  }
+
+  .certifications {
+    justify-content: space-between;
+    gap: 1.25rem;
+    padding-left: 0;
+  }
+
+  .principle h3 {
+    font-size: 1.125rem;
+  }
+
+  .principle p {
+    font-size: 0.9375rem;
+    line-height: 1.35;
+  }
+}

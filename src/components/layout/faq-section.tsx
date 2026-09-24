@@ -2,6 +2,8 @@
 
 import { useState } from "react";
 
+import { ArrowLink } from "@/components/ui/arrow-link";
+
 import styles from "./faq-section.module.css";
 
 const faqs = [
@@ -117,6 +119,14 @@ export function FaqSection() {
             <span>All You Need to Know</span>
             About Forgebench
           </h2>
+          <div className={styles.actions}>
+            <ArrowLink href="https://example.com" variant="dark">
+              Book an AI Audit
+            </ArrowLink>
+            <ArrowLink href="https://example.com">
+              Try Product Walkthrough
+            </ArrowLink>
+          </div>
         </header>
 
         <div className={styles.accordion}>
