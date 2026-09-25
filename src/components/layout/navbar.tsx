@@ -11,7 +11,7 @@ import styles from "./navbar.module.css";
 const navigation = [
   { label: "For Developers", href: "/developers" },
   { label: "For Agents", href: "/agents" },
-  { label: "Resources", href: "/resources" },
+  { label: "Resources", href: "/blog" },
   { label: "Pricing", href: "/pricing" },
   { label: "Company", href: "/company" },
 ] as const;

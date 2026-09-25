@@ -19,5 +19,10 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: "monthly",
       priority: 0.9,
     },
+    {
+      url: new URL("/blog", siteConfig.url).toString(),
+      changeFrequency: "weekly",
+      priority: 0.8,
+    },
   ];
 }

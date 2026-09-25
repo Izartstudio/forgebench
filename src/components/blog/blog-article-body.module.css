@@ -1,0 +1,15 @@
+.layout { display: grid; max-width: 85rem; grid-template-columns: 15rem minmax(0, 46rem); justify-content: center; gap: 4rem; margin: 0 auto; padding: 5rem 2.5rem 7rem; }
+.navigation { position: sticky; top: 2rem; align-self: start; }
+.navigation > p { color: var(--color-accent); font-size: .875rem; font-weight: 700; }
+.navigation nav { display: grid; margin-top: 1.25rem; border-left: 1px solid #ddd; }
+.navigation a { padding: .55rem 0 .55rem 1rem; color: var(--color-text-muted); font-size: .875rem; line-height: 1.25; text-decoration: none; transition: color 200ms ease, border-color 200ms ease; }
+.navigation .active { margin-left: -1px; border-left: 2px solid var(--color-accent); color: var(--color-text); }
+.content h2, .content h3 { scroll-margin-top: 2rem; font-weight: 400; letter-spacing: -.025em; }
+.content h2 { margin: 0 0 1.5rem; font-size: 1.5rem; }
+.content h3 { margin: 2.5rem 0 1rem; font-size: 1.25rem; }
+.content p { margin-bottom: 1.5rem; color: var(--color-text-muted); font-size: 1rem; line-height: 1.65; }
+.content figure { margin: 2.5rem 0 3rem; }
+.content figure > div { position: relative; aspect-ratio: 16/9; overflow: hidden; }
+.content figure img { object-fit: cover; }
+.content figcaption { margin-top: .75rem; color: var(--color-text-muted); font-size: .75rem; }
+@media (max-width: 50rem) { .layout { grid-template-columns: 1fr; gap: 2.5rem; padding: 3rem 1rem 5rem; } .navigation { position: relative; top: auto; overflow-x: auto; } .navigation nav { display: flex; width: max-content; max-width: none; border-left: 0; border-bottom: 1px solid #ddd; } .navigation a { max-width: 13rem; padding: .75rem 1rem; border-bottom: 2px solid transparent; } .navigation .active { margin-left: 0; border-left: 0; border-bottom-color: var(--color-accent); } }

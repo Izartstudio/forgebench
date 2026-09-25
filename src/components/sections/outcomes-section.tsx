@@ -98,8 +98,8 @@ function RoiVisual() {
         >
           <defs>
             <linearGradient id="outcome-area" x1="0" y1="0" x2="0" y2="1">
-              <stop offset="0" stopColor="#ff5d4f" stopOpacity=".28" />
-              <stop offset="1" stopColor="#ff5d4f" stopOpacity="0" />
+              <stop offset="0" stopColor="#DE5246" stopOpacity=".28" />
+              <stop offset="1" stopColor="#DE5246" stopOpacity="0" />
             </linearGradient>
           </defs>
           <path

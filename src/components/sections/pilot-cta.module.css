@@ -19,8 +19,8 @@
   background:
     radial-gradient(
       circle at 3% 4%,
-      #ff4938 0%,
-      rgb(241 54 43 / 88%) 17%,
+      #de5246 0%,
+      rgb(222 82 70 / 88%) 17%,
       transparent 43%
     ),
     radial-gradient(
@@ -29,7 +29,7 @@
       rgb(98 25 30 / 76%) 34%,
       transparent 62%
     ),
-    linear-gradient(108deg, #d73831 0%, #711d25 38%, #35131c 67%, #180a10 100%);
+    linear-gradient(108deg, #de5246 0%, #711d25 38%, #35131c 67%, #180a10 100%);
   color: #fff;
 }
 

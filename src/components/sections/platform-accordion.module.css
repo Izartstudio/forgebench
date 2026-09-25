@@ -1,7 +1,7 @@
 .section {
   min-height: 63.5rem;
   padding: 7.5rem 2.5rem 5rem;
-  background: linear-gradient(180deg, rgb(222 78 65 / 0%) 0%, #de4e41 100%);
+  background: linear-gradient(180deg, rgb(222 82 70 / 0%) 0%, #de5246 100%);
 }
 
 .frame {
@@ -172,8 +172,8 @@
   overflow: hidden;
   background: linear-gradient(
     180deg,
-    #ed452e 0%,
-    #de2e1c 24%,
+    #de5246 0%,
+    #de5246 24%,
     #94120f 37%,
     #42090d 46%,
     #21050a 60%,
@@ -310,8 +310,8 @@
     overflow: hidden;
     background: linear-gradient(
       180deg,
-      #ed452e 0%,
-      #de2e1c 25%,
+      #de5246 0%,
+      #de5246 25%,
       #42090d 56%,
       #140306 100%
     );
