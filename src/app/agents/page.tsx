@@ -41,15 +41,37 @@ export default function AgentsPage() {
       <main id="main-content">
         <AudienceHero
           id="agents-title"
-          eyebrow={<>Self-hosted deployment <i aria-hidden="true" /> Model agnostic</>}
-          title={<>Know Every Agent<br />You&apos;re Running.</>}
+          eyebrow={
+            <>
+              Self-hosted deployment <i aria-hidden="true" /> Model agnostic
+            </>
+          }
+          title={
+            <>
+              Know Every Agent
+              <br />
+              You&apos;re Running.
+            </>
+          }
           description="Govern Every Call It Makes."
         >
           <div className={styles.routingFrame}>
-            <Image src="/images/agents/secondheroagent.png" alt="Forgebench organisation overview dashboard" fill preload unoptimized sizes="(max-width: 767px) 64vw, 43vw" />
+            <Image
+              src="/images/agents/secondheroagent.png"
+              alt="Forgebench organisation overview dashboard"
+              fill
+              preload
+              sizes="(max-width: 767px) 64vw, 43vw"
+            />
           </div>
           <div className={styles.dashboardFrame}>
-            <Image src="/images/agents/agenthero1.png" alt="Forgebench agent inventory dashboard" fill preload unoptimized sizes="(max-width: 767px) 92vw, 58vw" />
+            <Image
+              src="/images/agents/agenthero1.png"
+              alt="Forgebench agent inventory dashboard"
+              fill
+              preload
+              sizes="(max-width: 767px) 92vw, 58vw"
+            />
           </div>
         </AudienceHero>
         <CredentialsStrip />

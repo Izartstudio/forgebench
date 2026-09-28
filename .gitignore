@@ -7,6 +7,8 @@
 
 # production
 /build
+/dist/
+/.sanity/
 
 # local environment files
 .env*
@@ -25,4 +27,3 @@ pnpm-debug.log*
 # TypeScript
 *.tsbuildinfo
 next-env.d.ts
-

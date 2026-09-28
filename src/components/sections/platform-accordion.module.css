@@ -198,12 +198,6 @@
   width: min(88%, 45rem);
 }
 
-.cardImage {
-  display: block;
-  width: 100%;
-  height: auto;
-}
-
 .cardDetails {
   position: absolute;
   inset: 0;

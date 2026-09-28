@@ -11,63 +11,42 @@ const panels = [
     slug: "registry",
     description:
       "Both on one deployment. Credential issuance and budgets govern AI consumers; agent registration is added when agents reach production.",
-    image: "/images/platform/cards/registry.svg",
-    width: 741,
-    height: 603,
   },
   {
     title: "Gateway",
     slug: "gateway",
     description:
       "A governed entry point for every model request, with credentials, policy and usage controls applied consistently.",
-    image: "/images/platform/cards/gateway.svg",
-    width: 761,
-    height: 556,
   },
   {
     title: "Routing",
     slug: "routing",
     description:
       "Route each request across approved models and providers based on capability, cost and availability.",
-    image: "/images/platform/cards/routing.svg",
-    width: 761,
-    height: 509,
   },
   {
     title: "Guardrails",
     slug: "guardrails",
     description:
       "Apply shared security, privacy and operational policies before requests reach production models.",
-    image: "/images/platform/cards/guardrails.svg",
-    width: 781,
-    height: 545,
   },
   {
     title: "AI Insights",
     slug: "ai-insights",
     description:
       "Understand adoption, model performance and spend across every application and agent in one view.",
-    image: "/images/platform/cards/ai-insights.svg",
-    width: 755,
-    height: 687,
   },
   {
     title: "Observability",
     slug: "observability",
     description:
       "Trace calls from application to model with the context needed to diagnose quality, latency and failures.",
-    image: "/images/platform/cards/observability.svg",
-    width: 772,
-    height: 530,
   },
   {
     title: "Audit",
     slug: "audit",
     description:
       "Maintain a clear record of model activity, ownership and policy decisions for every governed call.",
-    image: "/images/platform/cards/audit.svg",
-    width: 769,
-    height: 592,
   },
 ] as const;
 

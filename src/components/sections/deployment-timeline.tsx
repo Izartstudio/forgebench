@@ -13,7 +13,6 @@ const phases = [
     description:
       "Scope one live workflow and a pilot group of 10–25 developers. Lock identity and SCIM sources, provider accounts, 2–8 agents and MCP servers, guardrails, data-policy defaults, and access both ways.",
     exit: "EXIT: Pilot plan signed.",
-    image: "/images/home/deployment/week-1.png",
   },
   {
     week: "Weeks 2–3",
@@ -22,7 +21,6 @@ const phases = [
     description:
       "Platform live: gateway, SSO and SCIM, provider keys and spend caps, pilot developer keys. Then on the same tenant: console telemetry, team import, data policy. Then agents — registered, MCP servers bound, tool policy and approval chains set.",
     exit: "EXIT: Three proofs: one governed path for every machine and developer in the pilot, enforced ceilings, live agent version rollback.",
-    image: "/images/home/deployment/week-2-3.png",
   },
   {
     week: "Weeks 3–4",
@@ -31,7 +29,6 @@ const phases = [
     description:
       "Signed usage export produced and verified by finance. Runbooks reviewed with your ops lead and the admin walkthrough delivered. Success criteria reviewed with security, finance and engineering.",
     exit: "EXIT: One of two — criteria signed off and production scope agreed",
-    image: "/images/home/deployment/week-4.png",
   },
 ] as const;
 
@@ -68,16 +65,6 @@ export const agentsTimelineCopy = {
   phasesLabel: "Three phases, each exiting on evidence.",
   foundations,
   phases,
-  phaseImages: [
-    "/images/home/deployment/week-1.png",
-    "/images/home/deployment/week-2-3.png",
-    "/images/home/deployment/week-4.png",
-  ],
-  phaseImageAlts: [
-    "Forgebench planning and setup overview",
-    "Forgebench agent governance implementation overview",
-    "Forgebench review and sign-off overview",
-  ],
 } as const;
 
 export function DeploymentTimeline({
@@ -96,11 +83,6 @@ export function DeploymentTimeline({
           phasesLabel: "Three phases, each exiting on evidence.",
           foundations,
           phases,
-          phaseImages: phases.map((phase) => phase.image),
-          phaseImageAlts: phases.map(
-            () =>
-              "Forgebench overview showing governed AI usage, budget and spend metrics",
-          ),
         } as const);
   const [activePhase, setActivePhase] = useState(0);
   const phaseRefs = useRef<Array<HTMLElement | null>>([]);
