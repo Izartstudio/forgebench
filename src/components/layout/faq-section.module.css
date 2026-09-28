@@ -45,11 +45,6 @@
   min-width: 11.0625rem;
 }
 
-.actions > a:last-child {
-  min-height: 2rem;
-  padding-left: 0;
-}
-
 .accordion {
   min-width: 0;
 }

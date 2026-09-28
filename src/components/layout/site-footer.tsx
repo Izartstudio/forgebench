@@ -4,21 +4,25 @@ import styles from "./site-footer.module.css";
 
 const linkGroups = [
   {
-    title: "Deployment & Security",
-    links: ["Docs", "Quick Start", "Github", "Changelog"],
-  },
-  {
-    title: "Resources",
+    title: "Company",
     links: [
-      "Blog",
-      "Trust Centre",
-      "Forgebench for Developers using AI",
-      "Forgebench for Agent Management",
+      { label: "About Us", href: "/company" },
+      { label: "Pricing", href: "/pricing" },
+      { label: "Contact Us", href: "mailto:info@seedlinglabs.com" },
+      {
+        label: "Seedling Labs",
+        href: "https://seedlinglabs.com",
+        external: true,
+      },
     ],
   },
   {
-    title: "Company",
-    links: ["About Us", "News", "Pricing", "Contact Us", "Seedling Labs ↗"],
+    title: "Product",
+    links: [
+      { label: "Developers", href: "/developers" },
+      { label: "Agents", href: "/agents" },
+      { label: "Blog", href: "/blog" },
+    ],
   },
 ] as const;
 
@@ -30,9 +34,15 @@ export function SiteFooter() {
           <div className={styles.group} key={group.title}>
             <h2>{group.title}</h2>
             {group.links.map((link) => (
-              <a href="#" key={link}>
-                {link.replace(" ↗", "")}
-                {link.endsWith(" ↗") && (
+              <a
+                href={link.href}
+                key={link.label}
+                {...("external" in link
+                  ? { target: "_blank", rel: "noreferrer" }
+                  : {})}
+              >
+                {link.label}
+                {"external" in link && (
                   <span className={styles.footerArrow} aria-hidden="true" />
                 )}
               </a>

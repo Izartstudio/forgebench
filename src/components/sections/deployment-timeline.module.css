@@ -367,7 +367,7 @@
   }
 
   .phase.active {
-    min-height: 18rem;
+    min-height: 23rem;
     flex-basis: auto;
     grid-column: 1 / -1;
     order: -1;
@@ -408,14 +408,6 @@
     padding: 0.6rem 1rem 0.5rem;
     background: transparent;
     font-size: 0.625rem;
-  }
-
-  .phase:nth-child(2).active {
-    min-height: 23rem;
-  }
-
-  .phase:nth-child(3).active {
-    min-height: 20rem;
   }
 
   .collapsedLabel {
@@ -484,15 +476,7 @@
   }
 
   .phase.active {
-    min-height: 19rem;
-  }
-
-  .phase:nth-child(2).active {
     min-height: 25rem;
-  }
-
-  .phase:nth-child(3).active {
-    min-height: 21rem;
   }
 
   .phaseTrigger {

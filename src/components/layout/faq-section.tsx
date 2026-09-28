@@ -123,10 +123,7 @@ export function FaqSection() {
             <ArrowLink href="https://example.com" variant="dark">
               Book an AI Audit
             </ArrowLink>
-            <ArrowLink href="https://example.com">
-              Try Product Walkthrough
-            </ArrowLink>
-          </div>
+         </div>
         </header>
 
         <div className={styles.accordion}>

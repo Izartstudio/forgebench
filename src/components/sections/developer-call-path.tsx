@@ -239,7 +239,8 @@ export const agentsCallPathFrames: readonly CallPathFrame[] = [
   },
   {
     eyebrow: "Control · Cost control at the agent level",
-    title: "A Ceiling That Refuses The Call, And A Number That Reconciles With The Invoice.",
+    title:
+      "A Ceiling That Refuses The Call, And A Number That Reconciles With The Invoice.",
     image: "/images/developers/call-path/dashboard.png",
     imageAlt: "Forgebench agent cost-control dashboard",
     points: [
@@ -342,7 +343,8 @@ export function DeveloperCallPath({
   variant = "developers",
   frames: suppliedFrames,
 }: DeveloperCallPathProps = {}) {
-  const frames = suppliedFrames ??
+  const frames =
+    suppliedFrames ??
     (variant === "agents" ? agentsCallPathFrames : developerCallPathFrames);
   const sectionRef = useRef<HTMLElement>(null);
   const stickyRef = useRef<HTMLDivElement>(null);
@@ -353,7 +355,7 @@ export function DeveloperCallPath({
   const isUserScrollingRef = useRef(false);
   const activeFrameRef = useRef(0);
   const isTimelineActiveRef = useRef(false);
-  const hasActivatedRef = useRef(false);
+  const lastPageYRef = useRef(0);
   const geometryRef = useRef({ sectionTop: 0, scrollRange: 0 });
   const [activeFrame, setActiveFrame] = useState(0);
   const [carouselOffset, setCarouselOffset] = useState(0);
@@ -376,13 +378,16 @@ export function DeveloperCallPath({
     };
   }, []);
 
-  const getFrameScrollTarget = useCallback((index: number) => {
-    const { scrollRange, sectionTop } = geometryRef.current;
-    if (scrollRange <= 0) return null;
-    const frameStep = scrollRange / (frames.length + 1);
+  const getFrameScrollTarget = useCallback(
+    (index: number) => {
+      const { scrollRange, sectionTop } = geometryRef.current;
+      if (scrollRange <= 0) return null;
+      const frameStep = scrollRange / Math.max(1, frames.length - 1);
 
-    return sectionTop + frameStep * (index + 1);
-  }, []);
+      return sectionTop + frameStep * index;
+    },
+    [frames.length],
+  );
 
   const showFrame = useCallback(
     (index: number, syncScroll = true, cyclicAdvance = false) => {
@@ -398,7 +403,9 @@ export function DeveloperCallPath({
       setCarouselOffset(normalizedIndex * getCardStep());
       setTimelineRun((current) => current + 1);
 
-      const isMobileCarousel = window.matchMedia("(max-width: 56.25rem)").matches;
+      const isMobileCarousel = window.matchMedia(
+        "(max-width: 56.25rem)",
+      ).matches;
 
       if (syncScroll && !isMobileCarousel) {
         const target = getFrameScrollTarget(normalizedIndex);
@@ -413,24 +420,46 @@ export function DeveloperCallPath({
         });
       }
     },
-    [getCardStep, getFrameScrollTarget],
+    [frames.length, getCardStep, getFrameScrollTarget],
   );
 
   const updateFrameFromScroll = useCallback(() => {
-    if (!isTimelineActiveRef.current) return;
-    if (window.matchMedia("(max-width: 56.25rem)").matches) return;
+    const section = sectionRef.current;
+    if (!section) return;
+
+    const bounds = section.getBoundingClientRect();
+    const isMobile = window.matchMedia("(max-width: 56.25rem)").matches;
+    const isActive = isMobile
+      ? bounds.bottom > 0 && bounds.top < window.innerHeight
+      : bounds.top <= 1 && bounds.bottom >= window.innerHeight - 1;
+
+    if (isTimelineActiveRef.current !== isActive) {
+      isTimelineActiveRef.current = isActive;
+      setIsTimelineActive(isActive);
+    }
+
+    if (!isActive || isMobile) {
+      lastPageYRef.current = window.scrollY;
+      return;
+    }
 
     const { scrollRange, sectionTop } = geometryRef.current;
     if (scrollRange <= 0) return;
-    const frameStep = scrollRange / (frames.length + 1);
-    const targetFrame = Math.min(
+    const progress = Math.min(
+      1,
+      Math.max(0, (window.scrollY - sectionTop) / scrollRange),
+    );
+    const resolvedFrame = Math.min(
       frames.length - 1,
-      Math.max(
-        0,
-        Math.round((window.scrollY - sectionTop) / frameStep) - 1,
-      ),
+      Math.max(0, Math.round(progress * (frames.length - 1))),
     );
     const currentFrame = activeFrameRef.current;
+    const direction = window.scrollY >= lastPageYRef.current ? 1 : -1;
+    const targetFrame =
+      direction > 0
+        ? Math.max(currentFrame, resolvedFrame)
+        : Math.min(currentFrame, resolvedFrame);
+    lastPageYRef.current = window.scrollY;
 
     if (targetFrame === currentFrame) return;
 
@@ -438,7 +467,7 @@ export function DeveloperCallPath({
     // creates a feedback loop with smooth scrolling and makes the sticky frame
     // visibly jump between adjacent positions.
     showFrame(targetFrame, false);
-  }, [showFrame]);
+  }, [frames.length, showFrame]);
 
   useEffect(() => {
     let animationFrame = 0;
@@ -460,8 +489,19 @@ export function DeveloperCallPath({
     const handleResize = () => {
       measureSection();
       setCarouselOffset(activeFrameRef.current * getCardStep());
+      updateFrameFromScroll();
     };
     window.addEventListener("resize", handleResize);
+
+    const resizeObserver = new ResizeObserver(() => {
+      measureSection();
+      updateFrameFromScroll();
+    });
+    if (sectionRef.current) resizeObserver.observe(sectionRef.current);
+
+    measureSection();
+    lastPageYRef.current = window.scrollY;
+    updateFrameFromScroll();
 
     return () => {
       window.cancelAnimationFrame(animationFrame);
@@ -470,12 +510,14 @@ export function DeveloperCallPath({
       }
       window.removeEventListener("scroll", handleScroll);
       window.removeEventListener("resize", handleResize);
+      resizeObserver.disconnect();
     };
   }, [getCardStep, measureSection, updateFrameFromScroll]);
 
   useEffect(() => {
     const viewport = viewportRef.current;
-    if (!viewport || !window.matchMedia("(max-width: 56.25rem)").matches) return;
+    if (!viewport || !window.matchMedia("(max-width: 56.25rem)").matches)
+      return;
 
     mobileScrollLockRef.current = true;
     viewport.scrollTo({
@@ -483,57 +525,15 @@ export function DeveloperCallPath({
       behavior: skipTrackTransition ? "auto" : "smooth",
     });
 
-    const timer = window.setTimeout(() => {
-      mobileScrollLockRef.current = false;
-    }, skipTrackTransition ? 50 : 750);
+    const timer = window.setTimeout(
+      () => {
+        mobileScrollLockRef.current = false;
+      },
+      skipTrackTransition ? 50 : 750,
+    );
 
     return () => window.clearTimeout(timer);
   }, [activeFrame, getCardStep, skipTrackTransition]);
-
-  useEffect(() => {
-    const sticky = stickyRef.current;
-    if (!sticky) return;
-
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        const isActive = entry.isIntersecting && entry.intersectionRatio >= 0.95;
-        isTimelineActiveRef.current = isActive;
-        setIsTimelineActive(isActive);
-
-        if (isActive && !hasActivatedRef.current) {
-          hasActivatedRef.current = true;
-          measureSection();
-          showFrame(0, false);
-        } else if (isActive) {
-          measureSection();
-        }
-      },
-      { threshold: [0, 0.95, 1] },
-    );
-
-    observer.observe(sticky);
-    return () => observer.disconnect();
-  }, [measureSection, showFrame]);
-
-  useEffect(() => {
-    const navigation = window.performance.getEntriesByType("navigation")[0] as
-      | PerformanceNavigationTiming
-      | undefined;
-
-    if (navigation?.type !== "reload") return;
-
-    const timer = window.setTimeout(() => {
-      const section = sectionRef.current;
-      if (!section) return;
-
-      const bounds = section.getBoundingClientRect();
-      if (bounds.top <= 0 && bounds.bottom >= window.innerHeight) {
-        showFrame(0, false);
-      }
-    }, 800);
-
-    return () => window.clearTimeout(timer);
-  }, [showFrame]);
 
   useEffect(() => {
     if (!isTimelineActive) return;
@@ -545,6 +545,8 @@ export function DeveloperCallPath({
         return;
       }
 
+      if (activeFrameRef.current >= frames.length - 1) return;
+
       // Auto-advance the cards without moving the page underneath the user.
       showFrame(activeFrame + 1, false, true);
     };
@@ -552,7 +554,7 @@ export function DeveloperCallPath({
     timer = setTimeout(advanceWhenIdle, frameDuration);
 
     return () => clearTimeout(timer);
-  }, [activeFrame, isTimelineActive, showFrame]);
+  }, [activeFrame, frames.length, isTimelineActive, showFrame]);
 
   const selectFrame = (index: number) => {
     showFrame(index);
@@ -610,8 +612,7 @@ export function DeveloperCallPath({
                     }
                     style={
                       {
-                        "--timeline-progress":
-                          index < activeFrame ? 1 : 0,
+                        "--timeline-progress": index < activeFrame ? 1 : 0,
                       } as CSSProperties
                     }
                   />
@@ -624,7 +625,10 @@ export function DeveloperCallPath({
         <div
           ref={viewportRef}
           className={styles.viewport}
-          data-lenis-prevent
+          data-at-end={activeFrame === frames.length - 1}
+          data-lenis-prevent={
+            activeFrame === frames.length - 1 ? undefined : "true"
+          }
           onScroll={handleMobileCarouselScroll}
           onPointerDown={() => {
             mobileScrollLockRef.current = false;
@@ -647,13 +651,12 @@ export function DeveloperCallPath({
               >
                 <Image
                   src={
-                    item.image ??
-                    "/images/developers/call-path/dashboard.png"
+                    item.image ?? "/images/developers/call-path/dashboard.png"
                   }
                   alt={
                     index === activeFrame
-                      ? item.imageAlt ??
-                        "Forgebench dashboard showing calls, spend, budget and model usage"
+                      ? (item.imageAlt ??
+                        "Forgebench dashboard showing calls, spend, budget and model usage")
                       : ""
                   }
                   width={735}
@@ -696,12 +699,14 @@ export function DeveloperCallPath({
             ))}
           </div>
         </div>
-        <button
-          type="button"
-          className={styles.mobileNudge}
-          aria-label="Show next timeline card"
-          onClick={() => showFrame(activeFrame + 1, false, true)}
-        />
+        {activeFrame < frames.length - 1 && (
+          <button
+            type="button"
+            className={styles.mobileNudge}
+            aria-label="Show next timeline card"
+            onClick={() => showFrame(activeFrame + 1, false, true)}
+          />
+        )}
       </div>
     </section>
   );

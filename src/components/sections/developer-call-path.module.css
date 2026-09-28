@@ -280,6 +280,11 @@
     -webkit-overflow-scrolling: touch;
   }
 
+  .viewport[data-at-end="true"] {
+    touch-action: pan-x pan-y;
+    overscroll-behavior-x: auto;
+  }
+
   .viewport::-webkit-scrollbar {
     display: none;
   }
@@ -419,7 +424,7 @@
   .mobileNudge::before {
     position: absolute;
     inset: 0.48rem;
-    background: #DE5246;
+    background: #de5246;
     content: "";
     -webkit-mask: url("/icons/hover-arrow.svg") center / contain no-repeat;
     mask: url("/icons/hover-arrow.svg") center / contain no-repeat;
