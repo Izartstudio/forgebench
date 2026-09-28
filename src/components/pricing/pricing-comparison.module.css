@@ -62,8 +62,12 @@
   background: #ffedeb;
 }
 .chevron {
+  flex: 0 0 auto;
+  margin-left: 1rem;
   transform: rotate(0deg);
+  color: #1a1a1a;
   font-size: 1rem;
+  line-height: 1;
   transition: transform 450ms cubic-bezier(0.22, 1, 0.36, 1);
 }
 .groupOpen .chevron {
@@ -124,6 +128,22 @@
 @media (max-width: 50rem) {
   .table {
     min-width: 43rem;
+  }
+  .tableHeader > :first-child,
+  .row > :first-child {
+    position: sticky;
+    left: 0;
+    z-index: 2;
+    box-shadow: 1px 0 0 rgba(187, 187, 187, 0.5);
+  }
+  .tableHeader > :first-child {
+    z-index: 3;
+  }
+  .group h2 {
+    position: sticky;
+    left: 0;
+    z-index: 1;
+    width: 100vw;
   }
   .tableHeader,
   .row {

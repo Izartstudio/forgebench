@@ -139,7 +139,8 @@ export const developerCallPathFrames: readonly CallPathFrame[] = [
     eyebrow: "Measured · ROI",
     title: "Not Only What AI Cost You. What It Helped To Ship.",
     image: "/images/developers/call-path/frame-5.png",
-    imageAlt: "Forgebench team spend and branch-level developer activity report",
+    imageAlt:
+      "Forgebench team spend and branch-level developer activity report",
     brands: true,
     points: [
       {
@@ -652,7 +653,7 @@ export function DeveloperCallPath({
           >
             {frames.map((item, index) => (
               <article
-                className={styles.card}
+                className={`${styles.card} ${item.brands ? styles.cardWithBrands : ""}`}
                 aria-hidden={index !== activeFrame}
                 key={item.title}
               >

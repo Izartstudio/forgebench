@@ -435,29 +435,34 @@
     position: relative;
     display: block;
     width: calc(100% + 4rem);
-    aspect-ratio: 1.05;
     margin-top: 1.5rem;
     margin-left: -2rem;
     overflow: hidden;
-    background: linear-gradient(
-      180deg,
-      #de5246 0%,
-      #de5246 25%,
-      #42090d 56%,
-      #140306 100%
-    );
+    background: #fff;
   }
 
   .mobileProductCard,
   .mobileProductCard[data-card] {
-    top: 50%;
-    left: 50%;
-    width: 86%;
+    position: relative;
+    top: auto;
+    left: auto;
+    width: 100%;
+    max-width: none;
+    border-radius: 0;
+    opacity: 1;
+    transform: none;
+    animation: mobile-card-enter 450ms ease-out both;
   }
 
   .panelInner {
     overflow: visible;
     padding-bottom: 0;
+  }
+}
+
+@keyframes mobile-card-enter {
+  from {
+    opacity: 0;
   }
 }
 

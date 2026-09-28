@@ -311,6 +311,12 @@
 .mobileConnectors {
   display: none;
 }
+.narrowTargetPath,
+.narrowTargetArrow,
+.narrowSourcePath,
+.narrowSourceArrow {
+  display: none;
+}
 .desktopConnectors path,
 .mobileConnectors path {
   fill: none;
@@ -474,6 +480,20 @@
   }
   .endpointFooter span {
     padding-block: 0.35rem;
+  }
+}
+
+@media (max-width: 24rem) {
+  .mobileConnectors .standardMobileTarget,
+  .mobileConnectors .standardMobileSource {
+    display: none;
+  }
+
+  .mobileConnectors .narrowTargetPath,
+  .mobileConnectors .narrowTargetArrow,
+  .mobileConnectors .narrowSourcePath,
+  .mobileConnectors .narrowSourceArrow {
+    display: block;
   }
 }
 

@@ -248,13 +248,15 @@
 
 @media (max-width: 56.25rem) {
   .section {
+    --mobile-carousel-height: 65rem;
+
     height: auto;
   }
 
   .sticky {
     position: relative;
     top: auto;
-    height: max(100svh, 54rem);
+    height: var(--mobile-carousel-height);
     padding: 1rem 0 0.5rem 1rem;
   }
 
@@ -270,7 +272,7 @@
   }
 
   .viewport {
-    height: calc(max(100svh, 54rem) - 4.5rem);
+    height: calc(var(--mobile-carousel-height) - 4.5rem);
     overflow-x: auto;
     overflow-y: hidden;
     scroll-behavior: smooth;
@@ -302,46 +304,52 @@
   }
 
   .card {
-    --mobile-slide-image-height: 15rem;
+    --mobile-slide-image-height: 21rem;
+    --mobile-slide-heading-height: 14rem;
+    --mobile-slide-points-height: 24rem;
 
     display: flex;
     flex-basis: calc(100vw - 2.5rem);
     height: 100%;
     flex-direction: column;
     overflow: hidden;
-    padding: 1.5rem 1.5rem var(--mobile-slide-image-height);
+    padding: 1.5rem 1.5rem 0;
     scroll-snap-align: start;
     scroll-snap-stop: always;
   }
 
   .dashboard {
-    position: absolute;
+    position: relative;
     top: auto;
-    right: 0;
-    bottom: 0;
-    left: 0;
+    right: auto;
+    bottom: auto;
+    left: -1.5rem;
     display: block;
-    width: 100%;
-    min-width: 100%;
+    width: calc(100% + 3rem);
+    min-width: calc(100% + 3rem);
     max-width: none;
-    height: var(--mobile-slide-image-height);
-    flex: 0 0 auto;
+    height: auto;
+    min-height: 0;
+    flex: 1 1 auto;
     align-self: flex-start;
     order: 3;
     margin: 0;
     background: #fff;
-    object-fit: contain;
-    object-position: center bottom;
+    object-fit: cover;
+    object-position: top center;
   }
 
   .frameHeading,
   .points {
     position: relative;
+    z-index: 2;
     inset: auto;
     width: auto;
   }
 
   .frameHeading {
+    height: var(--mobile-slide-heading-height);
+    flex: 0 0 var(--mobile-slide-heading-height);
     order: 1;
   }
 
@@ -369,13 +377,19 @@
 
   .points {
     display: grid;
+    z-index: 3;
+    height: var(--mobile-slide-points-height);
+    flex: 0 0 var(--mobile-slide-points-height);
     grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-template-rows: repeat(2, minmax(0, 1fr));
     order: 2;
     margin-top: 1rem;
     padding-top: 1rem;
+    overflow: visible;
   }
 
   .points > div {
+    position: relative;
     min-height: 7rem;
     padding: 0.75rem 1rem;
     border-right: 1px solid rgb(230 230 230 / 25%);
@@ -387,8 +401,11 @@
   }
 
   .points span {
-    color: var(--color-accent);
+    display: block;
+    color: #ff9b92;
     font-size: 1rem;
+    opacity: 1;
+    visibility: visible;
   }
 
   .points h3 {
@@ -451,8 +468,20 @@
 }
 
 @media (max-width: 30rem) {
+  .section {
+    --mobile-carousel-height: 70rem;
+  }
+
   .card {
-    padding: 1.125rem 1rem var(--mobile-slide-image-height);
+    --mobile-slide-heading-height: 9rem;
+    --mobile-slide-points-height: 28.5rem;
+
+    padding: 1.125rem 1rem 0;
+  }
+
+  .cardWithBrands {
+    --mobile-slide-heading-height: 10rem;
+    --mobile-slide-points-height: 27.5rem;
   }
 
   .frameHeading h2 {
@@ -463,7 +492,9 @@
 
   .points {
     grid-template-columns: 1fr;
-    padding-top: 0.625rem;
+    grid-template-rows: repeat(4, minmax(0, 1fr));
+    margin-top: 0.25rem;
+    padding-top: 0.25rem;
   }
 
   .points > div,
@@ -485,9 +516,25 @@
   }
 
   .dashboard {
-    width: 100%;
-    min-width: 100%;
-    height: var(--mobile-slide-image-height);
+    left: -1rem;
+    width: calc(100% + 2rem);
+    min-width: calc(100% + 2rem);
+    height: auto;
+    min-height: 0;
+    flex: 1 1 auto;
     margin: 0;
+  }
+
+  .brands {
+    gap: 0.75rem;
+    margin-top: 0.75rem;
+  }
+
+  .brands img:first-child {
+    width: 6rem;
+  }
+
+  .brands img:last-child {
+    width: 4rem;
   }
 }

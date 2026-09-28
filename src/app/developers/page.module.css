@@ -248,6 +248,19 @@
   }
 }
 
+@media (min-width: 48rem) and (max-width: 56.25rem) {
+  .developerBackFrame {
+    left: 0;
+    width: 32rem;
+  }
+
+  .developerFrontFrame {
+    top: 4.5rem;
+    left: 6rem;
+    width: 42rem;
+  }
+}
+
 @media (max-width: 47.9375rem) {
   .developerBackFrame {
     top: auto;
@@ -257,8 +270,8 @@
   }
 
   .developerFrontFrame {
-    top: 0.75rem;
-    bottom: auto;
+    top: auto;
+    bottom: 0;
     left: 26%;
     width: 94%;
   }

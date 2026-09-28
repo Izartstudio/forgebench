@@ -139,6 +139,23 @@
   border-top-color: rgba(230, 230, 230, 0.25);
 }
 
+.free .feature,
+.pro .feature {
+  width: fit-content;
+  max-width: 100%;
+  padding-bottom: 0.875rem;
+  border-bottom: 1px solid #d9d9d9;
+}
+
+.free .cardFooter,
+.pro .cardFooter {
+  border-top: 0;
+}
+
+.pro .feature {
+  border-bottom-color: rgba(230, 230, 230, 0.25);
+}
+
 .enterprise .cardFooter {
   border-top: 0;
 }

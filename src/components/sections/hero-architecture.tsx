@@ -173,31 +173,59 @@ function Connectors() {
         />
         <path
           pathLength="1"
-          className={`${styles.connectorPath} ${styles.sourceMerge}`}
+          className={`${styles.connectorPath} ${styles.sourceMerge} ${styles.standardMobileSource}`}
           d="M138 106V145"
         />
         <path
-          className={`${styles.arrowHead} ${styles.sourceArrow}`}
+          className={`${styles.arrowHead} ${styles.sourceArrow} ${styles.standardMobileSource}`}
           d="M132 138L138 145L144 138"
         />
         <path
           pathLength="1"
-          className={`${styles.connectorPath} ${styles.targetStem}`}
+          className={`${styles.connectorPath} ${styles.sourceMerge} ${styles.narrowSourcePath}`}
+          d="M138 106V137"
+        />
+        <path
+          className={`${styles.arrowHead} ${styles.sourceArrow} ${styles.narrowSourceArrow}`}
+          d="M132 130L138 137L144 130"
+        />
+        <path
+          pathLength="1"
+          className={`${styles.connectorPath} ${styles.targetStem} ${styles.standardMobileTarget}`}
           d="M138 319V358"
         />
         <path
           pathLength="1"
-          className={`${styles.connectorPath} ${styles.targetTop}`}
+          className={`${styles.connectorPath} ${styles.targetTop} ${styles.standardMobileTarget}`}
           d="M138 358H68V370"
         />
         <path
           pathLength="1"
-          className={`${styles.connectorPath} ${styles.targetBottom}`}
+          className={`${styles.connectorPath} ${styles.targetBottom} ${styles.standardMobileTarget}`}
           d="M138 358H208V370"
         />
         <path
-          className={`${styles.arrowHead} ${styles.targetArrow}`}
+          className={`${styles.arrowHead} ${styles.targetArrow} ${styles.standardMobileTarget}`}
           d="M62 363L68 370L74 363M202 363L208 370L214 363"
+        />
+        <path
+          pathLength="1"
+          className={`${styles.connectorPath} ${styles.targetStem} ${styles.narrowTargetPath}`}
+          d="M138 319V350"
+        />
+        <path
+          pathLength="1"
+          className={`${styles.connectorPath} ${styles.targetTop} ${styles.narrowTargetPath}`}
+          d="M138 350H68V362"
+        />
+        <path
+          pathLength="1"
+          className={`${styles.connectorPath} ${styles.targetBottom} ${styles.narrowTargetPath}`}
+          d="M138 350H208V362"
+        />
+        <path
+          className={`${styles.arrowHead} ${styles.targetArrow} ${styles.narrowTargetArrow}`}
+          d="M62 355L68 362L74 355M202 355L208 362L214 355"
         />
       </svg>
     </>

@@ -57,8 +57,8 @@ export default function AgentsPage() {
         >
           <div className={styles.routingFrame}>
             <Image
-              src="/images/agents/secondheroagent.png"
-              alt="Forgebench organisation overview dashboard"
+              src="/images/agents/agenthero1.png"
+              alt="Forgebench agent inventory dashboard"
               fill
               preload
               sizes="(max-width: 767px) 64vw, 43vw"
@@ -66,8 +66,8 @@ export default function AgentsPage() {
           </div>
           <div className={styles.dashboardFrame}>
             <Image
-              src="/images/agents/agenthero1.png"
-              alt="Forgebench agent inventory dashboard"
+              src="/images/agents/secondheroagent.png"
+              alt="Forgebench organisation overview dashboard"
               fill
               preload
               sizes="(max-width: 767px) 92vw, 58vw"
