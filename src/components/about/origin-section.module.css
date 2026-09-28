@@ -1,0 +1,28 @@
+.origin { display: grid; min-height: 36.5rem; grid-template-columns: 53% 47%; gap: 2rem; padding: 6.4rem 2.5rem 5rem; background: #fff; }
+.eyebrow { margin-bottom: 1.6rem; color: #565656; font-size: .75rem; font-weight: 700; letter-spacing: .055em; text-transform: uppercase; }
+.story h2 { margin-bottom: 1.55rem; font-size: clamp(2.1rem, 2.8vw, 2.55rem); font-weight: 400; line-height: 1.18; letter-spacing: -.03em; }
+.story h2 span, .sequence span { color: #de5246; }
+.story > p:last-child, .lesson > p { font-size: 1rem; line-height: 1.25; }
+.lesson { padding-right: 0; }
+.sequence { display: grid; height: 15.25rem; align-content: center; margin: 2rem 0 2rem; padding: 1.75rem 2rem; background: #fbf3f2; }
+.line { opacity: 0; transform: translateY(.6rem); font-size: 1.25rem; transition: opacity 500ms ease var(--delay), transform 600ms cubic-bezier(.22,1,.36,1) var(--delay); }
+.visible .line { opacity: 1; transform: translateY(0); }
+.arrow { width: .65rem; height: 2.55rem; margin-left: 3.35rem; opacity: 0; overflow: visible; }
+.arrow path { fill: none; stroke: #de5246; stroke-width: .85; stroke-linecap: round; stroke-linejoin: round; stroke-dasharray: 1; stroke-dashoffset: 1; }
+.visible .arrow { opacity: 1; transition: opacity 100ms linear var(--delay); }
+.visible .arrow path { animation: drawArrow 480ms ease-out var(--delay) forwards; }
+@keyframes drawArrow { to { stroke-dashoffset: 0; } }
+@media (max-width: 62rem) {
+  .origin { grid-template-columns: 1fr; gap: 4rem; padding-block: 5rem; }
+}
+@media (max-width: 42rem) {
+  .origin { padding: 4.5rem 1rem; }
+  .story h2 { font-size: 2.25rem; }
+  .desktopBreak { display: none; }
+  .sequence { height: auto; min-height: 15.25rem; padding-inline: 1.5rem; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .line { opacity: 1; transform: none; transition: none; }
+  .arrow { opacity: 1; }
+  .arrow path { stroke-dashoffset: 0; animation: none !important; }
+}

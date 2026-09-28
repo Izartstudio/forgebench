@@ -83,21 +83,25 @@ export const agentsTimelineCopy = {
 export function DeploymentTimeline({
   variant = "default",
 }: DeploymentTimelineProps) {
-  const copy = variant === "agents" ? agentsTimelineCopy : {
-    eyebrow: "Deployment & Implementation",
-    headingStart: "Runs",
-    headingAccent: "In Your Environment.",
-    headingEnd: "Proved And Signed-Off In 4 Weeks.",
-    where:
-      "Where it runs. Your infrastructure, your identity provider, your policies.",
-    phasesLabel: "Three phases, each exiting on evidence.",
-    foundations,
-    phases,
-    phaseImages: phases.map((phase) => phase.image),
-    phaseImageAlts: phases.map(
-      () => "Forgebench overview showing governed AI usage, budget and spend metrics",
-    ),
-  } as const;
+  const copy =
+    variant === "agents"
+      ? agentsTimelineCopy
+      : ({
+          eyebrow: "Deployment & Implementation",
+          headingStart: "Runs",
+          headingAccent: "In Your Environment.",
+          headingEnd: "Proved And Signed-Off In 4 Weeks.",
+          where:
+            "Where it runs. Your infrastructure, your identity provider, your policies.",
+          phasesLabel: "Three phases, each exiting on evidence.",
+          foundations,
+          phases,
+          phaseImages: phases.map((phase) => phase.image),
+          phaseImageAlts: phases.map(
+            () =>
+              "Forgebench overview showing governed AI usage, budget and spend metrics",
+          ),
+        } as const);
   const [activePhase, setActivePhase] = useState(0);
   const phaseRefs = useRef<Array<HTMLElement | null>>([]);
   const previousRectsRef = useRef<Map<number, DOMRect>>(new Map());
@@ -220,14 +224,6 @@ export function DeploymentTimeline({
                 <div className={styles.phaseContent} aria-hidden={!isActive}>
                   <h3>{phase.title}</h3>
                   <p>{phase.description}</p>
-                  <Image
-                    className={styles.productImage}
-                    src={copy.phaseImages[index]}
-                    alt={copy.phaseImageAlts[index]}
-                    width={623}
-                    height={339}
-                    sizes="(max-width: 767px) calc(100vw - 92px), 46vw"
-                  />
                   <span className={styles.exit}>{phase.exit}</span>
                 </div>
 

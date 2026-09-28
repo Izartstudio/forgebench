@@ -7,6 +7,7 @@ type ArrowLinkProps = {
   href: string;
   variant?: "dark" | "plain";
   className?: string;
+  underlineOnHover?: boolean;
 };
 
 export function ArrowLink({
@@ -14,13 +15,14 @@ export function ArrowLink({
   href,
   variant = "plain",
   className,
+  underlineOnHover = false,
 }: ArrowLinkProps) {
   const isDemoLink = href === "/demo";
 
   return (
     <Link
       href={href}
-      className={`${styles.link} ${styles[variant]} ${isDemoLink ? styles.underlined : ""} ${className ?? ""}`}
+      className={`${styles.link} ${styles[variant]} ${isDemoLink || underlineOnHover ? styles.underlined : ""} ${className ?? ""}`}
     >
       <span>{children}</span>
       <span className={styles.arrow} aria-hidden="true" />

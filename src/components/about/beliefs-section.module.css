@@ -1,0 +1,104 @@
+.beliefs {
+  position: relative;
+  min-height: 34.25rem;
+  overflow: hidden;
+  background: #fff;
+}
+
+.content {
+  display: flex;
+  min-height: 22.45rem;
+  align-items: center;
+  flex-direction: column;
+  justify-content: flex-start;
+  padding: 5.7rem 1rem 3rem;
+  text-align: center;
+}
+
+.eyebrow {
+  margin-bottom: 1.55rem;
+  color: #565656;
+  font-size: .75rem;
+  font-weight: 700;
+  letter-spacing: .055em;
+  text-transform: uppercase;
+}
+
+.content h2 {
+  font-size: clamp(1.8rem, 2.22vw, 2rem);
+  font-weight: 400;
+  line-height: 1.55;
+  letter-spacing: -.035em;
+}
+
+.content h2 span,
+.manifesto strong {
+  color: #de5246;
+  font-weight: 400;
+}
+
+.description {
+  margin-top: 1.25rem;
+  font-size: 1rem;
+  line-height: 1.2;
+}
+
+.manifesto {
+  display: grid;
+  min-height: 6rem;
+  grid-template-columns: 1fr minmax(28rem, auto) 1fr;
+  align-items: center;
+  border: .25px solid #bbb;
+  background: #fafafa;
+}
+
+.manifesto p {
+  font-size: 1.25rem;
+  line-height: 1.2;
+  text-align: center;
+}
+
+.manifesto p > span { color: #565656; }
+
+.marks {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  color: #de2e1c;
+  font-family: var(--font-mono);
+}
+
+.marks span {
+  display: block;
+  font-size: calc(.35rem + var(--mark-size, 0rem));
+  line-height: 1;
+  white-space: nowrap;
+}
+
+.marks span:nth-child(2), .marks span:nth-last-child(2) { font-size: .48rem; }
+.marks span:nth-child(3), .marks span:nth-last-child(3) { font-size: .66rem; }
+.marks span:nth-child(4) { font-size: .88rem; }
+.marks span:nth-child(5) { font-size: 1.1rem; }
+.marks span:nth-child(6) { font-size: 1.4rem; }
+.marksRight { flex-direction: row-reverse; }
+
+@media (max-width: 68rem) {
+}
+
+@media (max-width: 48rem) {
+  .beliefs { min-height: 0; }
+  .content { min-height: 0; padding: 4rem 1rem; }
+  .content h2 { font-size: 1.85rem; line-height: 1.3; }
+  .description { max-width: 31rem; }
+  .desktopBreak { display: none; }
+  .beliefs { --side-line-top: 14.2rem; }
+  .manifesto { min-height: 0; grid-template-columns: 4rem 1fr 4rem; padding-block: 3rem; }
+  .manifesto p { font-size: 1rem; }
+  .marks span:nth-child(-n+4) { display: none; }
+}
+
+@media (max-width: 30rem) {
+  .beliefs { --side-line-top: 15.5rem; }
+  .manifesto { grid-template-columns: 2rem 1fr 2rem; }
+  .marks span { display: none !important; }
+}

@@ -9,9 +9,9 @@ export function PilotCta() {
           <h2 id="pilot-heading">
             Prove It On Your Own Workload.
             <br />
-            Four Weeks, And Every Phase
+            {" "}Four Weeks, And Every Phase
             <br />
-            Exits On Evidence.
+            {" "}Exits On Evidence.
           </h2>
           <p className={styles.description}>
             A fixed four-week pilot in your own environment — 10 to 25

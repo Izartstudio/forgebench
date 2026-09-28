@@ -65,11 +65,7 @@
   background: #de5246;
   transform: scaleX(0);
   transform-origin: left;
-  animation: platform-timeline 8s linear forwards;
-}
-
-.registryTimeline {
-  animation-duration: 17.25s;
+  animation: platform-timeline 7s linear forwards;
 }
 
 @keyframes platform-timeline {
@@ -159,7 +155,7 @@
   padding-bottom: 1.5rem;
 }
 
-.panel p {
+.description {
   max-width: 27rem;
   color: var(--color-text-muted);
   font-size: 1rem;
@@ -181,30 +177,177 @@
   );
 }
 
-.registryVideoFrame {
+.productCard {
   position: absolute;
-  z-index: 1;
-  right: 0;
-  bottom: 0;
-  width: min(43rem, 100%);
-  height: min(43rem, 100%);
-  background: transparent;
+  z-index: 2;
+  top: 50%;
+  left: 50%;
+  width: min(94%, 48.25rem);
+  overflow: hidden;
+  filter: drop-shadow(0 1.5rem 2.5rem rgb(33 5 10 / 26%));
   opacity: 0;
-  pointer-events: none;
-  transition: opacity 350ms ease;
+  transform: translate(-50%, calc(-50% + 0.5rem)) scale(0.992);
+  transform-origin: center;
+  animation: card-enter 450ms ease-out forwards;
 }
 
-.registryVideoVisible {
-  opacity: 1;
+.productCard[data-card="registry"] {
+  width: min(91%, 46.3125rem);
 }
 
-.registryVideo {
+.productCard[data-card="ai-insights"] {
+  width: min(88%, 45rem);
+}
+
+.cardImage {
   display: block;
   width: 100%;
-  height: 100%;
-  background: transparent;
-  object-fit: contain;
-  object-position: right bottom;
+  height: auto;
+}
+
+.cardDetails {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.animatedLine {
+  position: absolute;
+  left: 55%;
+  top: 67.2%;
+  width: 31%;
+  height: 0.65%;
+  border-radius: 999px;
+  background: #2957eb;
+  transform: scaleX(0);
+  transform-origin: left;
+  animation: detail-line 850ms cubic-bezier(0.22, 1, 0.36, 1) 650ms forwards;
+}
+
+.animatedLine:nth-child(2),
+.animatedLine:nth-child(3),
+.animatedLine:nth-child(4) {
+  display: none;
+}
+
+.rowReveal {
+  position: absolute;
+  left: 2%;
+  top: 13.4%;
+  width: 54%;
+  height: 4.9%;
+  background: #fff;
+  transform-origin: right;
+  animation: reveal-row 420ms cubic-bezier(0.22, 1, 0.36, 1) 250ms forwards;
+}
+
+.rowReveal:nth-child(5) {
+  background: #edf2ff;
+}
+
+.rowReveal:nth-child(6) {
+  top: 21%;
+  animation-delay: 340ms;
+}
+.rowReveal:nth-child(7) {
+  top: 28.5%;
+  animation-delay: 430ms;
+}
+.rowReveal:nth-child(8) {
+  top: 36%;
+  animation-delay: 520ms;
+}
+.rowReveal:nth-child(9) {
+  top: 43.5%;
+  animation-delay: 610ms;
+}
+.rowReveal:nth-child(10) {
+  top: 51%;
+  animation-delay: 700ms;
+}
+
+.productCard:not([data-card="registry"]) .rowReveal {
+  display: none;
+}
+
+.productCard[data-card="gateway"] .animatedLine,
+.productCard[data-card="routing"] .animatedLine {
+  display: none;
+}
+
+.productCard[data-card="guardrails"] .animatedLine {
+  left: 59.4%;
+  top: 54.8%;
+  width: 20.5%;
+  height: 1.35%;
+  background: #d1211f;
+}
+
+.productCard[data-card="guardrails"] .animatedLine:nth-child(2) {
+  top: 64.5%;
+  display: block;
+  width: 1.8%;
+  background: #6e4fc2;
+  animation-delay: 780ms;
+}
+
+.productCard[data-card="guardrails"] .animatedLine:nth-child(3) {
+  top: 74.2%;
+  display: block;
+  width: 10.5%;
+  background: #eb592e;
+  animation-delay: 910ms;
+}
+
+.productCard[data-card="guardrails"] .animatedLine:nth-child(4) {
+  top: 83.9%;
+  display: block;
+  width: 20.5%;
+  background: #3d57d1;
+  animation-delay: 1.04s;
+}
+
+.productCard[data-card="ai-insights"] .animatedLine {
+  left: 38%;
+  top: 86.2%;
+  width: 37%;
+  height: 0.7%;
+  background: #4b359b;
+}
+
+.productCard[data-card="observability"] .animatedLine {
+  left: 56%;
+  top: 73%;
+  width: 25%;
+  height: 1%;
+  background: #3d57d1;
+}
+
+.productCard[data-card="audit"] .animatedLine {
+  left: 48%;
+  top: 87%;
+  width: 30%;
+  height: 0.9%;
+  background: #2957eb;
+}
+
+@keyframes card-enter {
+  to {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+  }
+}
+
+@keyframes detail-line {
+  to {
+    transform: scaleX(1);
+  }
+}
+
+@keyframes reveal-row {
+  to {
+    transform: scaleX(0);
+  }
 }
 
 .mobileMedia {
@@ -212,7 +355,7 @@
 }
 
 .media::after {
-  z-index: 2;
+  z-index: 1;
   position: absolute;
   inset: 0;
   background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.67' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='.1'/%3E%3C/svg%3E");
@@ -244,25 +387,19 @@
   }
 }
 
-@media (min-width: 56.251rem) and (max-width: 64rem) {
-  .registryVideoFrame {
-    inset: 0;
-    width: 100%;
-    height: 100%;
-  }
-
-  .registryVideo {
-    object-fit: cover;
-    object-position: right center;
-  }
-}
-
 @media (prefers-reduced-motion: reduce) {
   .item,
   .trigger,
   .indicator::after,
   .panel {
     transition-duration: 0.01ms;
+  }
+
+  .productCard,
+  .animatedLine,
+  .rowReveal {
+    animation-duration: 0.01ms;
+    animation-delay: 0ms;
   }
 }
 
@@ -302,9 +439,10 @@
   }
 
   .mobileMedia {
+    position: relative;
     display: block;
     width: calc(100% + 4rem);
-    min-height: min(82vw, 30rem);
+    aspect-ratio: 1.05;
     margin-top: 1.5rem;
     margin-left: -2rem;
     overflow: hidden;
@@ -317,13 +455,11 @@
     );
   }
 
-  .mobileRegistryVideo {
-    display: block;
-    width: 100%;
-    height: 100%;
-    min-height: min(82vw, 30rem);
-    object-fit: contain;
-    object-position: right bottom;
+  .mobileProductCard,
+  .mobileProductCard[data-card] {
+    top: 50%;
+    left: 50%;
+    width: 86%;
   }
 
   .panelInner {
@@ -351,7 +487,7 @@
     padding-left: 1.25rem;
   }
 
-  .panel p {
+  .description {
     font-size: 0.9375rem;
   }
 
@@ -359,5 +495,4 @@
     width: calc(100% + 2.5rem);
     margin-left: -1.25rem;
   }
-
 }

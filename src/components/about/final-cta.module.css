@@ -1,0 +1,17 @@
+.section {
+  --side-line-top: 11rem;
+  position: relative;
+  min-height: 28.9375rem;
+  overflow: hidden;
+  background: linear-gradient(180deg, #fff 0 77%, #fff8f7 84%, #f5a09a 100%);
+}
+.content { display: flex; align-items: center; flex-direction: column; padding-top: 6.35rem; text-align: center; }
+.content h2 { font-size: 2rem; font-weight: 400; line-height: 1.18; letter-spacing: -.03em; }
+.content h2 span { color: #de5246; }
+.button { display: flex; width: 20.45rem; min-height: 3.1rem; align-items: center; justify-content: center; gap: .75rem; margin-top: 2rem; background: #151211; color: #fff; font-size: .875rem; text-decoration: none; transition: background-color 220ms ease, color 220ms ease; }
+@media (max-width: 48rem) {
+  .section { --side-line-top: 12.2rem; min-height: 26rem; }
+  .content { padding: 5rem 1rem 0; }
+  .content h2 { font-size: 1.8rem; }
+  .button { width: min(100%, 20.45rem); }
+}
