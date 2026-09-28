@@ -7,10 +7,25 @@ import { DeploymentTimeline } from "@/components/sections/deployment-timeline";
 import { PilotCta } from "@/components/sections/pilot-cta";
 import { PlatformAccordion } from "@/components/sections/platform-accordion";
 import { SolutionOverview } from "@/components/sections/solution-overview";
+import { JsonLd } from "@/components/seo/json-ld";
+import { createMetadata } from "@/lib/seo/metadata";
+import { softwareApplicationSchema } from "@/lib/seo/schema";
+
+export const metadata: Metadata = createMetadata({
+  title:
+    "Forgebench — The Control Plane for Enterprise AI | AI Credentials, Budgets and Audit",
+  description:
+    "Give every developer and agent their own credential, ceiling and audit record. Govern every LLM call, see who owns it and what it costs. Self-hosted and model-agnostic.",
+  path: "/",
+  ogTitle: "Forgebench — The Control Plane for Enterprise AI",
+  ogDescription:
+    "Every call, governed. Every dollar, accounted for. Self-hosted.",
+});
 
 export default function Home() {
   return (
     <>
+      <JsonLd data={softwareApplicationSchema()} />
       <Navbar />
       <main id="main-content">
         <HomeHero />
@@ -27,3 +42,4 @@ export default function Home() {
     </>
   );
 }
+import type { Metadata } from "next";

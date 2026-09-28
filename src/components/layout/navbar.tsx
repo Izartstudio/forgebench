@@ -72,11 +72,14 @@ export function Navbar() {
       </nav>
 
       <div className={styles.actions}>
-        <ArrowLink href="/demo" className={styles.secondaryAction}>
+        <ArrowLink
+          href="mailto:info@seedlinglabs.com?subject=Book%20a%20Forgebench%20Demo"
+          className={styles.secondaryAction}
+        >
           Book A Demo
         </ArrowLink>
         <ArrowLink
-          href="/sandbox"
+          href="mailto:info@seedlinglabs.com?subject=Request%20Forgebench%20Sandbox%20Access"
           variant="dark"
           className={styles.primaryAction}
         >

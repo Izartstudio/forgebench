@@ -29,7 +29,11 @@ export function FinalCta() {
       <AnimatedSideLines active={visible} />
       <div className={styles.content}>
         <h2 id="final-cta-title">The Problem Was Real.<br /><span>So We Built For It.</span></h2>
-        <ArrowLink href="/demo" variant="dark" className={styles.button}>
+        <ArrowLink
+          href="mailto:info@seedlinglabs.com?subject=Book%20a%20Forgebench%20Demo"
+          variant="dark"
+          className={styles.button}
+        >
           See Forgebench in action
         </ArrowLink>
       </div>

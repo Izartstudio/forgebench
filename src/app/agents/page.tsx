@@ -12,18 +12,31 @@ import { DeveloperCallPath } from "@/components/sections/developer-call-path";
 import { DeploymentTimeline } from "@/components/sections/deployment-timeline";
 import { PilotCta } from "@/components/sections/pilot-cta";
 import { createMetadata } from "@/lib/seo/metadata";
+import { JsonLd } from "@/components/seo/json-ld";
+import { softwareApplicationSchema } from "@/lib/seo/schema";
 
 import styles from "./page.module.css";
 
 export const metadata: Metadata = createMetadata({
-  title: "For Agents",
-  description: "Know every AI agent running across your organization and govern every call it makes.",
+  title:
+    "Forgebench for Agent Management — The Control Plane for Enterprise AI Agents",
+  description:
+    "Every agent registered before its first call, on its own credential, with a ceiling that refuses and a record that holds. Self-hosted and model-agnostic.",
   path: "/agents",
+  image: "/images/agents/dashboard.webp",
+  keywords: [
+    "AI agent management",
+    "AI agent control plane",
+    "agent governance",
+    "AI agent audit trail",
+    "agent cost controls",
+  ],
 });
 
 export default function AgentsPage() {
   return (
     <>
+      <JsonLd data={softwareApplicationSchema("/agents")} />
       <Navbar />
       <main id="main-content">
         <AudienceHero

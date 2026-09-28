@@ -3,10 +3,12 @@
 import { useState } from "react";
 
 import { ArrowLink } from "@/components/ui/arrow-link";
+import { JsonLd } from "@/components/seo/json-ld";
+import { faqPageSchema } from "@/lib/seo/schema";
 
 import styles from "./faq-section.module.css";
 
-const faqs = [
+export const faqs = [
   {
     question: "Is Forgebench for developers or for agents?",
     answer:
@@ -112,6 +114,7 @@ export function FaqSection() {
 
   return (
     <section className={styles.section} aria-labelledby="faq-heading">
+      <JsonLd data={faqPageSchema(faqs)} />
       <div className={styles.panel}>
         <header className={styles.intro}>
           <p>FAQs</p>
@@ -120,7 +123,10 @@ export function FaqSection() {
             About Forgebench
           </h2>
           <div className={styles.actions}>
-            <ArrowLink href="https://example.com" variant="dark">
+            <ArrowLink
+              href="mailto:info@seedlinglabs.com?subject=Book%20an%20AI%20Audit"
+              variant="dark"
+            >
               Book an AI Audit
             </ArrowLink>
          </div>

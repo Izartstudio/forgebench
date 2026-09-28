@@ -12,7 +12,7 @@ import { createMetadata } from "@/lib/seo/metadata";
 import styles from "./page.module.css";
 
 export const metadata: Metadata = createMetadata({
-  title: "About Forgebench",
+  title: "About Forgebench — Enterprise AI Governance by Seedling Labs",
   description:
     "Forgebench gives organizations the visibility and control to move fast with AI.",
   path: "/company",

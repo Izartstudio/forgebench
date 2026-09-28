@@ -6,8 +6,10 @@ import { notFound } from "next/navigation";
 import { BlogArticleBody } from "@/components/blog/blog-article-body";
 import { Navbar } from "@/components/layout/navbar";
 import { SiteFooter } from "@/components/layout/site-footer";
-import { getBlogPost, getRelatedPosts } from "@/lib/cms/blog";
+import { JsonLd } from "@/components/seo/json-ld";
+import { getBlogPost, getRelatedPosts, isCmsConfigured } from "@/lib/cms/blog";
 import { createMetadata } from "@/lib/seo/metadata";
+import { siteConfig } from "@/lib/seo/site-config";
 
 import styles from "./page.module.css";
 
@@ -16,7 +18,15 @@ type PageProps = { params: Promise<{ slug: string }> };
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
   const { slug } = await params;
   const post = await getBlogPost(slug);
-  return post ? createMetadata({ title: post.title, description: post.excerpt, path: `/blog/${slug}` }) : {};
+  return post
+    ? createMetadata({
+        title: post.title,
+        description: post.excerpt,
+        path: `/blog/${slug}`,
+        image: post.image,
+        noIndex: !isCmsConfigured,
+      })
+    : {};
 }
 
 export default async function BlogArticlePage({ params }: PageProps) {
@@ -25,8 +35,22 @@ export default async function BlogArticlePage({ params }: PageProps) {
   if (!post) notFound();
   const related = await getRelatedPosts(post);
   const published = new Intl.DateTimeFormat("en-US", { month: "long", day: "numeric", year: "numeric" }).format(new Date(post.publishedAt));
+  const articleSchema = {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    headline: post.title,
+    description: post.excerpt,
+    image: new URL(post.image, siteConfig.url).toString(),
+    datePublished: post.publishedAt,
+    author: {
+      "@type": post.authorName ? "Person" : "Organization",
+      name: post.authorName || "Forgebench Editorial",
+    },
+    publisher: { "@id": `${siteConfig.url.toString()}#organization` },
+    mainEntityOfPage: new URL(`/blog/${post.slug}`, siteConfig.url).toString(),
+  };
 
-  return <><Navbar /><main id="main-content" className={styles.main}>
+  return <><JsonLd data={articleSchema} /><Navbar /><main id="main-content" className={styles.main}>
     <article>
       <header className={styles.hero}>
         <div className={styles.heroCopy}>

@@ -32,10 +32,15 @@ export function AudienceHero({
         <h1 id={id}>{title}</h1>
         <p className={styles.description}>{description}</p>
         <div className={styles.actions}>
-          <ArrowLink href="/sandbox" variant="dark">
+          <ArrowLink
+            href="mailto:info@seedlinglabs.com?subject=Request%20Forgebench%20Sandbox%20Access"
+            variant="dark"
+          >
             Try The Sandbox
           </ArrowLink>
-          <ArrowLink href="/demo">Book A Demo</ArrowLink>
+          <ArrowLink href="mailto:info@seedlinglabs.com?subject=Book%20a%20Forgebench%20Demo">
+            Book A Demo
+          </ArrowLink>
         </div>
       </div>
 

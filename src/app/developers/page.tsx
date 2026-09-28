@@ -15,10 +15,17 @@ import { createMetadata } from "@/lib/seo/metadata";
 import styles from "./page.module.css";
 
 export const metadata: Metadata = createMetadata({
-  title: "Developers",
+  title: "Forgebench for Developers — AI Credentials, Budgets and Audit",
   description:
-    "Give developers the freedom to use AI while keeping every model, tool, and workflow governed.",
+    "Give every developer their own AI credential and budget. Govern model access, attribute spend by owner and preserve an audit record for every call.",
   path: "/developers",
+  image: "/images/developers/hero-imagery.png",
+  keywords: [
+    "developer AI governance",
+    "AI developer budgets",
+    "LLM credentials",
+    "LLM cost attribution",
+  ],
 });
 
 const integrations = [

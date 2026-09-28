@@ -8,7 +8,7 @@ import { PricingHero } from "@/components/pricing/pricing-hero";
 import { createMetadata } from "@/lib/seo/metadata";
 
 export const metadata: Metadata = createMetadata({
-  title: "Pricing",
+  title: "Forgebench Pricing — Enterprise AI Governance",
   description:
     "Compare Forgebench plans and find the right level of AI governance for your team.",
   path: "/pricing",

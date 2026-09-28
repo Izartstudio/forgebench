@@ -7,6 +7,10 @@ type MetadataOptions = {
   description?: string;
   path?: string;
   noIndex?: boolean;
+  image?: string;
+  ogTitle?: string;
+  ogDescription?: string;
+  keywords?: string[];
 };
 
 export function createMetadata({
@@ -14,6 +18,10 @@ export function createMetadata({
   description,
   path = "/",
   noIndex = false,
+  image = "/images/agents/dashboard.webp",
+  ogTitle,
+  ogDescription,
+  keywords,
 }: MetadataOptions = {}): Metadata {
   const canonical = new URL(path, siteConfig.url);
   const resolvedTitle = title ?? siteConfig.name;
@@ -26,6 +34,7 @@ export function createMetadata({
       absolute: title,
     },
     description,
+    keywords,
     alternates: {
       canonical,
     },
@@ -37,13 +46,15 @@ export function createMetadata({
       type: "website",
       url: canonical,
       siteName: siteConfig.name,
-      title: resolvedTitle,
-      description,
+      title: ogTitle ?? resolvedTitle,
+      description: ogDescription ?? description,
+      images: [{ url: image, alt: `${siteConfig.name} enterprise AI control plane` }],
     },
     twitter: {
-      card: "summary",
-      title: resolvedTitle,
-      description,
+      card: "summary_large_image",
+      title: ogTitle ?? resolvedTitle,
+      description: ogDescription ?? description,
+      images: [image],
     },
   };
 }

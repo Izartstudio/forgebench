@@ -99,6 +99,7 @@ const seededPosts: BlogPost[] = [
 ];
 
 const projectId = process.env.NEXT_PUBLIC_SANITY_PROJECT_ID;
+export const isCmsConfigured = Boolean(projectId);
 const dataset = process.env.NEXT_PUBLIC_SANITY_DATASET || "production";
 const client = projectId ? createClient({ projectId, dataset, apiVersion: "2026-09-01", useCdn: true }) : null;
 
