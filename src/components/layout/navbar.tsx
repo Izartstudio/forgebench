@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
 
 import { ArrowLink } from "@/components/ui/arrow-link";
@@ -17,10 +18,14 @@ const navigation = [
 ] as const;
 
 export function Navbar() {
+  const pathname = usePathname();
   const [menuOpen, setMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [hidden, setHidden] = useState(false);
   const lastScroll = useRef(0);
+
+  const isActive = (href: string) =>
+    pathname === href || pathname.startsWith(`${href}/`);
 
   useEffect(() => {
     const onScroll = () => {
@@ -65,7 +70,12 @@ export function Navbar() {
 
       <nav className={styles.navigation} aria-label="Primary navigation">
         {navigation.map((item) => (
-          <Link key={item.href} href={item.href}>
+          <Link
+            key={item.href}
+            href={item.href}
+            className={isActive(item.href) ? styles.activeLink : undefined}
+            aria-current={isActive(item.href) ? "page" : undefined}
+          >
             {item.label}
           </Link>
         ))}
@@ -106,6 +116,8 @@ export function Navbar() {
           <Link
             key={item.href}
             href={item.href}
+            className={isActive(item.href) ? styles.activeLink : undefined}
+            aria-current={isActive(item.href) ? "page" : undefined}
             onClick={() => setMenuOpen(false)}
           >
             {item.label}
