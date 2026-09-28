@@ -3,12 +3,15 @@ type JsonLdProps = {
 };
 
 export function JsonLd({ data }: JsonLdProps) {
-  return (
+  const schemas = Array.isArray(data) ? data : [data];
+
+  return schemas.map((schema, index) => (
     <script
+      key={`${String(schema["@type"] ?? "schema")}-${index}`}
       type="application/ld+json"
       dangerouslySetInnerHTML={{
-        __html: JSON.stringify(data).replace(/</g, "\\u003c"),
+        __html: JSON.stringify(schema).replace(/</g, "\\u003c"),
       }}
     />
-  );
+  ));
 }

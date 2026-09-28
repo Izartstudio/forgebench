@@ -599,19 +599,6 @@ const cards = {
   audit: Audit,
 };
 
-const cardAssets: Record<
-  CardType,
-  { src: string; width: number; height: number }
-> = {
-  registry: { src: "/images/platform/cards/registry.svg", width: 741, height: 603 },
-  gateway: { src: "/images/platform/cards/gateway.svg", width: 761, height: 556 },
-  routing: { src: "/images/platform/cards/routing.svg", width: 761, height: 509 },
-  guardrails: { src: "/images/platform/cards/guardrails.svg", width: 781, height: 545 },
-  "ai-insights": { src: "/images/platform/cards/johndoe.svg", width: 576, height: 687 },
-  observability: { src: "/images/platform/cards/observability.svg", width: 772, height: 530 },
-  audit: { src: "/images/platform/cards/audit.svg", width: 769, height: 592 },
-};
-
 export function PlatformProductCard({
   type,
   className,
@@ -621,7 +608,7 @@ export function PlatformProductCard({
   className?: string;
   animationKey: string;
 }) {
-  const asset = cardAssets[type];
+  const Card = cards[type];
   return (
     <article
       key={animationKey}
@@ -629,14 +616,7 @@ export function PlatformProductCard({
       data-card={type}
       aria-label={`${type} interface in Forgebench`}
     >
-      <Image
-        src={asset.src}
-        alt={`${type} interface in Forgebench`}
-        width={asset.width}
-        height={asset.height}
-        sizes="(max-width: 900px) 94vw, 48rem"
-        className={styles.cardImage}
-      />
+      <Card />
     </article>
   );
 }

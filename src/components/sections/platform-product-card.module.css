@@ -24,7 +24,7 @@
   aspect-ratio: 781 / 545;
 }
 .card[data-card="ai-insights"] {
-  aspect-ratio: 576 / 687;
+  aspect-ratio: 755 / 687;
 }
 .card[data-card="observability"] {
   aspect-ratio: 772 / 530;
@@ -156,7 +156,7 @@
   border-radius: 1.25cqi;
   background: #fff;
   box-shadow: 0 1.2rem 2.5rem rgb(20 25 35 / 14%);
-  animation: panel-in 500ms ease-out 500ms both;
+  animation: panel-in 500ms ease-out 500ms backwards;
 }
 .modal {
   right: 5.8%;
@@ -350,7 +350,7 @@
   position: absolute;
   z-index: 2;
   filter: drop-shadow(0 1.2rem 2.5rem rgb(20 25 35 / 14%));
-  animation: panel-in 500ms ease-out 500ms both;
+  animation: panel-in 500ms ease-out 500ms backwards;
 }
 .assetModal > img {
   display: block;
@@ -741,7 +741,7 @@
   .card {
     width: 100%;
     min-width: 0;
-    border-radius: 0;
+    border-radius: 0.4rem;
   }
   .modal {
     font-size: 1.05cqi;

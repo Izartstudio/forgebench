@@ -1,0 +1,25 @@
+# Forgebench
+
+> Forgebench is a self-hosted, model-agnostic enterprise AI control plane for governing developers and agents.
+
+Forgebench gives each developer and agent a credential, spending ceiling and audit record. It helps organizations identify who owns AI activity, account for model spend, govern approved routes and preserve evidence of governed calls.
+
+## Primary pages
+
+- [Forgebench home](/): Product overview, enterprise AI governance and FAQs.
+- [For developers](/developers): Credentials, budgets, routing and governance for developer AI use.
+- [For agents](/agents): Registration, policy, cost controls and auditability for production agents.
+- [Pricing](/pricing): Plans and product capabilities.
+- [About Forgebench](/company): Company and product principles.
+- [Blog](/blog): Product, engineering and enterprise AI articles.
+
+## Product boundaries
+
+- Forgebench governs AI workloads; it does not build or orchestrate agents.
+- It is designed for self-hosted deployment and model-agnostic operation.
+- The website's visible FAQ answers are the canonical source for detailed product questions.
+
+## Contact
+
+- Email: info@seedlinglabs.com
+- Company: Seedling Labs
