@@ -13,6 +13,8 @@ type AudienceHeroProps = {
   image?: {
     src: string;
     alt: string;
+    backSrc?: string;
+    backAlt?: string;
   };
   children?: ReactNode;
 };
@@ -46,14 +48,26 @@ export function AudienceHero({
 
       <div className={styles.visual}>
         {image ? (
-          <div className={styles.visualFrame}>
+          <div
+            className={`${styles.visualFrame} ${image.backSrc ? styles.layeredVisualFrame : ""}`}
+          >
+            {image.backSrc && (
+              <Image
+                src={image.backSrc}
+                alt={image.backAlt ?? ""}
+                fill
+                preload
+                sizes="(max-width: 767px) 110vw, 66vw"
+                className={`${styles.visualImage} ${styles.backImage}`}
+              />
+            )}
             <Image
               src={image.src}
               alt={image.alt}
               fill
               preload
-              sizes="(max-width: 767px) 116vw, 72vw"
-              className={styles.visualImage}
+              sizes="(max-width: 767px) 94vw, 54vw"
+              className={`${styles.visualImage} ${image.backSrc ? styles.frontImage : ""}`}
             />
           </div>
         ) : (

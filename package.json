@@ -6,7 +6,7 @@
     "dev": "next dev",
     "build": "next build --webpack",
     "start": "next start",
-    "studio": "sanity dev",
+    "studio": "CHOKIDAR_USEPOLLING=true sanity dev",
     "lint": "eslint .",
     "typecheck": "tsc --noEmit",
     "format": "prettier --write .",
@@ -20,7 +20,8 @@
     "next-sanity": "^13.3.4",
     "react": "19.3.0",
     "react-dom": "19.3.0",
-    "sanity": "^6.16.0"
+    "sanity": "^6.16.0",
+    "styled-components": "^6.5.3"
   },
   "devDependencies": {
     "@tailwindcss/postcss": "^4",

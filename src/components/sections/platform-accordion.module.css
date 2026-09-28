@@ -196,13 +196,14 @@
 }
 
 .productCard[data-card="ai-insights"] {
-  width: min(88%, 45rem);
+  width: min(70%, 36rem);
 }
 
 .cardImage {
   display: block;
   width: 100%;
-  height: auto;
+  height: 100%;
+  object-fit: contain;
 }
 
 .cardDetails {
@@ -442,7 +443,6 @@
     position: relative;
     display: block;
     width: calc(100% + 4rem);
-    aspect-ratio: 1.05;
     margin-top: 1.5rem;
     margin-left: -2rem;
     overflow: hidden;
@@ -457,9 +457,18 @@
 
   .mobileProductCard,
   .mobileProductCard[data-card] {
-    top: 50%;
-    left: 50%;
-    width: 86%;
+    position: relative;
+    top: auto;
+    left: auto;
+    width: 100%;
+    max-width: none;
+    opacity: 1;
+    transform: none;
+    animation: none;
+  }
+
+  .mobileProductCard[data-card="ai-insights"] {
+    width: 100%;
   }
 
   .panelInner {

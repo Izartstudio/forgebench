@@ -92,10 +92,11 @@
   transition: transform 700ms cubic-bezier(0.22, 1, 0.36, 1);
   backface-visibility: hidden;
   transform-style: preserve-3d;
+  will-change: transform;
 }
 
 .trackActive {
-  will-change: transform;
+  transform-style: preserve-3d;
 }
 
 .trackInstant {
@@ -253,7 +254,7 @@
   .sticky {
     position: relative;
     top: auto;
-    height: 100svh;
+    height: max(100svh, 54rem);
     padding: 1rem 0 0.5rem 1rem;
   }
 
@@ -269,19 +270,18 @@
   }
 
   .viewport {
-    height: calc(100svh - 4.5rem);
+    height: calc(max(100svh, 54rem) - 4.5rem);
     overflow-x: auto;
     overflow-y: hidden;
     scroll-behavior: smooth;
     scroll-snap-type: x mandatory;
     scrollbar-width: none;
-    touch-action: pan-x;
+    touch-action: pan-x pan-y;
     overscroll-behavior-x: contain;
     -webkit-overflow-scrolling: touch;
   }
 
   .viewport[data-at-end="true"] {
-    touch-action: pan-x pan-y;
     overscroll-behavior-x: auto;
   }
 
@@ -293,6 +293,7 @@
     width: max-content;
     transform: none;
     transition: none;
+    will-change: auto;
   }
 
   .track::after {
@@ -300,33 +301,37 @@
     content: "";
   }
 
-  .trackActive {
-    will-change: auto;
-  }
-
   .card {
+    --mobile-slide-image-height: 15rem;
+
     display: flex;
     flex-basis: calc(100vw - 2.5rem);
     height: 100%;
     flex-direction: column;
     overflow: hidden;
-    padding: 1.5rem 1.5rem 1rem;
+    padding: 1.5rem 1.5rem var(--mobile-slide-image-height);
     scroll-snap-align: start;
     scroll-snap-stop: always;
   }
 
   .dashboard {
-    position: relative;
+    position: absolute;
     top: auto;
-    right: auto;
+    right: 0;
+    bottom: 0;
+    left: 0;
     display: block;
     width: 100%;
-    height: clamp(7rem, 20svh, 11rem);
+    min-width: 100%;
+    max-width: none;
+    height: var(--mobile-slide-image-height);
     flex: 0 0 auto;
+    align-self: flex-start;
     order: 3;
-    margin-top: 0.75rem;
-    object-fit: cover;
-    object-position: top left;
+    margin: 0;
+    background: #fff;
+    object-fit: contain;
+    object-position: center bottom;
   }
 
   .frameHeading,
@@ -366,7 +371,7 @@
     display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));
     order: 2;
-    margin-top: auto;
+    margin-top: 1rem;
     padding-top: 1rem;
   }
 
@@ -447,7 +452,7 @@
 
 @media (max-width: 30rem) {
   .card {
-    padding: 1.125rem 1rem 0.75rem;
+    padding: 1.125rem 1rem var(--mobile-slide-image-height);
   }
 
   .frameHeading h2 {
@@ -480,7 +485,9 @@
   }
 
   .dashboard {
-    height: clamp(6rem, 17svh, 8rem);
-    margin-top: 0.5rem;
+    width: 100%;
+    min-width: 100%;
+    height: var(--mobile-slide-image-height);
+    margin: 0;
   }
 }

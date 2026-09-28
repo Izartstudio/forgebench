@@ -367,7 +367,7 @@
   }
 
   .phase.active {
-    min-height: 23rem;
+    min-height: 18.5rem;
     flex-basis: auto;
     grid-column: 1 / -1;
     order: -1;
@@ -476,7 +476,7 @@
   }
 
   .phase.active {
-    min-height: 25rem;
+    min-height: 20rem;
   }
 
   .phaseTrigger {

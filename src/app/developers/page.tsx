@@ -19,7 +19,7 @@ export const metadata: Metadata = createMetadata({
   description:
     "Give every developer their own AI credential and budget. Govern model access, attribute spend by owner and preserve an audit record for every call.",
   path: "/developers",
-  image: "/images/developers/hero-imagery.png",
+  image: "/images/developers/developer-front.png",
   keywords: [
     "developer AI governance",
     "AI developer budgets",
@@ -76,11 +76,26 @@ export default function DevelopersPage() {
           eyebrow={<>Self-hosted deployment <i aria-hidden="true" /> Model agnostic</>}
           title={<>Know Every Developer<br /> Using AI In Your Org.</>}
           description="Govern Every Call. Trace ROI on Every Build."
-          image={{
-            src: "/images/developers/hero-imagery.png",
-            alt: "Forgebench routing and governance dashboard",
-          }}
-        />
+        >
+          <div className={styles.developerBackFrame}>
+            <Image
+              src="/images/developers/developer-back.png"
+              alt="Forgebench developer AI activity report"
+              fill
+              preload
+              sizes="(max-width: 767px) 70vw, 47rem"
+            />
+          </div>
+          <div className={styles.developerFrontFrame}>
+            <Image
+              src="/images/developers/developer-front.png"
+              alt="Forgebench developer AI usage and cost dashboard"
+              fill
+              preload
+              sizes="(max-width: 767px) 94vw, 61rem"
+            />
+          </div>
+        </AudienceHero>
 
         <section className={styles.integrations} aria-label="Integrations">
           <div className={styles.integrationLabel}>

@@ -1,3 +1,34 @@
+.developerBackFrame,
+.developerFrontFrame {
+  position: absolute;
+  bottom: 0;
+  overflow: hidden;
+  border-radius: 0.3rem;
+  box-shadow: 0 1.25rem 4rem rgba(15, 0, 0, 0.16);
+}
+
+.developerBackFrame img,
+.developerFrontFrame img {
+  object-fit: contain;
+  object-position: left bottom;
+}
+
+.developerBackFrame {
+  z-index: 1;
+  left: 0;
+  width: 47rem;
+  aspect-ratio: 2697 / 1726;
+}
+
+.developerFrontFrame {
+  z-index: 2;
+  top: 3.25rem;
+  bottom: auto;
+  left: 12.8rem;
+  width: 61rem;
+  aspect-ratio: 2412 / 1710;
+}
+
 .hero {
   position: relative;
   display: grid;
@@ -190,6 +221,18 @@
 }
 
 @media (max-width: 64rem) {
+  .developerBackFrame {
+    left: -2rem;
+    width: 43rem;
+  }
+
+  .developerFrontFrame {
+    top: 3.25rem;
+    bottom: auto;
+    left: 8rem;
+    width: 56rem;
+  }
+
   .hero {
     grid-template-columns: 45% 55%;
   }
@@ -206,6 +249,20 @@
 }
 
 @media (max-width: 47.9375rem) {
+  .developerBackFrame {
+    top: auto;
+    bottom: 0;
+    left: -4%;
+    width: 70%;
+  }
+
+  .developerFrontFrame {
+    top: 0.75rem;
+    bottom: auto;
+    left: 26%;
+    width: 94%;
+  }
+
   .hero {
     display: flex;
     min-height: auto;

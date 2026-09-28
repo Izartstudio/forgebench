@@ -27,6 +27,8 @@ export const developerCallPathFrames: readonly CallPathFrame[] = [
   {
     eyebrow: "Governed · Credentials and ceilings",
     title: "Three Hundred Developers. Three Hundred Budgets. One Pass.",
+    image: "/images/developers/call-path/developer-1.png",
+    imageAlt: "Forgebench developer API keys, ceilings and spend dashboard",
     points: [
       {
         title: "Issued From The Console",
@@ -53,6 +55,8 @@ export const developerCallPathFrames: readonly CallPathFrame[] = [
   {
     eyebrow: "Governed · The call path",
     title: "Every Call, One Route. Refused Before It Costs Anything.",
+    image: "/images/developers/call-path/developer-3.png",
+    imageAlt: "Forgebench audit log showing a refused monthly-limit call",
     points: [
       {
         title: "Credential Authenticated",
@@ -79,6 +83,8 @@ export const developerCallPathFrames: readonly CallPathFrame[] = [
     eyebrow: "Governed · Guardrails and audit",
     title:
       "A Governance Loop That Feeds Your Security Posture. An Audit Record That Proves Every Call.",
+    image: "/images/developers/call-path/developer-guardrails.png",
+    imageAlt: "Forgebench audit log showing a PII guardrail decision",
     points: [
       {
         title: "What Is Checked",
@@ -105,6 +111,8 @@ export const developerCallPathFrames: readonly CallPathFrame[] = [
   {
     eyebrow: "Measured · Adoption",
     title: "Claude Code, Codex, GitHub Copilot And AWS Kiro, On One Page.",
+    image: "/images/developers/call-path/frame-4.png",
+    imageAlt: "Forgebench developer adoption roster and usage profile",
     points: [
       {
         title: "Four Tools, One Dashboard",
@@ -130,6 +138,8 @@ export const developerCallPathFrames: readonly CallPathFrame[] = [
   {
     eyebrow: "Measured · ROI",
     title: "Not Only What AI Cost You. What It Helped To Ship.",
+    image: "/images/developers/call-path/frame-5.png",
+    imageAlt: "Forgebench team spend and branch-level developer activity report",
     brands: true,
     points: [
       {
@@ -157,8 +167,8 @@ export const agentsCallPathFrames: readonly CallPathFrame[] = [
   {
     eyebrow: "Registry · How an agent gets governed",
     title: "One Short Form, Before The Agent’s First Call",
-    image: "/images/developers/call-path/dashboard.png",
-    imageAlt: "Forgebench agent registry and governance dashboard",
+    image: "/images/agents/agenthero1.png",
+    imageAlt: "Forgebench agent inventory and registry dashboard",
     points: [
       {
         title: "Register",
@@ -185,8 +195,8 @@ export const agentsCallPathFrames: readonly CallPathFrame[] = [
   {
     eyebrow: "Coverage · The governed call path",
     title: "Every Call, One Route. Refused Before It Costs Anything.",
-    image: "/images/developers/call-path/dashboard.png",
-    imageAlt: "Forgebench governed agent call-path dashboard",
+    image: "/images/agents/slides/agent-2.png",
+    imageAlt: "Forgebench agent budget audit event and governance record",
     points: [
       {
         title: "Credential Authenticated",
@@ -212,8 +222,8 @@ export const agentsCallPathFrames: readonly CallPathFrame[] = [
   {
     eyebrow: "Policy · Federation and tool authorization",
     title: "An Agent Reaches What You Bind It To, And Nothing Else",
-    image: "/images/developers/call-path/dashboard.png",
-    imageAlt: "Forgebench agent policy and tool authorization dashboard",
+    image: "/images/agents/slides/agent-3.png",
+    imageAlt: "Forgebench agent MCP tool allowlist and authorization dashboard",
     points: [
       {
         title: "Bound At Registration",
@@ -241,8 +251,8 @@ export const agentsCallPathFrames: readonly CallPathFrame[] = [
     eyebrow: "Control · Cost control at the agent level",
     title:
       "A Ceiling That Refuses The Call, And A Number That Reconciles With The Invoice.",
-    image: "/images/developers/call-path/dashboard.png",
-    imageAlt: "Forgebench agent cost-control dashboard",
+    image: "/images/agents/slides/agent-4.png",
+    imageAlt: "Forgebench per-agent budget caps dashboard",
     points: [
       {
         title: "Three Dimensions, Enforced Independently",
@@ -269,8 +279,8 @@ export const agentsCallPathFrames: readonly CallPathFrame[] = [
   {
     eyebrow: "Auditability · The record",
     title: "One Record. Every Governed Call And Every Operator Action.",
-    image: "/images/developers/call-path/dashboard.png",
-    imageAlt: "Forgebench tamper-evident agent audit dashboard",
+    image: "/images/agents/slides/agent-5.png",
+    imageAlt: "Forgebench tamper-evident agent audit log",
     points: [
       {
         title: "Hash-Linked Entries",
@@ -297,8 +307,8 @@ export const agentsCallPathFrames: readonly CallPathFrame[] = [
   {
     eyebrow: "Guardrails · Safety and governance record",
     title: "A Governance Loop That Feeds Your Security Posture",
-    image: "/images/developers/call-path/dashboard.png",
-    imageAlt: "Forgebench agent guardrails and governance dashboard",
+    image: "/images/agents/slides/agent-6.png",
+    imageAlt: "Forgebench agent tool permissions and guardrail dashboard",
     points: [
       {
         title: "What Is Checked",
@@ -626,9 +636,6 @@ export function DeveloperCallPath({
           ref={viewportRef}
           className={styles.viewport}
           data-at-end={activeFrame === frames.length - 1}
-          data-lenis-prevent={
-            activeFrame === frames.length - 1 ? undefined : "true"
-          }
           onScroll={handleMobileCarouselScroll}
           onPointerDown={() => {
             mobileScrollLockRef.current = false;
