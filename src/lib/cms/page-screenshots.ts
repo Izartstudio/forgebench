@@ -5,6 +5,8 @@ export type ResponsiveScreenshot = {
   mobile?: string;
 };
 
+type DesktopScreenshot = Pick<ResponsiveScreenshot, "desktop">;
+
 type SlideKey =
   "slide01" | "slide02" | "slide03" | "slide04" | "slide05" | "slide06";
 
@@ -13,8 +15,8 @@ export type PageScreenshots = {
   agentsHeroFront?: ResponsiveScreenshot;
   developersHeroBack?: ResponsiveScreenshot;
   developersHeroFront?: ResponsiveScreenshot;
-  agentsSlides?: Partial<Record<SlideKey, ResponsiveScreenshot>>;
-  developersSlides?: Partial<Record<SlideKey, ResponsiveScreenshot>>;
+  agentsSlides?: Partial<Record<SlideKey, DesktopScreenshot>>;
+  developersSlides?: Partial<Record<SlideKey, DesktopScreenshot>>;
 };
 
 export type ResolvedScreenshot = {
@@ -38,25 +40,29 @@ const imageProjection = `{
   "mobile": mobile.asset->url
 }`;
 
+const desktopImageProjection = `{
+  "desktop": desktop.asset->url
+}`;
+
 const pageScreenshotsQuery = `*[_type == "pageScreenshots"] | order(_updatedAt desc)[0]{
   "agentsHeroBack": agentsHeroBack ${imageProjection},
   "agentsHeroFront": agentsHeroFront ${imageProjection},
   "developersHeroBack": developersHeroBack ${imageProjection},
   "developersHeroFront": developersHeroFront ${imageProjection},
   "agentsSlides": agentsSlides{
-    "slide01": slide01 ${imageProjection},
-    "slide02": slide02 ${imageProjection},
-    "slide03": slide03 ${imageProjection},
-    "slide04": slide04 ${imageProjection},
-    "slide05": slide05 ${imageProjection},
-    "slide06": slide06 ${imageProjection}
+    "slide01": slide01 ${desktopImageProjection},
+    "slide02": slide02 ${desktopImageProjection},
+    "slide03": slide03 ${desktopImageProjection},
+    "slide04": slide04 ${desktopImageProjection},
+    "slide05": slide05 ${desktopImageProjection},
+    "slide06": slide06 ${desktopImageProjection}
   },
   "developersSlides": developersSlides{
-    "slide01": slide01 ${imageProjection},
-    "slide02": slide02 ${imageProjection},
-    "slide03": slide03 ${imageProjection},
-    "slide04": slide04 ${imageProjection},
-    "slide05": slide05 ${imageProjection}
+    "slide01": slide01 ${desktopImageProjection},
+    "slide02": slide02 ${desktopImageProjection},
+    "slide03": slide03 ${desktopImageProjection},
+    "slide04": slide04 ${desktopImageProjection},
+    "slide05": slide05 ${desktopImageProjection}
   }
 }`;
 

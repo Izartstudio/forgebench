@@ -1,5 +1,6 @@
 import { categoryType } from "./category";
 import {
+  desktopScreenshotType,
   pageScreenshotsType,
   responsiveScreenshotType,
 } from "./pageScreenshots";
@@ -11,5 +12,6 @@ export const schemaTypes = [
   categoryType,
   tagType,
   responsiveScreenshotType,
+  desktopScreenshotType,
   pageScreenshotsType,
 ];

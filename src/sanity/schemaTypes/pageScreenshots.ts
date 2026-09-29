@@ -8,6 +8,18 @@ const screenshotField = (name: string, title: string, description: string) =>
     description,
   });
 
+const slideScreenshotField = (
+  name: string,
+  title: string,
+  description: string,
+) =>
+  defineField({
+    name,
+    title,
+    type: "desktopScreenshot",
+    description,
+  });
+
 export const responsiveScreenshotType = defineType({
   name: "responsiveScreenshot",
   title: "Responsive screenshot",
@@ -35,6 +47,26 @@ export const responsiveScreenshotType = defineType({
       media: "desktop",
     },
     prepare: ({ media }) => ({ title: "Desktop + optional mobile", media }),
+  },
+});
+
+export const desktopScreenshotType = defineType({
+  name: "desktopScreenshot",
+  title: "Desktop / tablet screenshot",
+  type: "object",
+  fields: [
+    defineField({
+      name: "desktop",
+      title: "Desktop / tablet image",
+      type: "image",
+      description:
+        "Used from 768px upward. The slide image is intentionally hidden on mobile.",
+      options: { hotspot: true },
+    }),
+  ],
+  preview: {
+    select: { media: "desktop" },
+    prepare: ({ media }) => ({ title: "Desktop / tablet", media }),
   },
 });
 
@@ -95,35 +127,35 @@ export const pageScreenshotsType = defineType({
       type: "object",
       group: "agentsSlides",
       fields: [
-        screenshotField(
+        slideScreenshotField(
           "slide01",
           "01 — Register (registry)",
-          "Recommended desktop ratio 2:1 and mobile ratio 1:1 (keep important content centered). Both are cropped to cover the fixed slide frame.",
+          "Recommended desktop ratio 2:1. Hidden on mobile.",
         ),
-        screenshotField(
+        slideScreenshotField(
           "slide02",
           "02 — Provision (governed call path)",
-          "Recommended desktop ratio 2:1 and mobile ratio 1:1 (keep important content centered). Both are cropped to cover the fixed slide frame.",
+          "Recommended desktop ratio 2:1. Hidden on mobile.",
         ),
-        screenshotField(
+        slideScreenshotField(
           "slide03",
           "03 — Tool authorization",
-          "Recommended desktop ratio 1.76:1 and mobile ratio 1:1 (keep important content centered). Both are cropped to cover the fixed slide frame.",
+          "Recommended desktop ratio 1.76:1. Hidden on mobile.",
         ),
-        screenshotField(
+        slideScreenshotField(
           "slide04",
           "04 — Agent cost control",
-          "Recommended desktop ratio 1.75:1 and mobile ratio 1:1 (keep important content centered). Both are cropped to cover the fixed slide frame.",
+          "Recommended desktop ratio 1.75:1. Hidden on mobile.",
         ),
-        screenshotField(
+        slideScreenshotField(
           "slide05",
           "05 — Audit record",
-          "Recommended desktop ratio 1.76:1 and mobile ratio 1:1 (keep important content centered). Both are cropped to cover the fixed slide frame.",
+          "Recommended desktop ratio 1.76:1. Hidden on mobile.",
         ),
-        screenshotField(
+        slideScreenshotField(
           "slide06",
           "06 — Guardrails",
-          "Recommended desktop ratio 1.76:1 and mobile ratio 1:1 (keep important content centered). Both are cropped to cover the fixed slide frame.",
+          "Recommended desktop ratio 1.76:1. Hidden on mobile.",
         ),
       ],
     }),
@@ -133,30 +165,30 @@ export const pageScreenshotsType = defineType({
       type: "object",
       group: "developersSlides",
       fields: [
-        screenshotField(
+        slideScreenshotField(
           "slide01",
           "01 — Credentials authenticated / ceilings",
-          "Recommended desktop ratio 1.97:1 and mobile ratio 1:1 (keep important content centered). Both are cropped to cover the fixed slide frame.",
+          "Recommended desktop ratio 1.97:1. Hidden on mobile.",
         ),
-        screenshotField(
+        slideScreenshotField(
           "slide02",
           "02 — Audit recorded / call path",
-          "Recommended desktop ratio 1.96:1 and mobile ratio 1:1 (keep important content centered). Both are cropped to cover the fixed slide frame.",
+          "Recommended desktop ratio 1.96:1. Hidden on mobile.",
         ),
-        screenshotField(
+        slideScreenshotField(
           "slide03",
           "03 — Guardrails and audit",
-          "Recommended desktop ratio 1.96:1 and mobile ratio 1:1 (keep important content centered). Both are cropped to cover the fixed slide frame.",
+          "Recommended desktop ratio 1.96:1. Hidden on mobile.",
         ),
-        screenshotField(
+        slideScreenshotField(
           "slide04",
           "04 — Adoption measured",
-          "Recommended desktop ratio 1.76:1 and mobile ratio 1:1 (keep important content centered). Both are cropped to cover the fixed slide frame.",
+          "Recommended desktop ratio 1.76:1. Hidden on mobile.",
         ),
-        screenshotField(
+        slideScreenshotField(
           "slide05",
           "05 — ROI measured",
-          "Recommended desktop ratio 1.43:1 and mobile ratio 1:1 (keep important content centered). Both are cropped to cover the fixed slide frame.",
+          "Recommended desktop ratio 1.43:1. Hidden on mobile.",
         ),
       ],
     }),
