@@ -64,9 +64,9 @@ export function SiteFooter() {
 
       <Image
         className={styles.wordmark}
-        src="/logos/footer-logo.webp"
+        src="/logos/forgebench-watermark.svg"
         alt="Forgebench"
-        width={1440}
+        width={1459}
         height={272}
         sizes="100vw"
       />

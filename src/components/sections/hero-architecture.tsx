@@ -1,3 +1,5 @@
+import Image from "next/image";
+
 import styles from "./hero-architecture.module.css";
 
 function AiApps() {
@@ -6,13 +8,34 @@ function AiApps() {
       <div className={styles.endpointTitle}>AI Apps</div>
       <div className={styles.list}>
         <span>
-          <i>◆</i>Chat Assistants
+          <Image
+            className={styles.appIcon}
+            src="/icons/home/chat-assistant.svg"
+            alt=""
+            width={11}
+            height={11}
+          />
+          Chat Assistants
         </span>
         <span>
-          <i>♟</i>Customer Facing Agents
+          <Image
+            className={styles.appIcon}
+            src="/icons/home/customer-facing.svg"
+            alt=""
+            width={11}
+            height={11}
+          />
+          Customer Facing Agents
         </span>
         <span>
-          <i>✣</i>Internal Apps
+          <Image
+            className={styles.appIcon}
+            src="/icons/home/internal-apps.svg"
+            alt=""
+            width={11}
+            height={11}
+          />
+          Internal Apps
         </span>
       </div>
     </div>
@@ -25,14 +48,40 @@ function CodingAssistants() {
       <div className={styles.endpointTitle}>Coding Assistants</div>
       <div className={styles.brandGrid}>
         <span>
-          <b className={styles.claudeMark}>✳</b>Claude Code
+          <Image
+            className={`${styles.brandLogo} ${styles.claudeLogo}`}
+            src="/icons/home/claude-logo.svg"
+            alt="Claude Code"
+            width={65}
+            height={17}
+          />
         </span>
-        <span>Codex</span>
         <span>
-          <b>◉</b>Copilot
+          <Image
+            className={styles.brandLogo}
+            src="/images/developers/codex-logo.svg"
+            alt="Codex"
+            width={112}
+            height={20}
+          />
         </span>
         <span>
-          <b>⬟</b>CURSOR
+          <Image
+            className={styles.brandLogo}
+            src="/images/developers/copilot-logo.webp"
+            alt="GitHub Copilot"
+            width={261}
+            height={90}
+          />
+        </span>
+        <span>
+          <Image
+            className={styles.brandLogo}
+            src="/icons/home/cursor-logo.svg"
+            alt="Cursor"
+            width={27}
+            height={7}
+          />
         </span>
       </div>
     </div>
@@ -44,12 +93,52 @@ function ModelTargets() {
     <div className={`${styles.endpoint} ${styles.targetCard}`}>
       <div className={styles.endpointTitle}>1000+ LLMs</div>
       <div className={`${styles.logoGrid} ${styles.modelGrid}`}>
-        <span className={styles.azure}>A</span>
-        <span className={styles.openAi}>◉</span>
-        <span>✳</span>
+        <span>
+          <Image
+            className={styles.modelLogo}
+            src="/icons/home/first-model-logo.svg"
+            alt="Model provider"
+            width={13}
+            height={13}
+          />
+        </span>
+        <span>
+          <Image
+            className={styles.modelLogo}
+            src="/icons/home/openai.svg"
+            alt="OpenAI"
+            width={13}
+            height={13}
+          />
+        </span>
+        <span>
+          <Image
+            className={styles.modelLogo}
+            src="/icons/home/logo-finetuned.svg"
+            alt="Finetuned model"
+            width={20}
+            height={20}
+          />
+        </span>
         <span className={styles.gemini}>✦</span>
-        <span className={styles.anthropic}>AI</span>
-        <span className={styles.mistral}>M</span>
+        <span>
+          <Image
+            className={styles.modelLogo}
+            src="/icons/home/a-logo.svg"
+            alt="Anthropic"
+            width={13}
+            height={13}
+          />
+        </span>
+        <span>
+          <Image
+            className={styles.modelLogo}
+            src="/icons/home/m-logo.svg"
+            alt="Mistral"
+            width={13}
+            height={13}
+          />
+        </span>
       </div>
       <div className={styles.endpointFooter}>
         <span>Open Source</span>
@@ -64,10 +153,42 @@ function McpTargets() {
     <div className={`${styles.endpoint} ${styles.targetCard}`}>
       <div className={styles.endpointTitle}>MCP Servers</div>
       <div className={`${styles.logoGrid} ${styles.mcpGrid}`}>
-        <span className={styles.slack}>✣</span>
-        <span className={styles.gmail}>M</span>
-        <span className={styles.atlassian}>◆</span>
-        <span className={styles.github}>●</span>
+        <span>
+          <Image
+            className={styles.mcpLogo}
+            src="/icons/home/slack.svg"
+            alt="Slack"
+            width={15}
+            height={15}
+          />
+        </span>
+        <span>
+          <Image
+            className={styles.mcpLogo}
+            src="/icons/home/mail.svg"
+            alt="Mail"
+            width={15}
+            height={15}
+          />
+        </span>
+        <span>
+          <Image
+            className={styles.mcpLogo}
+            src="/icons/home/mcp-3.svg"
+            alt="MCP integration"
+            width={15}
+            height={15}
+          />
+        </span>
+        <span>
+          <Image
+            className={styles.mcpLogo}
+            src="/icons/home/github.svg"
+            alt="GitHub"
+            width={15}
+            height={15}
+          />
+        </span>
       </div>
     </div>
   );
@@ -136,6 +257,13 @@ function Connectors() {
           className={`${styles.arrowHead} ${styles.sourceArrow}`}
           d="M209 204L216 210L209 216"
         />
+        <rect
+          className={`${styles.junction} ${styles.sourceJunction}`}
+          x="192.5"
+          y="206.5"
+          width="7"
+          height="7"
+        />
         <path
           pathLength="1"
           className={`${styles.connectorPath} ${styles.targetStem}`}
@@ -154,6 +282,13 @@ function Connectors() {
         <path
           className={`${styles.arrowHead} ${styles.targetArrow}`}
           d="M725 102L732 108L725 114M725 306L732 312L725 318"
+        />
+        <rect
+          className={`${styles.junction} ${styles.targetJunction}`}
+          x="702.5"
+          y="206.5"
+          width="7"
+          height="7"
         />
       </svg>
       <svg
@@ -189,6 +324,13 @@ function Connectors() {
           className={`${styles.arrowHead} ${styles.sourceArrow} ${styles.narrowSourceArrow}`}
           d="M132 130L138 137L144 130"
         />
+        <rect
+          className={`${styles.junction} ${styles.sourceJunction}`}
+          x="135"
+          y="103"
+          width="6"
+          height="6"
+        />
         <path
           pathLength="1"
           className={`${styles.connectorPath} ${styles.targetStem} ${styles.standardMobileTarget}`}
@@ -208,6 +350,13 @@ function Connectors() {
           className={`${styles.arrowHead} ${styles.targetArrow} ${styles.standardMobileTarget}`}
           d="M62 363L68 370L74 363M202 363L208 370L214 363"
         />
+        <rect
+          className={`${styles.junction} ${styles.targetJunction} ${styles.standardMobileTarget}`}
+          x="135"
+          y="355"
+          width="6"
+          height="6"
+        />
         <path
           pathLength="1"
           className={`${styles.connectorPath} ${styles.targetStem} ${styles.narrowTargetPath}`}
@@ -226,6 +375,13 @@ function Connectors() {
         <path
           className={`${styles.arrowHead} ${styles.targetArrow} ${styles.narrowTargetArrow}`}
           d="M62 355L68 362L74 355M202 355L208 362L214 355"
+        />
+        <rect
+          className={`${styles.junction} ${styles.targetJunction} ${styles.narrowTargetPath}`}
+          x="135"
+          y="347"
+          width="6"
+          height="6"
         />
       </svg>
     </>

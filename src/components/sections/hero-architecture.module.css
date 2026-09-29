@@ -108,11 +108,11 @@
 .list span:last-child {
   border-bottom: 0;
 }
-.list i {
-  width: 0.8rem;
-  color: #fff;
-  font-size: 0.75em;
-  font-style: normal;
+.appIcon {
+  width: 1rem;
+  height: 1rem;
+  flex: 0 0 auto;
+  object-fit: contain;
 }
 
 .brandGrid,
@@ -142,8 +142,31 @@
 .logoGrid span:nth-last-child(-n + 2) {
   border-bottom: 0;
 }
-.claudeMark {
-  color: #de6d50;
+.brandLogo {
+  display: block;
+  width: auto;
+  max-width: 82%;
+  height: 1.2rem;
+  object-fit: contain;
+  filter: brightness(0) invert(1);
+}
+
+.claudeLogo {
+  max-width: 78%;
+}
+
+.modelLogo {
+  display: block;
+  width: 1.35rem;
+  height: 1.35rem;
+  object-fit: contain;
+}
+
+.mcpLogo {
+  display: block;
+  width: 1.5rem;
+  height: 1.5rem;
+  object-fit: contain;
 }
 
 .targetCard:first-child .logoGrid {
@@ -335,6 +358,12 @@
   stroke-width: 1.4;
   opacity: 0;
 }
+.junction {
+  fill: #de5246;
+  stroke: #fff;
+  stroke-width: 1;
+  opacity: 0;
+}
 .sourceTop,
 .sourceBottom {
   animation: draw-path 300ms ease-in-out 360ms forwards;
@@ -354,6 +383,12 @@
 }
 .targetArrow {
   animation: arrow-in 120ms ease-out 1.6s forwards;
+}
+.sourceJunction {
+  animation: arrow-in 120ms ease-out 650ms forwards;
+}
+.targetJunction {
+  animation: arrow-in 120ms ease-out 1.28s forwards;
 }
 
 @keyframes endpoint-in {
@@ -439,10 +474,29 @@
     padding-inline: 0.45rem;
     font-size: 0.9em;
   }
+  .appIcon {
+    width: 0.8rem;
+    height: 0.8rem;
+  }
   .brandGrid span,
   .logoGrid span {
     min-height: 2.3rem;
     font-size: 1em;
+  }
+  .brandLogo {
+    max-width: 78%;
+    height: 0.95rem;
+  }
+  .claudeLogo {
+    max-width: 74%;
+  }
+  .modelLogo {
+    width: 1.35rem;
+    height: 1.35rem;
+  }
+  .mcpLogo {
+    width: 1.5rem;
+    height: 1.5rem;
   }
   .logoGrid .azure,
   .logoGrid .gemini,
@@ -506,6 +560,10 @@
     animation: none;
   }
   .arrowHead {
+    opacity: 1;
+    animation: none;
+  }
+  .junction {
     opacity: 1;
     animation: none;
   }
