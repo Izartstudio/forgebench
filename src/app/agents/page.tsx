@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import Image from "next/image";
 
 import { FaqSection } from "@/components/layout/faq-section";
 import { Navbar } from "@/components/layout/navbar";
@@ -14,6 +13,12 @@ import { PilotCta } from "@/components/sections/pilot-cta";
 import { createMetadata } from "@/lib/seo/metadata";
 import { JsonLd } from "@/components/seo/json-ld";
 import { softwareApplicationSchema } from "@/lib/seo/schema";
+import { ResponsiveScreenshot } from "@/components/ui/responsive-screenshot";
+import {
+  getPageScreenshots,
+  getSlideScreenshot,
+  resolveScreenshot,
+} from "@/lib/cms/page-screenshots";
 
 import styles from "./page.module.css";
 
@@ -33,7 +38,32 @@ export const metadata: Metadata = createMetadata({
   ],
 });
 
-export default function AgentsPage() {
+const agentSlideFallbacks = [
+  "/images/agents/agenthero1.png",
+  "/images/agents/slides/agent-2.png",
+  "/images/agents/slides/agent-3.png",
+  "/images/agents/slides/agent-4.png",
+  "/images/agents/slides/agent-5.png",
+  "/images/agents/slides/agent-6.png",
+] as const;
+
+export default async function AgentsPage() {
+  const screenshots = await getPageScreenshots();
+  const heroBack = resolveScreenshot(
+    screenshots.agentsHeroBack,
+    "/images/agents/agenthero1.png",
+  );
+  const heroFront = resolveScreenshot(
+    screenshots.agentsHeroFront,
+    "/images/agents/secondheroagent.png",
+  );
+  const callPathImages = agentSlideFallbacks.map((fallback, index) =>
+    resolveScreenshot(
+      getSlideScreenshot(screenshots.agentsSlides, index),
+      fallback,
+    ),
+  );
+
   return (
     <>
       <JsonLd data={softwareApplicationSchema("/agents")} />
@@ -56,8 +86,9 @@ export default function AgentsPage() {
           description="Govern Every Call It Makes."
         >
           <div className={styles.routingFrame}>
-            <Image
-              src="/images/agents/agenthero1.png"
+            <ResponsiveScreenshot
+              desktopSrc={heroBack.desktop}
+              mobileSrc={heroBack.mobile}
               alt="Forgebench agent inventory dashboard"
               fill
               preload
@@ -65,8 +96,9 @@ export default function AgentsPage() {
             />
           </div>
           <div className={styles.dashboardFrame}>
-            <Image
-              src="/images/agents/secondheroagent.png"
+            <ResponsiveScreenshot
+              desktopSrc={heroFront.desktop}
+              mobileSrc={heroFront.mobile}
               alt="Forgebench organisation overview dashboard"
               fill
               preload
@@ -76,7 +108,7 @@ export default function AgentsPage() {
         </AudienceHero>
         <CredentialsStrip />
         <DeveloperCapabilities variant="agents" />
-        <DeveloperCallPath variant="agents" />
+        <DeveloperCallPath variant="agents" images={callPathImages} />
         <AgentDeployment />
         <DeploymentTimeline variant="agents" />
         <PilotCta />

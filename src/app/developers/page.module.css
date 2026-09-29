@@ -9,7 +9,7 @@
 
 .developerBackFrame img,
 .developerFrontFrame img {
-  object-fit: contain;
+  object-fit: cover;
   object-position: left bottom;
 }
 

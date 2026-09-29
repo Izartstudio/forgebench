@@ -328,9 +328,9 @@
     width: calc(100% + 3rem);
     min-width: calc(100% + 3rem);
     max-width: none;
-    height: auto;
+    height: var(--mobile-slide-image-height);
     min-height: 0;
-    flex: 1 1 auto;
+    flex: 1 1 var(--mobile-slide-image-height);
     align-self: flex-start;
     order: 3;
     margin: 0;
@@ -519,9 +519,9 @@
     left: -1rem;
     width: calc(100% + 2rem);
     min-width: calc(100% + 2rem);
-    height: auto;
+    height: var(--mobile-slide-image-height);
     min-height: 0;
-    flex: 1 1 auto;
+    flex: 1 1 var(--mobile-slide-image-height);
     margin: 0;
   }
 

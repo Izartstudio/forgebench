@@ -10,11 +10,13 @@ import {
 } from "react";
 
 import styles from "./developer-call-path.module.css";
+import { ResponsiveScreenshot } from "@/components/ui/responsive-screenshot";
 
 export type CallPathFrame = {
   eyebrow: string;
   title: string;
   image?: string;
+  mobileImage?: string;
   imageAlt?: string;
   brands?: true;
   points: readonly {
@@ -348,15 +350,24 @@ function synchronizePageScroll(top: number) {
 type DeveloperCallPathProps = {
   variant?: "developers" | "agents";
   frames?: readonly CallPathFrame[];
+  images?: readonly { desktop: string; mobile?: string }[];
 };
 
 export function DeveloperCallPath({
   variant = "developers",
   frames: suppliedFrames,
+  images,
 }: DeveloperCallPathProps = {}) {
-  const frames =
+  const sourceFrames =
     suppliedFrames ??
     (variant === "agents" ? agentsCallPathFrames : developerCallPathFrames);
+  const frames = images
+    ? sourceFrames.map((frame, index) => ({
+        ...frame,
+        image: images[index]?.desktop ?? frame.image,
+        mobileImage: images[index]?.mobile,
+      }))
+    : sourceFrames;
   const sectionRef = useRef<HTMLElement>(null);
   const stickyRef = useRef<HTMLDivElement>(null);
   const viewportRef = useRef<HTMLDivElement>(null);
@@ -657,10 +668,12 @@ export function DeveloperCallPath({
                 aria-hidden={index !== activeFrame}
                 key={item.title}
               >
-                <Image
-                  src={
+                <ResponsiveScreenshot
+                  desktopSrc={
                     item.image ?? "/images/developers/call-path/dashboard.png"
                   }
+                  mobileSrc={item.mobileImage}
+                  mobileMedia="(max-width: 56.25rem)"
                   alt={
                     index === activeFrame
                       ? (item.imageAlt ??

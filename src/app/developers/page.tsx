@@ -11,6 +11,12 @@ import { AudienceHero } from "@/components/sections/audience-hero";
 import { DeploymentTimeline } from "@/components/sections/deployment-timeline";
 import { PilotCta } from "@/components/sections/pilot-cta";
 import { createMetadata } from "@/lib/seo/metadata";
+import { ResponsiveScreenshot } from "@/components/ui/responsive-screenshot";
+import {
+  getPageScreenshots,
+  getSlideScreenshot,
+  resolveScreenshot,
+} from "@/lib/cms/page-screenshots";
 
 import styles from "./page.module.css";
 
@@ -66,20 +72,54 @@ const integrations = [
   },
 ] as const;
 
-export default function DevelopersPage() {
+const developerSlideFallbacks = [
+  "/images/developers/call-path/developer-1.png",
+  "/images/developers/call-path/developer-3.png",
+  "/images/developers/call-path/developer-guardrails.png",
+  "/images/developers/call-path/frame-4.png",
+  "/images/developers/call-path/frame-5.png",
+] as const;
+
+export default async function DevelopersPage() {
+  const screenshots = await getPageScreenshots();
+  const heroBack = resolveScreenshot(
+    screenshots.developersHeroBack,
+    "/images/developers/developer-back.png",
+  );
+  const heroFront = resolveScreenshot(
+    screenshots.developersHeroFront,
+    "/images/developers/developer-front.png",
+  );
+  const callPathImages = developerSlideFallbacks.map((fallback, index) =>
+    resolveScreenshot(
+      getSlideScreenshot(screenshots.developersSlides, index),
+      fallback,
+    ),
+  );
+
   return (
     <>
       <Navbar />
       <main id="main-content">
         <AudienceHero
           id="developers-title"
-          eyebrow={<>Self-hosted deployment <i aria-hidden="true" /> Model agnostic</>}
-          title={<>Know Every Developer<br /> Using AI In Your Org.</>}
+          eyebrow={
+            <>
+              Self-hosted deployment <i aria-hidden="true" /> Model agnostic
+            </>
+          }
+          title={
+            <>
+              Know Every Developer
+              <br /> Using AI In Your Org.
+            </>
+          }
           description="Govern Every Call. Trace ROI on Every Build."
         >
           <div className={styles.developerBackFrame}>
-            <Image
-              src="/images/developers/developer-back.png"
+            <ResponsiveScreenshot
+              desktopSrc={heroBack.desktop}
+              mobileSrc={heroBack.mobile}
               alt="Forgebench developer AI activity report"
               fill
               preload
@@ -87,8 +127,9 @@ export default function DevelopersPage() {
             />
           </div>
           <div className={styles.developerFrontFrame}>
-            <Image
-              src="/images/developers/developer-front.png"
+            <ResponsiveScreenshot
+              desktopSrc={heroFront.desktop}
+              mobileSrc={heroFront.mobile}
               alt="Forgebench developer AI usage and cost dashboard"
               fill
               preload
@@ -132,7 +173,7 @@ export default function DevelopersPage() {
           </div>
         </section>
         <DeveloperCapabilities />
-        <DeveloperCallPath />
+        <DeveloperCallPath images={callPathImages} />
         <DeveloperExperience />
         <DeploymentTimeline variant="developers" />
         <PilotCta />
