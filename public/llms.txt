@@ -22,4 +22,4 @@ Forgebench gives each developer and agent a credential, spending ceiling and aud
 ## Contact
 
 - Email: info@seedlinglabs.com
-- Company: Seedling Labs
+- Company: SeedlingLabs

@@ -1,20 +1,20 @@
 {
-  "createdAt": "2026-09-28T13:34:33.082Z",
+  "createdAt": "2026-09-29T08:41:34.211Z",
   "studioVersion": "6.16.0",
   "version": 3,
   "workspaces": [
     {
       "basePath": "/",
       "dataset": "production",
-      "icon": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 32 32\"><rect width=\"32\" height=\"32\" rx=\"2\" fill=\"#0ff0a1\"></rect><text x=\"50%\" y=\"50%\" text-anchor=\"middle\" alignment-baseline=\"middle\" fill=\"hsla(159, 88%, 10%, 1)\" style=\"font-family:Inter, -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, Roboto, &quot;Helvetica Neue&quot;, &quot;Liberation Sans&quot;, Helvetica, Arial, system-ui, sans-serif;font-weight:500;font-size:13px;transform:translateY(1px)\">FB</text></svg>",
+      "icon": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 32 32\"><rect width=\"32\" height=\"32\" rx=\"2\" fill=\"#f7abc5\"></rect><text x=\"50%\" y=\"50%\" text-anchor=\"middle\" alignment-baseline=\"middle\" fill=\"hsla(339, 83%, 42%, 1)\" style=\"font-family:Inter, -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, Roboto, &quot;Helvetica Neue&quot;, &quot;Liberation Sans&quot;, Helvetica, Arial, system-ui, sans-serif;font-weight:500;font-size:13px;transform:translateY(1px)\">FC</text></svg>",
       "mediaLibrary": {
         "enabled": false,
         "__internal": {}
       },
       "name": "default",
       "projectId": "lin8bo6x",
-      "schema": "b9f80266.create-schema.json",
-      "title": "Forgebench Blog",
+      "schema": "e621bfc2.create-schema.json",
+      "title": "Forgebench CMS",
       "tools": "ef87c8fe.create-tools.json"
     }
   ]

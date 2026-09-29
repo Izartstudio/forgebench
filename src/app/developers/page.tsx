@@ -20,6 +20,8 @@ import {
 
 import styles from "./page.module.css";
 
+export const revalidate = 60;
+
 export const metadata: Metadata = createMetadata({
   title: "Forgebench for Developers — AI Credentials, Budgets and Audit",
   description:

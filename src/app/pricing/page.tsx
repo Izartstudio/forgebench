@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 
-import { FaqSection } from "@/components/layout/faq-section";
 import { Navbar } from "@/components/layout/navbar";
 import { SiteFooter } from "@/components/layout/site-footer";
 import { PricingComparison } from "@/components/pricing/pricing-comparison";
@@ -22,8 +21,7 @@ export default function PricingPage() {
         <PricingHero />
         <PricingComparison />
       </main>
-      <div className="faq-footer-gradient">
-        <FaqSection />
+      <div className="footer-only-gradient">
         <SiteFooter />
       </div>
     </>

@@ -22,16 +22,16 @@ export type ResolvedScreenshot = {
   mobile?: string;
 };
 
-const projectId = process.env.NEXT_PUBLIC_SANITY_PROJECT_ID;
+const projectId = process.env.NEXT_PUBLIC_SANITY_PROJECT_ID || "lin8bo6x";
 const dataset = process.env.NEXT_PUBLIC_SANITY_DATASET || "production";
-const client = projectId
-  ? createClient({
-      projectId,
-      dataset,
-      apiVersion: "2026-09-01",
-      useCdn: true,
-    })
-  : null;
+const client = createClient({
+  projectId,
+  dataset,
+  apiVersion: "2026-09-01",
+  // Next.js owns the 60-second page cache. Fetch fresh published content from
+  // Sanity whenever that page cache is regenerated.
+  useCdn: false,
+});
 
 const imageProjection = `{
   "desktop": desktop.asset->url,
@@ -61,8 +61,6 @@ const pageScreenshotsQuery = `*[_type == "pageScreenshots"] | order(_updatedAt d
 }`;
 
 export async function getPageScreenshots(): Promise<PageScreenshots> {
-  if (!client) return {};
-
   try {
     return (
       (await client.fetch<PageScreenshots | null>(

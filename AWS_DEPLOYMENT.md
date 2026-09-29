@@ -7,13 +7,24 @@ working; it is not configured as a static export.
 
 ## Required build variables
 
-Set these in the image build environment because Next.js generates canonical URLs,
-social metadata, `robots.txt`, and `sitemap.xml` during the production build.
+Pass these as Docker build arguments because Next.js generates canonical URLs,
+social metadata, `robots.txt`, `sitemap.xml`, and CMS-backed static pages during
+the production build.
 
 ```text
 NEXT_PUBLIC_SITE_URL=https://your-production-domain.example
 NEXT_PUBLIC_SANITY_PROJECT_ID=your-project-id
 NEXT_PUBLIC_SANITY_DATASET=production
+```
+
+For example:
+
+```bash
+docker build \
+  --build-arg NEXT_PUBLIC_SITE_URL=https://your-production-domain.example \
+  --build-arg NEXT_PUBLIC_SANITY_PROJECT_ID=your-project-id \
+  --build-arg NEXT_PUBLIC_SANITY_DATASET=production \
+  -t forgebench .
 ```
 
 `NEXT_PUBLIC_SITE_URL` must be the public HTTPS origin without a trailing slash.

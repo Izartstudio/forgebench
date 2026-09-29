@@ -10,7 +10,7 @@ const linkGroups = [
       { label: "Pricing", href: "/pricing" },
       { label: "Contact Us", href: "mailto:info@seedlinglabs.com" },
       {
-        label: "Seedling Labs",
+        label: "SeedlingLabs",
         href: "https://seedlinglabs.com",
         external: true,
       },
@@ -84,7 +84,7 @@ export function SiteFooter() {
       </div>
 
       <div className={styles.legal}>
-        <p>2026 Seedling Labs. All rights reserved.</p>
+        <p>2026 SeedlingLabs. All rights reserved.</p>
         <span />
         <p>
           Self-hosted · Model-agnostic · AI-ready supported · ISO 27001 · ISO

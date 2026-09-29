@@ -103,6 +103,12 @@ body {
   background: linear-gradient(180deg, #fcfcfc 47%, #de5246 77%, #21050a 100%);
 }
 
+.footer-only-gradient {
+  width: 100%;
+  overflow: hidden;
+  background: linear-gradient(180deg, #de5246 0%, #6f1718 48%, #21050a 100%);
+}
+
 h1,
 h2,
 h3,

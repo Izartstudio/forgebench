@@ -494,3 +494,12 @@
     margin-left: -1.25rem;
   }
 }
+
+@media (max-width: 47.9375rem) {
+  .mobileProductCard[data-card="ai-insights"] {
+    margin-bottom: -9.1%;
+    border-radius: 0.55rem;
+    transform: scale(0.9);
+    transform-origin: top center;
+  }
+}
