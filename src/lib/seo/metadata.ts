@@ -7,7 +7,6 @@ type MetadataOptions = {
   description?: string;
   path?: string;
   noIndex?: boolean;
-  image?: string;
   ogTitle?: string;
   ogDescription?: string;
   keywords?: string[];
@@ -18,7 +17,6 @@ export function createMetadata({
   description,
   path = "/",
   noIndex = false,
-  image = "/images/agents/dashboard.webp",
   ogTitle,
   ogDescription,
   keywords,
@@ -48,13 +46,20 @@ export function createMetadata({
       siteName: siteConfig.name,
       title: ogTitle ?? resolvedTitle,
       description: ogDescription ?? description,
-      images: [{ url: image, alt: `${siteConfig.name} enterprise AI control plane` }],
+      images: [
+        {
+          url: "/images/social/forgebench-thumbnail.jpg",
+          width: 1207,
+          height: 671,
+          alt: "Forgebench — Operating Plane for Enterprise AI",
+        },
+      ],
     },
     twitter: {
       card: "summary_large_image",
       title: ogTitle ?? resolvedTitle,
       description: ogDescription ?? description,
-      images: [image],
+      images: ["/images/social/forgebench-thumbnail.jpg"],
     },
   };
 }

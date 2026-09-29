@@ -27,7 +27,6 @@ export async function generateMetadata({
         title: post.title,
         description: post.excerpt,
         path: `/blog/${slug}`,
-        image: post.image,
         noIndex: !isCmsConfigured,
       })
     : {};

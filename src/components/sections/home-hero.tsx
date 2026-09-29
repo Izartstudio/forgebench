@@ -16,7 +16,7 @@ export function HomeHero() {
     >
       <div className={styles.lead}>
         <div className={styles.copy}>
-          <p className={styles.eyebrow}>Operating plane for Gen AI</p>
+          <p className={styles.eyebrow}>Operating plane for Enterprise AI</p>
           <h1 className={styles.title} id="home-hero-title">
             <TypewriterText />
             <span>With Forgebench</span>

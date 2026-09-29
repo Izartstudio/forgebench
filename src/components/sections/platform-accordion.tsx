@@ -10,19 +10,19 @@ const panels = [
     title: "Registry",
     slug: "registry",
     description:
-      "Both on one deployment. Credential issuance and budgets govern AI consumers; agent registration is added when agents reach production.",
+      "Every developer key and agent in production, with its owner, version, what it may reach, and its ceiling.",
   },
   {
     title: "Gateway",
     slug: "gateway",
     description:
-      "A governed entry point for every model request, with credentials, policy and usage controls applied consistently.",
+      "Every call routes through Forgebench, because nobody holds the provider key. A call over its ceiling is refused, so it costs nothing.",
   },
   {
     title: "Routing",
     slug: "routing",
     description:
-      "Route each request across approved models and providers based on capability, cost and availability.",
+      "Model-choice spend comparisons on your real workload, itemized by credential and call. A recommendation and one step on the console to action it.",
   },
   {
     title: "Guardrails",

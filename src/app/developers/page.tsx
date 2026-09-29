@@ -27,7 +27,6 @@ export const metadata: Metadata = createMetadata({
   description:
     "Give every developer their own AI credential and budget. Govern model access, attribute spend by owner and preserve an audit record for every call.",
   path: "/developers",
-  image: "/images/developers/developer-front.png",
   keywords: [
     "developer AI governance",
     "AI developer budgets",

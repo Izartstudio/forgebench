@@ -30,7 +30,6 @@ export const metadata: Metadata = createMetadata({
   description:
     "Every agent registered before its first call, on its own credential, with a ceiling that refuses and a record that holds. Self-hosted and model-agnostic.",
   path: "/agents",
-  image: "/images/agents/dashboard.webp",
   keywords: [
     "AI agent management",
     "AI agent control plane",
