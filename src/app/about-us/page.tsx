@@ -15,10 +15,10 @@ export const metadata: Metadata = createMetadata({
   title: "About Forgebench — Enterprise AI Governance by SeedlingLabs",
   description:
     "Forgebench gives organizations the visibility and control to move fast with AI.",
-  path: "/company",
+  path: "/about-us",
 });
 
-export default function CompanyPage() {
+export default function AboutUsPage() {
   return (
     <>
       <Navbar />

@@ -4,9 +4,9 @@ import styles from "./site-footer.module.css";
 
 const linkGroups = [
   {
-    title: "Company",
+    title: "About Us",
     links: [
-      { label: "About Us", href: "/company" },
+      { label: "About Us", href: "/about-us" },
       { label: "Pricing", href: "/pricing" },
       { label: "Contact Us", href: "mailto:info@seedlinglabs.com" },
       {

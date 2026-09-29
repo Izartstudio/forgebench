@@ -36,7 +36,7 @@ export default function Home() {
         <PilotCta />
       </main>
       <div className="faq-footer-gradient">
-        <FaqSection />
+        <FaqSection variant="homepage" />
         <SiteFooter />
       </div>
     </>

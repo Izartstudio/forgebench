@@ -181,7 +181,7 @@ export default async function DevelopersPage() {
         <PilotCta />
       </main>
       <div className="faq-footer-gradient">
-        <FaqSection />
+        <FaqSection variant="developers" />
         <SiteFooter />
       </div>
     </>

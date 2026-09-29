@@ -14,7 +14,7 @@ const navigation = [
   { label: "For Agents", href: "/agents" },
   { label: "Resources", href: "/blog" },
   { label: "Pricing", href: "/pricing" },
-  { label: "Company", href: "/company" },
+  { label: "About Us", href: "/about-us" },
 ] as const;
 
 export function Navbar() {

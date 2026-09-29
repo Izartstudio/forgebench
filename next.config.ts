@@ -27,8 +27,8 @@ const nextConfig: NextConfig = {
         permanent: true,
       },
       {
-        source: "/about-us",
-        destination: "/company",
+        source: "/company",
+        destination: "/about-us",
         permanent: true,
       },
     ];

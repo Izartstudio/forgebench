@@ -10,7 +10,7 @@ Forgebench gives each developer and agent a credential, spending ceiling and aud
 - [For developers](/developers): Credentials, budgets, routing and governance for developer AI use.
 - [For agents](/agents): Registration, policy, cost controls and auditability for production agents.
 - [Pricing](/pricing): Plans and product capabilities.
-- [About Forgebench](/company): Company and product principles.
+- [About Forgebench](/about-us): About Forgebench and its product principles.
 - [Blog](/blog): Product, engineering and enterprise AI articles.
 
 ## Product boundaries

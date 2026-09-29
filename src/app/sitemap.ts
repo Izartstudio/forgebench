@@ -36,7 +36,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       priority: 0.7,
     },
     {
-      url: new URL("/company", siteConfig.url).toString(),
+      url: new URL("/about-us", siteConfig.url).toString(),
       changeFrequency: "monthly",
       priority: 0.6,
     },
