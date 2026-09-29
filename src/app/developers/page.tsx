@@ -6,7 +6,6 @@ import { Navbar } from "@/components/layout/navbar";
 import { SiteFooter } from "@/components/layout/site-footer";
 import { DeveloperCapabilities } from "@/components/sections/developer-capabilities";
 import { DeveloperCallPath } from "@/components/sections/developer-call-path";
-import { DeveloperExperience } from "@/components/sections/developer-experience";
 import { AudienceHero } from "@/components/sections/audience-hero";
 import { DeploymentTimeline } from "@/components/sections/deployment-timeline";
 import { PilotCta } from "@/components/sections/pilot-cta";
@@ -175,7 +174,6 @@ export default async function DevelopersPage() {
         </section>
         <DeveloperCapabilities />
         <DeveloperCallPath images={callPathImages} />
-        <DeveloperExperience />
         <DeploymentTimeline variant="developers" />
         <PilotCta />
       </main>

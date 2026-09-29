@@ -4,7 +4,6 @@ import { FaqSection } from "@/components/layout/faq-section";
 import { Navbar } from "@/components/layout/navbar";
 import { SiteFooter } from "@/components/layout/site-footer";
 import { AudienceHero } from "@/components/sections/audience-hero";
-import { AgentDeployment } from "@/components/sections/agent-deployment";
 import { CredentialsStrip } from "@/components/sections/credentials-strip";
 import { DeveloperCapabilities } from "@/components/sections/developer-capabilities";
 import { DeveloperCallPath } from "@/components/sections/developer-call-path";
@@ -110,7 +109,6 @@ export default async function AgentsPage() {
         <CredentialsStrip />
         <DeveloperCapabilities variant="agents" />
         <DeveloperCallPath variant="agents" images={callPathImages} />
-        <AgentDeployment />
         <DeploymentTimeline variant="agents" />
         <PilotCta />
       </main>
