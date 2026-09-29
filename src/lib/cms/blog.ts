@@ -1,7 +1,33 @@
 import { createClient } from "next-sanity";
 
+export type BlogTextSpan = {
+  _key?: string;
+  _type?: "span";
+  text: string;
+  marks?: string[];
+};
+
+export type BlogMarkDefinition = {
+  _key: string;
+  _type: "link" | "internalLink";
+  href?: string;
+  openInNewTab?: boolean;
+  internalSlug?: string;
+};
+
+export type BlogTextBlock = {
+  _type: "block";
+  _key?: string;
+  style: "normal" | "h2" | "h3" | "blockquote";
+  text: string;
+  children?: BlogTextSpan[];
+  markDefs?: BlogMarkDefinition[];
+  listItem?: "bullet" | "number";
+  level?: number;
+};
+
 export type BlogBodyBlock =
-  | { _type: "block"; style: "normal" | "h2" | "h3"; text: string }
+  | BlogTextBlock
   | { _type: "image"; url: string; alt?: string; caption?: string }
   | {
       _type: "table";
@@ -186,7 +212,7 @@ const client = projectId
     })
   : null;
 
-const postProjection = `{ "slug": slug.current, title, excerpt, "category": category->title, "tags": tags[]->slug.current, readingMinutes, "image": mainImage.asset->url, featured, editorsPick, navigationLabels, "body": body[]{ _type, _key, style, "text": pt::text(@), "url": asset->url, alt, caption, hasHeaderRow, rows[]{ _key, cells } }, publishedAt, authorName, "authorImage": authorImage.asset->url }`;
+const postProjection = `{ "slug": slug.current, title, excerpt, "category": category->title, "tags": tags[]->slug.current, readingMinutes, "image": mainImage.asset->url, featured, editorsPick, navigationLabels, "body": body[]{ _type, _key, style, listItem, level, "text": pt::text(@), children[]{ _key, _type, text, marks }, markDefs[]{ _key, _type, href, openInNewTab, "internalSlug": post->slug.current }, "url": asset->url, alt, caption, hasHeaderRow, rows[]{ _key, cells } }, publishedAt, authorName, "authorImage": authorImage.asset->url }`;
 
 export async function getBlogPosts(): Promise<BlogPost[]> {
   if (!client) return seededPosts;

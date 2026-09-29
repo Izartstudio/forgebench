@@ -75,7 +75,66 @@ export const postType = defineType({
       name: "body",
       type: "array",
       of: [
-        defineArrayMember({ type: "block" }),
+        defineArrayMember({
+          type: "block",
+          styles: [
+            { title: "Paragraph", value: "normal" },
+            { title: "Heading 2", value: "h2" },
+            { title: "Heading 3", value: "h3" },
+            { title: "Quote", value: "blockquote" },
+          ],
+          lists: [
+            { title: "Bulleted list", value: "bullet" },
+            { title: "Numbered list", value: "number" },
+          ],
+          marks: {
+            decorators: [
+              { title: "Bold", value: "strong" },
+              { title: "Italic", value: "em" },
+              { title: "Underline", value: "underline" },
+              { title: "Strikethrough", value: "strike-through" },
+              { title: "Inline code", value: "code" },
+            ],
+            annotations: [
+              {
+                name: "link",
+                title: "External link",
+                type: "object",
+                fields: [
+                  defineField({
+                    name: "href",
+                    title: "URL",
+                    type: "url",
+                    validation: (rule) =>
+                      rule.required().uri({
+                        scheme: ["http", "https", "mailto", "tel"],
+                      }),
+                  }),
+                  defineField({
+                    name: "openInNewTab",
+                    title: "Open in a new tab",
+                    type: "boolean",
+                    initialValue: true,
+                  }),
+                ],
+              },
+              {
+                name: "internalLink",
+                title: "Link to another blog post",
+                type: "object",
+                fields: [
+                  defineField({
+                    name: "post",
+                    title: "Blog post",
+                    type: "reference",
+                    to: [{ type: "post" }],
+                    validation: (rule) => rule.required(),
+                  }),
+                ],
+              },
+            ],
+          },
+        }),
         defineArrayMember({
           type: "image",
           options: { hotspot: true },

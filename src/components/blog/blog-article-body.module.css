@@ -63,6 +63,43 @@
   line-height: 1.65;
   overflow-wrap: anywhere;
 }
+.content a {
+  color: var(--color-accent);
+  text-decoration-line: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.18em;
+}
+.content a:hover {
+  text-decoration-thickness: 2px;
+}
+.content code {
+  padding: 0.12em 0.35em;
+  border-radius: 0.2rem;
+  background: #f2eeee;
+  color: #7f211d;
+  font-family: var(--font-mono);
+  font-size: 0.9em;
+}
+.content blockquote {
+  margin: 2rem 0;
+  padding: 1rem 1.25rem;
+  border-left: 3px solid var(--color-accent);
+  background: var(--color-accent-soft);
+  color: var(--color-text);
+  font-size: 1.125rem;
+  line-height: 1.55;
+}
+.content ul,
+.content ol {
+  margin: 0 0 1.75rem;
+  padding-left: 1.5rem;
+  color: var(--color-text-muted);
+  font-size: 1rem;
+  line-height: 1.65;
+}
+.content li + li {
+  margin-top: 0.5rem;
+}
 .content figure {
   margin: 2.5rem 0 3rem;
 }
@@ -158,8 +195,21 @@
   }
   .content > h2,
   .content > h3,
-  .content > p {
+  .content > p,
+  .content > blockquote,
+  .content > ul,
+  .content > ol {
     padding-inline: 0.5rem;
+  }
+  .content blockquote {
+    margin-inline: 0.5rem;
+    padding: 0.9rem 1rem;
+  }
+  .content ul,
+  .content ol {
+    padding-left: 2rem;
+    padding-right: 0.5rem;
+    font-size: 0.9375rem;
   }
   .content figure {
     margin: 2rem 0 2.5rem;
