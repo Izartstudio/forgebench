@@ -45,7 +45,7 @@ export function HomeHero() {
           className={styles.visualImage}
         />
         <Image
-          src="/images/home/hero-background-mobile.webp"
+          src="/images/home/mobile-card-background.png"
           alt=""
           fill
           loading="eager"

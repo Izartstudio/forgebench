@@ -15,6 +15,8 @@ import styles from "./page.module.css";
 
 type PageProps = { params: Promise<{ slug: string }> };
 
+export const revalidate = 60;
+
 export async function generateMetadata({
   params,
 }: PageProps): Promise<Metadata> {

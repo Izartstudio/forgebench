@@ -293,95 +293,96 @@ function Connectors() {
       </svg>
       <svg
         className={styles.mobileConnectors}
-        viewBox="0 0 276 474"
+        viewBox="0 0 246 382"
+        preserveAspectRatio="none"
         aria-hidden="true"
       >
         <path
           pathLength="1"
           className={`${styles.connectorPath} ${styles.sourceTop}`}
-          d="M68 95V106H138"
+          d="M65.223 94V100H123.483"
         />
         <path
           pathLength="1"
           className={`${styles.connectorPath} ${styles.sourceBottom}`}
-          d="M208 95V106H138"
+          d="M181.223 94V100H123.483"
         />
         <path
           pathLength="1"
           className={`${styles.connectorPath} ${styles.sourceMerge} ${styles.standardMobileSource}`}
-          d="M138 106V145"
+          d="M123.483 100V112"
         />
         <path
           className={`${styles.arrowHead} ${styles.sourceArrow} ${styles.standardMobileSource}`}
-          d="M132 138L138 145L144 138"
+          d="M120.335 108.853L123.483 112L126.63 108.853"
         />
         <path
           pathLength="1"
           className={`${styles.connectorPath} ${styles.sourceMerge} ${styles.narrowSourcePath}`}
-          d="M138 106V137"
+          d="M123.483 100V112"
         />
         <path
           className={`${styles.arrowHead} ${styles.sourceArrow} ${styles.narrowSourceArrow}`}
-          d="M132 130L138 137L144 130"
+          d="M120.335 108.853L123.483 112L126.63 108.853"
         />
         <rect
           className={`${styles.junction} ${styles.sourceJunction}`}
-          x="135"
-          y="103"
-          width="6"
-          height="6"
+          x="122.105"
+          y="98.665"
+          width="2.671"
+          height="2.671"
         />
         <path
           pathLength="1"
           className={`${styles.connectorPath} ${styles.targetStem} ${styles.standardMobileTarget}`}
-          d="M138 319V358"
+          d="M123 270V277"
         />
         <path
           pathLength="1"
           className={`${styles.connectorPath} ${styles.targetTop} ${styles.standardMobileTarget}`}
-          d="M138 358H68V370"
+          d="M123 277H64V288"
         />
         <path
           pathLength="1"
           className={`${styles.connectorPath} ${styles.targetBottom} ${styles.standardMobileTarget}`}
-          d="M138 358H208V370"
+          d="M123 277H181.501V288"
         />
         <path
           className={`${styles.arrowHead} ${styles.targetArrow} ${styles.standardMobileTarget}`}
-          d="M62 363L68 370L74 363M202 363L208 370L214 363"
+          d="M60.853 284.853L64 288L67.147 284.853M178.354 284.853L181.501 288L184.649 284.853"
         />
         <rect
           className={`${styles.junction} ${styles.targetJunction} ${styles.standardMobileTarget}`}
-          x="135"
-          y="355"
-          width="6"
-          height="6"
+          x="121.286"
+          y="275.286"
+          width="3.429"
+          height="3.429"
         />
         <path
           pathLength="1"
           className={`${styles.connectorPath} ${styles.targetStem} ${styles.narrowTargetPath}`}
-          d="M138 319V350"
+          d="M123 270V277"
         />
         <path
           pathLength="1"
           className={`${styles.connectorPath} ${styles.targetTop} ${styles.narrowTargetPath}`}
-          d="M138 350H68V362"
+          d="M123 277H64V288"
         />
         <path
           pathLength="1"
           className={`${styles.connectorPath} ${styles.targetBottom} ${styles.narrowTargetPath}`}
-          d="M138 350H208V362"
+          d="M123 277H181.501V288"
         />
         <path
           className={`${styles.arrowHead} ${styles.targetArrow} ${styles.narrowTargetArrow}`}
-          d="M62 355L68 362L74 355M202 355L208 362L214 355"
+          d="M60.853 284.853L64 288L67.147 284.853M178.354 284.853L181.501 288L184.649 284.853"
         />
         <rect
           className={`${styles.junction} ${styles.targetJunction} ${styles.narrowTargetPath}`}
-          x="135"
-          y="347"
-          width="6"
-          height="6"
+          x="121.286"
+          y="275.286"
+          width="3.429"
+          height="3.429"
         />
       </svg>
     </>

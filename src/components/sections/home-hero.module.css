@@ -173,7 +173,7 @@
   }
 }
 
-@media (max-width: 47.9375rem) {
+@media (max-width: 48rem) {
   .hero {
     display: block;
   }
@@ -189,9 +189,9 @@
   }
 
   .visual {
-    height: min(171.7vw, 47rem);
+    height: min(155.3vw, 48rem);
     min-height: 0;
-    aspect-ratio: 276 / 474;
+    aspect-ratio: auto;
   }
 
   .visualImage {

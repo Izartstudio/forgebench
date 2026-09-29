@@ -6,6 +6,8 @@ import { SiteFooter } from "@/components/layout/site-footer";
 import { getBlogPosts, isCmsConfigured } from "@/lib/cms/blog";
 import { createMetadata } from "@/lib/seo/metadata";
 
+export const revalidate = 60;
+
 export const metadata: Metadata = createMetadata({
   title: "Forgebench Blog — Enterprise AI Governance and Engineering",
   description:

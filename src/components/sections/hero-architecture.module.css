@@ -425,35 +425,79 @@
   }
 }
 
-@media (max-width: 47.9375rem) {
+@media (max-width: 48rem) {
   .architecture {
-    width: min(96%, 28rem);
-    aspect-ratio: 276 / 474;
-    grid-template: 20% 48% 22% / 1fr;
-    align-content: space-between;
-    font-size: clamp(0.5rem, 2.2vw, 0.68rem);
+    width: 94%;
+    height: min(145.9vw, 46rem);
+    aspect-ratio: auto;
+    grid-template: 24.607% 4.712% 41.361% 4.712% 24.607% / 1fr;
+    align-items: stretch;
+    align-content: start;
+    font-size: clamp(0.5rem, 2.2vw, 0.8rem);
   }
 
   .sources,
   .targets {
     display: grid;
+    width: 84%;
     height: 100%;
+    justify-self: center;
     grid-template-columns: 1fr 1fr;
-    gap: 0.5rem;
+    gap: 12%;
   }
   .sources {
     grid-row: 1;
   }
   .core {
-    grid-row: 2;
-    padding: 0.35rem;
+    display: flex;
+    grid-row: 3;
+    flex-direction: column;
+    padding: 0.35rem 0.35rem 1rem;
+  }
+  .coreColumns {
+    min-height: 0;
+    flex: 1;
+  }
+  .coreColumn {
+    display: flex;
+    min-height: 0;
+    flex-direction: column;
+  }
+  .coreColumn .wideCell,
+  .coreColumn .splitCells {
+    flex: 1;
   }
   .targets {
-    grid-row: 3;
+    grid-row: 5;
     align-items: start;
   }
   .targets .targetCard:first-child {
     order: 2;
+  }
+  .sources .endpoint {
+    display: flex;
+    min-height: 0;
+    flex-direction: column;
+  }
+  .sources .list,
+  .sources .brandGrid {
+    min-height: 0;
+    flex: 1;
+  }
+  .sources .list {
+    display: flex;
+    flex-direction: column;
+  }
+  .sources .list span {
+    height: auto;
+    min-height: 0;
+    flex: 1;
+  }
+  .sources .brandGrid {
+    grid-template-rows: repeat(2, minmax(0, 1fr));
+  }
+  .sources .brandGrid span {
+    min-height: 0;
   }
   .desktopConnectors {
     display: none;
@@ -461,8 +505,14 @@
   .mobileConnectors {
     display: block;
   }
+  .mobileConnectors path {
+    stroke-width: 0.445;
+  }
+  .mobileConnectors .junction {
+    stroke-width: 0.445;
+  }
   .endpointTitle {
-    height: 2rem;
+    height: clamp(2rem, 6.8vw, 3.25rem);
     padding-inline: 0.7rem;
   }
   .sources .endpointTitle {
@@ -475,8 +525,8 @@
     font-size: 0.9em;
   }
   .appIcon {
-    width: 0.8rem;
-    height: 0.8rem;
+    width: clamp(0.8rem, 2.5vw, 1.2rem);
+    height: clamp(0.8rem, 2.5vw, 1.2rem);
   }
   .brandGrid span,
   .logoGrid span {
@@ -485,18 +535,18 @@
   }
   .brandLogo {
     max-width: 78%;
-    height: 0.95rem;
+    height: clamp(0.95rem, 3vw, 1.4rem);
   }
   .claudeLogo {
     max-width: 74%;
   }
   .modelLogo {
-    width: 1.35rem;
-    height: 1.35rem;
+    width: clamp(1.35rem, 4vw, 1.9rem);
+    height: clamp(1.35rem, 4vw, 1.9rem);
   }
   .mcpLogo {
-    width: 1.5rem;
-    height: 1.5rem;
+    width: clamp(1.5rem, 4.5vw, 2.15rem);
+    height: clamp(1.5rem, 4.5vw, 2.15rem);
   }
   .logoGrid .azure,
   .logoGrid .gemini,

@@ -21,11 +21,20 @@ export type BlogPost = {
   authorImage?: string;
 };
 
-export const blogCategories = ["All", "Product", "Engineering", "Events & PR", "News", "Customer Stories"] as const;
+export const blogCategories = [
+  "All",
+  "Product",
+  "Engineering",
+  "Events & PR",
+  "News",
+  "Customer Stories",
+] as const;
 
 const loremTitle = "Lorem ipsum dolor sit amet – consectetur adipiscing";
-const loremExcerpt = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.";
-const loremParagraph = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.";
+const loremExcerpt =
+  "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.";
+const loremParagraph =
+  "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.";
 
 const seededPosts: BlogPost[] = [
   {
@@ -37,7 +46,17 @@ const seededPosts: BlogPost[] = [
     readingMinutes: 12,
     image: "/images/blog/circle.svg",
     featured: true,
-    body: [{ _type: "block", style: "h2", text: "Lorem ipsum dolor sit amet" }, { _type: "block", style: "normal", text: loremParagraph }, { _type: "image", url: "/images/blog/circle.svg", alt: "Forgebench model network" }, { _type: "block", style: "h2", text: "Lorem ipsum dolor sit amet" }, { _type: "block", style: "normal", text: loremParagraph }],
+    body: [
+      { _type: "block", style: "h2", text: "Lorem ipsum dolor sit amet" },
+      { _type: "block", style: "normal", text: loremParagraph },
+      {
+        _type: "image",
+        url: "/images/blog/circle.svg",
+        alt: "Forgebench model network",
+      },
+      { _type: "block", style: "h2", text: "Lorem ipsum dolor sit amet" },
+      { _type: "block", style: "normal", text: loremParagraph },
+    ],
     publishedAt: "2026-09-20",
   },
   {
@@ -48,7 +67,17 @@ const seededPosts: BlogPost[] = [
     tags: ["infrastructure", "governance", "architecture"],
     readingMinutes: 8,
     image: "/images/blog/ai-robotics-research.webp",
-    body: [{ _type: "block", style: "h2", text: "Lorem ipsum dolor sit amet" }, { _type: "block", style: "normal", text: loremParagraph }, { _type: "image", url: "/images/blog/ai-robotics-research.webp", alt: "AI robotics research" }, { _type: "block", style: "h2", text: "Lorem ipsum dolor sit amet" }, { _type: "block", style: "normal", text: loremParagraph }],
+    body: [
+      { _type: "block", style: "h2", text: "Lorem ipsum dolor sit amet" },
+      { _type: "block", style: "normal", text: loremParagraph },
+      {
+        _type: "image",
+        url: "/images/blog/ai-robotics-research.webp",
+        alt: "AI robotics research",
+      },
+      { _type: "block", style: "h2", text: "Lorem ipsum dolor sit amet" },
+      { _type: "block", style: "normal", text: loremParagraph },
+    ],
     publishedAt: "2026-09-16",
   },
   {
@@ -60,7 +89,17 @@ const seededPosts: BlogPost[] = [
     readingMinutes: 7,
     image: "/images/blog/image-2.webp",
     editorsPick: true,
-    body: [{ _type: "block", style: "h2", text: "Lorem ipsum dolor sit amet" }, { _type: "block", style: "normal", text: loremParagraph }, { _type: "image", url: "/images/blog/image-2.webp", alt: "AI impact visualization" }, { _type: "block", style: "h2", text: "Lorem ipsum dolor sit amet" }, { _type: "block", style: "normal", text: loremParagraph }],
+    body: [
+      { _type: "block", style: "h2", text: "Lorem ipsum dolor sit amet" },
+      { _type: "block", style: "normal", text: loremParagraph },
+      {
+        _type: "image",
+        url: "/images/blog/image-2.webp",
+        alt: "AI impact visualization",
+      },
+      { _type: "block", style: "h2", text: "Lorem ipsum dolor sit amet" },
+      { _type: "block", style: "normal", text: loremParagraph },
+    ],
     publishedAt: "2026-09-10",
   },
   {
@@ -71,7 +110,17 @@ const seededPosts: BlogPost[] = [
     tags: ["agents", "governance", "architecture"],
     readingMinutes: 10,
     image: "/images/blog/ai-data-infrastructure.webp",
-    body: [{ _type: "block", style: "h2", text: "Lorem ipsum dolor sit amet" }, { _type: "block", style: "normal", text: loremParagraph }, { _type: "image", url: "/images/blog/ai-data-infrastructure.webp", alt: "AI data infrastructure" }, { _type: "block", style: "h2", text: "Lorem ipsum dolor sit amet" }, { _type: "block", style: "normal", text: loremParagraph }],
+    body: [
+      { _type: "block", style: "h2", text: "Lorem ipsum dolor sit amet" },
+      { _type: "block", style: "normal", text: loremParagraph },
+      {
+        _type: "image",
+        url: "/images/blog/ai-data-infrastructure.webp",
+        alt: "AI data infrastructure",
+      },
+      { _type: "block", style: "h2", text: "Lorem ipsum dolor sit amet" },
+      { _type: "block", style: "normal", text: loremParagraph },
+    ],
     publishedAt: "2026-09-04",
   },
   {
@@ -82,7 +131,17 @@ const seededPosts: BlogPost[] = [
     tags: ["events", "infrastructure", "enterprise-ai"],
     readingMinutes: 5,
     image: "/images/blog/generative-ai-models.webp",
-    body: [{ _type: "block", style: "h2", text: "Lorem ipsum dolor sit amet" }, { _type: "block", style: "normal", text: loremParagraph }, { _type: "image", url: "/images/blog/generative-ai-models.webp", alt: "Generative AI model network" }, { _type: "block", style: "h2", text: "Lorem ipsum dolor sit amet" }, { _type: "block", style: "normal", text: loremParagraph }],
+    body: [
+      { _type: "block", style: "h2", text: "Lorem ipsum dolor sit amet" },
+      { _type: "block", style: "normal", text: loremParagraph },
+      {
+        _type: "image",
+        url: "/images/blog/generative-ai-models.webp",
+        alt: "Generative AI model network",
+      },
+      { _type: "block", style: "h2", text: "Lorem ipsum dolor sit amet" },
+      { _type: "block", style: "normal", text: loremParagraph },
+    ],
     publishedAt: "2026-08-28",
   },
   {
@@ -93,7 +152,17 @@ const seededPosts: BlogPost[] = [
     tags: ["agents", "audit", "governance"],
     readingMinutes: 6,
     image: "/images/blog/responsible-ai-governance.webp",
-    body: [{ _type: "block", style: "h2", text: "Lorem ipsum dolor sit amet" }, { _type: "block", style: "normal", text: loremParagraph }, { _type: "image", url: "/images/blog/responsible-ai-governance.webp", alt: "Responsible AI governance" }, { _type: "block", style: "h2", text: "Lorem ipsum dolor sit amet" }, { _type: "block", style: "normal", text: loremParagraph }],
+    body: [
+      { _type: "block", style: "h2", text: "Lorem ipsum dolor sit amet" },
+      { _type: "block", style: "normal", text: loremParagraph },
+      {
+        _type: "image",
+        url: "/images/blog/responsible-ai-governance.webp",
+        alt: "Responsible AI governance",
+      },
+      { _type: "block", style: "h2", text: "Lorem ipsum dolor sit amet" },
+      { _type: "block", style: "normal", text: loremParagraph },
+    ],
     publishedAt: "2026-08-21",
   },
 ];
@@ -101,14 +170,26 @@ const seededPosts: BlogPost[] = [
 const projectId = process.env.NEXT_PUBLIC_SANITY_PROJECT_ID;
 export const isCmsConfigured = Boolean(projectId);
 const dataset = process.env.NEXT_PUBLIC_SANITY_DATASET || "production";
-const client = projectId ? createClient({ projectId, dataset, apiVersion: "2026-09-01", useCdn: true }) : null;
+const client = projectId
+  ? createClient({
+      projectId,
+      dataset,
+      apiVersion: "2026-09-01",
+      perspective: "published",
+      useCdn: false,
+    })
+  : null;
 
 const postProjection = `{ "slug": slug.current, title, excerpt, "category": category->title, "tags": tags[]->slug.current, readingMinutes, "image": mainImage.asset->url, featured, editorsPick, navigationLabels, "body": body[]{ _type, _key, style, "text": pt::text(@), "url": asset->url, alt, caption }, publishedAt, authorName, "authorImage": authorImage.asset->url }`;
 
 export async function getBlogPosts(): Promise<BlogPost[]> {
   if (!client) return seededPosts;
   try {
-    return await client.fetch(`*[_type == "post"] | order(publishedAt desc) ${postProjection}`);
+    return await client.fetch(
+      `*[_type == "post" && defined(slug.current)] | order(publishedAt desc) ${postProjection}`,
+      {},
+      { next: { revalidate: 60, tags: ["blog-posts"] } },
+    );
   } catch {
     return seededPosts;
   }
@@ -123,7 +204,10 @@ export async function getRelatedPosts(post: BlogPost, limit = 3) {
   const posts = await getBlogPosts();
   return posts
     .filter((candidate) => candidate.slug !== post.slug)
-    .map((candidate) => ({ candidate, score: candidate.tags.filter((tag) => post.tags.includes(tag)).length }))
+    .map((candidate) => ({
+      candidate,
+      score: candidate.tags.filter((tag) => post.tags.includes(tag)).length,
+    }))
     .filter(({ score }) => score > 0)
     .sort((a, b) => b.score - a.score)
     .slice(0, limit)
