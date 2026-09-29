@@ -318,6 +318,10 @@
     scroll-snap-stop: always;
   }
 
+  .card > picture {
+    display: contents;
+  }
+
   .dashboard {
     position: relative;
     top: auto;
