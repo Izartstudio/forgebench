@@ -2,7 +2,13 @@ import { createClient } from "next-sanity";
 
 export type BlogBodyBlock =
   | { _type: "block"; style: "normal" | "h2" | "h3"; text: string }
-  | { _type: "image"; url: string; alt?: string; caption?: string };
+  | { _type: "image"; url: string; alt?: string; caption?: string }
+  | {
+      _type: "table";
+      hasHeaderRow?: boolean;
+      caption?: string;
+      rows: { _key?: string; cells: string[] }[];
+    };
 
 export type BlogPost = {
   slug: string;
@@ -180,7 +186,7 @@ const client = projectId
     })
   : null;
 
-const postProjection = `{ "slug": slug.current, title, excerpt, "category": category->title, "tags": tags[]->slug.current, readingMinutes, "image": mainImage.asset->url, featured, editorsPick, navigationLabels, "body": body[]{ _type, _key, style, "text": pt::text(@), "url": asset->url, alt, caption }, publishedAt, authorName, "authorImage": authorImage.asset->url }`;
+const postProjection = `{ "slug": slug.current, title, excerpt, "category": category->title, "tags": tags[]->slug.current, readingMinutes, "image": mainImage.asset->url, featured, editorsPick, navigationLabels, "body": body[]{ _type, _key, style, "text": pt::text(@), "url": asset->url, alt, caption, hasHeaderRow, rows[]{ _key, cells } }, publishedAt, authorName, "authorImage": authorImage.asset->url }`;
 
 export async function getBlogPosts(): Promise<BlogPost[]> {
   if (!client) return seededPosts;

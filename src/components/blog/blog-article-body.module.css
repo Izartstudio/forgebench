@@ -1,27 +1,181 @@
-.layout { display: grid; max-width: 85rem; grid-template-columns: 15rem minmax(0, 46rem); justify-content: center; gap: 4rem; margin: 0 auto; padding: 5rem 2.5rem 7rem; }
-.navigation { position: sticky; top: 2rem; align-self: start; }
-.navigation > p { color: var(--color-accent); font-size: .875rem; font-weight: 700; }
-.navigation nav { display: grid; margin-top: 1.25rem; border-left: 1px solid #ddd; }
-.navigation a { padding: .55rem 0 .55rem 1rem; color: var(--color-text-muted); font-size: .875rem; line-height: 1.25; text-decoration: none; transition: color 200ms ease, border-color 200ms ease; }
-.navigation .active { margin-left: -1px; border-left: 2px solid var(--color-accent); color: var(--color-text); }
-.content h2, .content h3 { scroll-margin-top: 2rem; font-weight: 400; letter-spacing: -.025em; }
-.content h2 { margin: 0 0 1.5rem; font-size: 1.5rem; }
-.content h3 { margin: 2.5rem 0 1rem; font-size: 1.25rem; }
-.content p { margin-bottom: 1.5rem; color: var(--color-text-muted); font-size: 1rem; line-height: 1.65; }
-.content figure { margin: 2.5rem 0 3rem; }
-.content figure > div { position: relative; aspect-ratio: 16/9; overflow: hidden; }
-.content figure img { object-fit: cover; }
-.content figcaption { margin-top: .75rem; color: var(--color-text-muted); font-size: .75rem; }
+.layout {
+  display: grid;
+  max-width: 85rem;
+  grid-template-columns: 15rem minmax(0, 46rem);
+  justify-content: center;
+  gap: 4rem;
+  margin: 0 auto;
+  padding: 5rem 2.5rem 7rem;
+}
+.navigation {
+  position: sticky;
+  top: 2rem;
+  align-self: start;
+}
+.navigation > p {
+  color: var(--color-accent);
+  font-size: 0.875rem;
+  font-weight: 700;
+}
+.navigation nav {
+  display: grid;
+  margin-top: 1.25rem;
+  border-left: 1px solid #ddd;
+}
+.navigation a {
+  padding: 0.55rem 0 0.55rem 1rem;
+  color: var(--color-text-muted);
+  font-size: 0.875rem;
+  line-height: 1.25;
+  text-decoration: none;
+  transition:
+    color 200ms ease,
+    border-color 200ms ease;
+}
+.navigation .active {
+  margin-left: -1px;
+  border-left: 2px solid var(--color-accent);
+  color: var(--color-text);
+}
+.content {
+  width: 100%;
+  min-width: 0;
+  max-width: 100%;
+}
+.content h2,
+.content h3 {
+  scroll-margin-top: 2rem;
+  font-weight: 400;
+  letter-spacing: -0.025em;
+}
+.content h2 {
+  margin: 0 0 1.5rem;
+  font-size: 1.5rem;
+}
+.content h3 {
+  margin: 2.5rem 0 1rem;
+  font-size: 1.25rem;
+}
+.content p {
+  margin-bottom: 1.5rem;
+  color: var(--color-text-muted);
+  font-size: 1rem;
+  line-height: 1.65;
+  overflow-wrap: anywhere;
+}
+.content figure {
+  margin: 2.5rem 0 3rem;
+}
+.content figure > div {
+  position: relative;
+  aspect-ratio: 16/9;
+  overflow: hidden;
+}
+.content figure img {
+  object-fit: cover;
+}
+.content figcaption {
+  margin-top: 0.75rem;
+  color: var(--color-text-muted);
+  font-size: 0.75rem;
+}
+.tableScroll {
+  width: 100%;
+  min-width: 0;
+  max-width: 100%;
+  margin: 2rem 0 2.5rem;
+  overflow-x: auto;
+  border: 1px solid var(--color-border);
+  -webkit-overflow-scrolling: touch;
+}
+.tableScroll table {
+  width: 100%;
+  min-width: 38rem;
+  border-collapse: collapse;
+  color: var(--color-text-muted);
+  font-size: 0.9375rem;
+  line-height: 1.45;
+}
+.tableScroll th,
+.tableScroll td {
+  padding: 0.875rem 1rem;
+  border-right: 1px solid var(--color-border);
+  border-bottom: 1px solid var(--color-border);
+  text-align: left;
+  vertical-align: top;
+}
+.tableScroll th:last-child,
+.tableScroll td:last-child {
+  border-right: 0;
+}
+.tableScroll tr:last-child td {
+  border-bottom: 0;
+}
+.tableScroll th {
+  background: #151211;
+  color: #fcfcfc;
+  font-weight: 700;
+}
+.tableScroll tr:nth-child(even) td {
+  background: #fbf9f9;
+}
+.structuredTable {
+  width: 100%;
+  min-width: 0;
+  max-width: 100%;
+  margin: 2rem 0 2.5rem;
+}
+.structuredTable .tableScroll {
+  margin: 0;
+}
+.structuredTable figcaption {
+  margin-top: 0.75rem;
+}
 @media (max-width: 50rem) {
   .layout {
+    width: 100%;
+    min-width: 0;
+    max-width: 100%;
     grid-template-columns: 1fr;
     gap: 0;
     padding: 2.75rem 0 4.5rem;
   }
 
-  .navigation { display: none; }
-  .content h2 { margin-bottom: 1.25rem; font-size: clamp(1.375rem, 6vw, 1.75rem); line-height: 1.2; }
-  .content h3 { font-size: 1.2rem; }
-  .content p { font-size: .9375rem; line-height: 1.6; }
-  .content figure { margin: 2rem 0 2.5rem; }
+  .navigation {
+    display: none;
+  }
+  .content h2 {
+    margin-bottom: 1.25rem;
+    font-size: clamp(1.375rem, 6vw, 1.75rem);
+    line-height: 1.2;
+  }
+  .content h3 {
+    font-size: 1.2rem;
+  }
+  .content p {
+    font-size: 0.9375rem;
+    line-height: 1.6;
+  }
+  .content > h2,
+  .content > h3,
+  .content > p {
+    padding-inline: 0.5rem;
+  }
+  .content figure {
+    margin: 2rem 0 2.5rem;
+  }
+  .tableScroll {
+    width: calc(100% - 2rem);
+    max-width: calc(100% - 2rem);
+    margin-inline: 1rem;
+  }
+  .structuredTable {
+    margin-inline: 0;
+  }
+  .structuredTable .tableScroll {
+    margin-inline: 1rem;
+  }
+  .structuredTable figcaption {
+    padding-inline: 1rem;
+  }
 }

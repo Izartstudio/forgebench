@@ -3,9 +3,11 @@
   background: #fff;
 }
 .scroller {
+  position: relative;
   width: 100%;
   overflow-x: auto;
   overscroll-behavior-inline: contain;
+  -webkit-overflow-scrolling: touch;
 }
 .table {
   min-width: 50rem;
@@ -83,7 +85,7 @@
 }
 .rows {
   min-height: 0;
-  overflow: hidden;
+  overflow: clip;
 }
 .row {
   min-height: 3.125rem;
@@ -125,7 +127,7 @@
 .row > div:last-child .check {
   color: #fff;
 }
-@media (max-width: 50rem) {
+@media (max-width: 48rem) {
   .table {
     min-width: 43rem;
   }
@@ -134,6 +136,8 @@
     position: sticky;
     left: 0;
     z-index: 2;
+    flex-shrink: 0;
+    isolation: isolate;
     box-shadow: 1px 0 0 rgba(187, 187, 187, 0.5);
   }
   .tableHeader > :first-child {

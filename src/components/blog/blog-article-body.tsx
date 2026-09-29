@@ -14,6 +14,102 @@ function slugify(value: string) {
     .replace(/(^-|-$)/g, "");
 }
 
+function decodeHtmlText(value: string) {
+  return value
+    .replace(/<br\s*\/?\s*>/gi, "\n")
+    .replace(/<[^>]+>/g, "")
+    .replace(/&nbsp;/gi, " ")
+    .replace(/&amp;/gi, "&")
+    .replace(/&lt;/gi, "<")
+    .replace(/&gt;/gi, ">")
+    .replace(/&quot;/gi, '"')
+    .replace(/&#(?:0*39|x0*27);/gi, "'")
+    .trim();
+}
+
+function CmsTable({ html }: { html: string }) {
+  const tableMatch = html.match(/<table\b[^>]*>([\s\S]*?)<\/table>/i);
+  if (!tableMatch) return <p>{html}</p>;
+
+  const rows = [...tableMatch[1].matchAll(/<tr\b[^>]*>([\s\S]*?)<\/tr>/gi)]
+    .map((row) =>
+      [...row[1].matchAll(/<(th|td)\b[^>]*>([\s\S]*?)<\/\1>/gi)].map(
+        (cell) => ({
+          type: cell[1].toLowerCase(),
+          text: decodeHtmlText(cell[2]),
+        }),
+      ),
+    )
+    .filter((row) => row.length > 0);
+
+  if (rows.length === 0) return <p>{decodeHtmlText(html)}</p>;
+
+  return (
+    <div className={styles.tableScroll}>
+      <table>
+        <tbody>
+          {rows.map((row, rowIndex) => (
+            <tr key={rowIndex}>
+              {row.map((cell, cellIndex) =>
+                cell.type === "th" ? (
+                  <th key={cellIndex}>{cell.text}</th>
+                ) : (
+                  <td key={cellIndex}>{cell.text}</td>
+                ),
+              )}
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+  );
+}
+
+function StructuredTable({
+  rows,
+  hasHeaderRow,
+  caption,
+}: {
+  rows: { _key?: string; cells: string[] }[];
+  hasHeaderRow?: boolean;
+  caption?: string;
+}) {
+  if (!rows?.length) return null;
+
+  const header = hasHeaderRow ? rows[0] : undefined;
+  const bodyRows = hasHeaderRow ? rows.slice(1) : rows;
+
+  return (
+    <figure className={styles.structuredTable}>
+      <div className={styles.tableScroll}>
+        <table>
+          {header && (
+            <thead>
+              <tr>
+                {header.cells.map((cell, index) => (
+                  <th key={index} scope="col">
+                    {cell}
+                  </th>
+                ))}
+              </tr>
+            </thead>
+          )}
+          <tbody>
+            {bodyRows.map((row, rowIndex) => (
+              <tr key={row._key || rowIndex}>
+                {row.cells.map((cell, cellIndex) => (
+                  <td key={cellIndex}>{cell}</td>
+                ))}
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+      {caption && <figcaption>{caption}</figcaption>}
+    </figure>
+  );
+}
+
 export function BlogArticleBody({
   body,
   navigationLabels,
@@ -90,6 +186,15 @@ export function BlogArticleBody({
                 {block.caption && <figcaption>{block.caption}</figcaption>}
               </figure>
             );
+          if (block._type === "table")
+            return (
+              <StructuredTable
+                key={`table-${index}`}
+                rows={block.rows}
+                hasHeaderRow={block.hasHeaderRow}
+                caption={block.caption}
+              />
+            );
           if (block.style === "h2" || block.style === "h3") {
             const id = sections[headingIndex++]?.id;
             return block.style === "h2" ? (
@@ -101,6 +206,9 @@ export function BlogArticleBody({
                 {block.text}
               </h3>
             );
+          }
+          if (/<table\b/i.test(block.text)) {
+            return <CmsTable html={block.text} key={`table-${index}`} />;
           }
           return <p key={`${block.text}-${index}`}>{block.text}</p>;
         })}

@@ -1,4 +1,5 @@
-.main { padding-inline: 42px; background: #fff; }
+.main { width: 100%; min-width: 0; max-width: 100%; padding-inline: 42px; background: #fff; }
+.main > article, .hero, .heroCopy, .heroImage, .related, .related > div, .related article { min-width: 0; max-width: 100%; }
 .footerBackdrop { overflow: hidden; background: linear-gradient(180deg, #de5246 0%, #6f1718 48%, #21050a 100%); }
 .hero { display: grid; min-height: 24rem; grid-template-columns: 47% 53%; }
 .heroCopy { display: flex; align-items: flex-start; flex-direction: column; padding: 1rem 2.5rem 2rem; }
@@ -30,7 +31,7 @@
 .relatedExcerpt { margin-top: 1rem; color: var(--color-text-muted); font-size: .875rem; line-height: 1.4; }
 .readMore { display: inline-flex; align-items: center; gap: .75rem; margin-top: auto; padding: 1.5rem 0; color: var(--color-accent); font-size: .875rem; text-decoration: none; }
 .readMore i { width: .75rem; height: .75rem; background: currentColor; -webkit-mask: url('/icons/arrow.svg') center/contain no-repeat; mask: url('/icons/arrow.svg') center/contain no-repeat; }
-@media (max-width: 47.9375rem) {
+@media (max-width: 48rem) {
   .main { padding-inline: 1rem; }
   .hero { min-height: 0; grid-template-columns: 1fr; }
   .heroCopy { min-height: 0; padding: 1.25rem 0 2rem; }
