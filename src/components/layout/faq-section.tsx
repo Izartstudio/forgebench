@@ -10,30 +10,30 @@ import styles from "./faq-section.module.css";
 
 export const faqs = [
   {
-    question: "Is Forgebench for developers or for agents?",
+    question: "What is an agent control plane?",
     answer:
-      "Both, on one deployment. Credential issuance, budgets, rate limits, guardrails, attribution and the audit record govern every consumer of AI in the organization; agent registration, tool authorization and release safety are added on top of the same deployment when agents reach production.",
+      "Forgebench is the layer that registers every agent before its first call, gives each one its own credential, binds the tools and MCP servers it may reach, caps what it may spend, and records what it did. It sits between the agents you've built and the providers and tools they call.",
   },
   {
     question:
-      "Can we start with developers and add agents later? Or the other way around?",
+      "How is an agent control plane different from an AI gateway?",
     answer:
-      "Yes. Start with the workload that matters now, then add developers or agents without replacing the governance layer.",
+      "A gateway meters by key and sees only the calls routed to it, so the figure tells you what was spent and not who spent it. A control plane holds the registry, the identity, the tool bindings and the record around that gateway, so the inventory, the spend figure and the audit trail are complete rather than partial.",
   },
   {
-    question: "Does Forgebench build, deploy or orchestrate my agents?",
+    question: "Does Forgebench build, deploy or orchestrate agents?",
     answer:
-      "No. Forgebench governs the AI traffic, identity, policy, spend and evidence around the agents you already build and run.",
+      "No. Forgebench governs the agents you've built. It doesn't orchestrate them, host them, or restructure their logic.",
   },
   {
-    question: "Does Forgebench govern Cursor, Claude Code or Codex?",
+    question: "Can I use it with any agent framework?",
     answer:
-      "Yes. Developer tools can be governed through the same credentials, budgets, routing and audit controls as other AI consumers.",
+      "Yes — LangGraph, CrewAI, Microsoft's agent framework, or your own. One client change, once.",
   },
   {
-    question: "Which frameworks does it work with?",
+    question: "What does registering an agent involve?",
     answer:
-      "Forgebench is framework-agnostic and sits between your workloads and approved models or providers.",
+      "To register an agent on Forgebench, you need to name the agent, its owner, and tag it to the features it serves. That mints a unique agent identity, adds its tool bindings, and creates the inventory row everything else is governed against.",
   },
   {
     question: "Do I have to replace my model gateway or observability stack?",
@@ -41,72 +41,58 @@ export const faqs = [
       "No. It can complement the infrastructure you already operate and be introduced without a wholesale platform migration.",
   },
   {
-    question: "How is this different from running an AI gateway?",
+    question: "Can an agent call a tool it wasn't bound to?",
     answer:
-      "A gateway moves traffic. Forgebench adds consumer identity, budgets, policy, ownership, attribution and an evidence-backed audit record.",
+      "No. The MCP servers and tools an agent may reach are an allowlist decided at registration, and a tool call outside it is refused before the tool runs.",
   },
   {
-    question: "Can I give every developer their own AI budget?",
+    question: "What happens when an agent hits a ceiling?",
     answer:
-      "Yes. Budgets and limits can be assigned to individual developers, teams, agents and use cases.",
-  },
-  {
-    question:
-      "Can I see which developers, teams or agents are driving most of our LLM spend?",
-    answer:
-      "Yes. Usage and cost are attributed to the responsible consumer and organizational owner.",
-  },
-  {
-    question: "Can I charge model spend back to a team or use case?",
-    answer:
-      "Yes. Cost attribution makes internal allocation and chargeback possible at the level your organization needs.",
-  },
-  {
-    question: "Can I track each tool call an agent made?",
-    answer:
-      "Yes. Agent actions and authorized tool calls can be recorded as part of the audit trail.",
-  },
-  {
-    question: "Which models can it reach?",
-    answer:
-      "It is model-agnostic and can route to the providers and models your organization approves.",
-  },
-  {
-    question: "Can we run it against models inside our own perimeter?",
-    answer:
-      "Yes. Deployments can govern models and endpoints running inside your controlled environment.",
-  },
-  {
-    question: "Is it self-hosted or SaaS?",
-    answer:
-      "Deployment is designed to fit the security and operating model of the organization.",
+      "Caps apply per model, per agent and per key, and whichever is reached first refuses the call. A refused call reaches no provider and costs nothing, and alerts go to the owner named at registration, before the ceiling rather than after the invoice.",
   },
   {
     question:
-      "What happens when a credential hits its ceiling or a rate limit?",
+      "How does it handle observability and cost tracking?",
     answer:
-      "The configured policy is enforced immediately, with the decision retained in the audit record.",
+      "Observability arrives inside the deployment and opens straight from the call record rather than as a separate system to search. Recorded cost is actual, not estimated — reconciled to the cost the gateway reports — and spend rolls up by agent, owner, model, key and the product feature the agent serves.",
   },
   {
-    question: "What stops a call from bypassing Forgebench?",
+    question: "Do guardrails block or delay a response?",
     answer:
-      "Centralized credentials and network policy keep approved model access on the governed path.",
+      "No. Input and output are evaluated from the recorded call after it returns, never before the request leaves, so a check never delays a response or breaks streaming. Every flagged call names the check that fired, in which direction, on which agent.",
   },
   {
-    question: "Can the audit record be altered?",
+    question: "Can I audit agents and roll back a bad version?",
     answer:
-      "The audit system is designed to preserve a dependable record of requests, decisions and actions.",
+      "Every governed call and every operator action lands on one hash-linked record, so editing or deleting an entry breaks the chain and the break is detectable. Each version is captured with the governance in force when it ran, and a version that starts costing more is rolled back on its own, live, while the others keep running.",
   },
   {
-    question: "How does Forgebench handle PII, secrets and prompt injection?",
+    question: "Is it suitable for regulated environments?",
     answer:
-      "Guardrails and policy controls can inspect and govern requests before they reach production models.",
+      "It's self-hosted in your own infrastructure, runs against models inside your perimeter, and holds ISO 27001, ISO 9001 and SOC 2 Type 1. Every component is permissively licensed — nothing for your legal review to unpick.",
   },
   {
-    question: "What's the licensing position?",
+    question: "Can I trace an agent action back to the user or application that initiated it?",
     answer:
-      "Licensing is scoped to the deployment and workloads your organization needs to govern.",
+      "Yes. Every governed call carries a correlated identity chain across the principal, agent, run and trace ID. This lets you trace an agent's activity back to the user or application that initiated the workflow.",
   },
+  {
+    question: "Can I immediately revoke an agent's access if it starts behaving unexpectedly?",
+    answer:
+      "Yes. You can revoke or rotate its key, deactivate its identity, remove its tool access, change its policy, or set its budget to zero. The change takes effect on the agent's next request.",
+  },
+  {
+    question:
+      "Can I configure approval requirements for specific agent tools?",
+    answer:
+      "Yes. You can apply approval-required policies to selected tools, so an agent can use a tool only when the required approval condition is met.",
+  },
+  {
+    question: "Can I limit how often an agent calls a specific tool?",
+    answer:
+      "Yes. Tool-level call ceilings can be configured for authorized tools, allowing you to control how frequently an agent can invoke them.",
+  },
+ 
 ] as const;
 
 export function FaqSection() {
