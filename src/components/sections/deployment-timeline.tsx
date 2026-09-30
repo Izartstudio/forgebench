@@ -28,7 +28,7 @@ const phases = [
     title: "Review & Sign-off",
     description:
       "Signed usage export produced and verified by finance. Runbooks reviewed with your ops lead and the admin walkthrough delivered. Success criteria reviewed with security, finance and engineering.",
-    exit: "EXIT: One of two — criteria signed off and production scope agreed",
+    exit: "EXIT: Criteria signed off and production scope agreed",
   },
 ] as const;
 

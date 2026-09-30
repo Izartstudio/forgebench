@@ -28,25 +28,25 @@ const panels = [
     title: "Guardrails",
     slug: "guardrails",
     description:
-      "Apply shared security, privacy and operational policies before requests reach production models.",
+      "Personal data, secrets and a tenant denylist, evaluated off the response path. Nothing is held or redacted mid-flight.",
   },
   {
     title: "AI Insights",
     slug: "ai-insights",
     description:
-      "Understand adoption, model performance and spend across every application and agent in one view.",
+      "Spend across Claude Code, Codex, Github Copiliot and AWS Kiro, aggregated rather than reconciled from four vendor invoices.",
   },
   {
     title: "Observability",
     slug: "observability",
     description:
-      "Trace calls from application to model with the context needed to diagnose quality, latency and failures.",
+      "Telemetry for API keys and the developer kit. Spend, errors and refusals as they happen.",
   },
   {
     title: "Audit",
     slug: "audit",
     description:
-      "Maintain a clear record of model activity, ownership and policy decisions for every governed call.",
+      "Every call and every operator action, hash-linked, so an edited or deleted entry is detectable. One evidence surface for the whole AI org.",
   },
 ] as const;
 

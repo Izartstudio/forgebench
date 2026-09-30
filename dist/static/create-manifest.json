@@ -1,5 +1,5 @@
 {
-  "createdAt": "2026-09-29T13:44:30.592Z",
+  "createdAt": "2026-09-29T19:48:04.973Z",
   "studioVersion": "6.16.0",
   "version": 3,
   "workspaces": [
@@ -13,7 +13,7 @@
       },
       "name": "default",
       "projectId": "lin8bo6x",
-      "schema": "0b28e979.create-schema.json",
+      "schema": "4ceb921b.create-schema.json",
       "title": "Forgebench CMS",
       "tools": "ef87c8fe.create-tools.json"
     }
