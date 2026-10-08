@@ -1,10 +1,12 @@
 import type { MetadataRoute } from "next";
 
 import { getBlogPosts, isCmsConfigured } from "@/lib/cms/blog";
+import { getCaseStudiesPage } from "@/lib/cms/case-studies";
 import { siteConfig } from "@/lib/seo/site-config";
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const posts = isCmsConfigured ? await getBlogPosts() : [];
+  const caseStudiesPage = await getCaseStudiesPage();
   const pages: MetadataRoute.Sitemap = [
     {
       url: siteConfig.url.toString(),
@@ -31,6 +33,16 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
         ]
       : []),
     {
+      url: new URL("/in-media", siteConfig.url).toString(),
+      changeFrequency: "monthly",
+      priority: 0.7,
+    },
+    {
+      url: new URL("/case-studies", siteConfig.url).toString(),
+      changeFrequency: "monthly",
+      priority: 0.7,
+    },
+    {
       url: new URL("/pricing", siteConfig.url).toString(),
       changeFrequency: "monthly",
       priority: 0.7,
@@ -49,6 +61,11 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       lastModified: new Date(post.publishedAt),
       changeFrequency: "monthly" as const,
       priority: 0.7,
+    })),
+    ...caseStudiesPage.studies.map((study) => ({
+      url: new URL(`/case-studies/${study.slug}`, siteConfig.url).toString(),
+      changeFrequency: "monthly" as const,
+      priority: 0.6,
     })),
   ];
 }

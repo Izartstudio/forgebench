@@ -22,6 +22,8 @@ const linkGroups = [
       { label: "Developers", href: "/developers" },
       { label: "Agents", href: "/agents" },
       { label: "Blog", href: "/blog" },
+      { label: "In Media", href: "/in-media" },
+      { label: "Case Studies", href: "/case-studies" },
     ],
   },
 ] as const;

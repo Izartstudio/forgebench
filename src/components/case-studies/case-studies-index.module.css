@@ -1,0 +1,224 @@
+.page {
+  padding: 7rem 2.5rem 6rem;
+  background: var(--color-background);
+}
+.header,
+.featuredGrid,
+.more {
+  width: min(100%, 85rem);
+  margin-inline: auto;
+}
+.header p {
+  color: var(--color-text-muted);
+  font-size: 0.875rem;
+}
+.header h1 {
+  margin-top: 2.25rem;
+  font-size: clamp(2.75rem, 4vw, 4rem);
+  font-weight: 400;
+  letter-spacing: -0.05em;
+}
+.header h1 span {
+  color: var(--color-accent);
+}
+.featuredGrid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 2rem;
+  margin-top: 3rem;
+}
+.featuredCard,
+.card {
+  display: flex;
+  min-width: 0;
+  flex-direction: column;
+  border: 1px solid var(--color-border);
+  background: #fff;
+}
+.visual {
+  position: relative;
+  min-height: 15.5rem;
+  overflow: hidden;
+}
+.visual img {
+  object-fit: contain;
+  padding: 2.25rem;
+}
+.peach {
+  background: #ffe2ca;
+}
+.cream {
+  background: #f5f1e8;
+}
+.blue {
+  background: #eef3f7;
+}
+.featuredCopy,
+.cardCopy {
+  display: flex;
+  align-items: flex-start;
+  flex: 1;
+  flex-direction: column;
+  padding: 1.75rem;
+}
+.featuredCopy strong {
+  color: var(--color-accent);
+  font-size: 0.75rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+.featuredCopy h2 {
+  margin-top: 1.1rem;
+  font-size: 1.25rem;
+  font-weight: 400;
+}
+.featuredCopy > p,
+.cardCopy > p {
+  margin-top: 1rem;
+  color: var(--color-text-muted);
+  line-height: 1.5;
+}
+.readLink {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-top: auto;
+  padding-top: 1.75rem;
+  color: var(--color-accent);
+  font-size: 0.875rem;
+  text-decoration: none;
+}
+.readLink i,
+.next i {
+  width: 0.8rem;
+  height: 0.8rem;
+  background: currentColor;
+  -webkit-mask: url("/icons/arrow.svg") center/contain no-repeat;
+  mask: url("/icons/arrow.svg") center/contain no-repeat;
+}
+.more {
+  padding-top: 5rem;
+}
+.more > h2 {
+  margin-bottom: 2rem;
+  font-size: 1.25rem;
+  font-weight: 400;
+}
+.grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 2rem 1.5rem;
+}
+.card {
+  min-height: 31rem;
+}
+.card .visual {
+  min-height: 15.5rem;
+}
+.cardCopy {
+  padding: 1.5rem;
+}
+.cardCopy > span {
+  color: var(--color-text-muted);
+  font-size: 0.75rem;
+}
+.cardCopy h3 {
+  margin-top: 1.1rem;
+  font-size: 1rem;
+  font-weight: 400;
+}
+.cardCopy > p {
+  display: -webkit-box;
+  overflow: hidden;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+  font-size: 0.8rem;
+}
+.pagination {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  gap: 1rem;
+  padding-top: 2.5rem;
+  font-size: 0.75rem;
+}
+.pagination > div {
+  display: flex;
+  gap: 0.25rem;
+}
+.pagination button {
+  width: 2.25rem;
+  height: 2.25rem;
+  border: 0;
+  background: var(--color-accent-soft);
+  color: var(--color-accent);
+  cursor: pointer;
+}
+.pagination .activePage {
+  background: var(--color-accent);
+  color: #fff;
+}
+.pagination .next {
+  display: inline-flex;
+  width: auto;
+  align-items: center;
+  gap: 0.5rem;
+  padding-inline: 1rem;
+  background: transparent;
+}
+.pagination button:disabled {
+  cursor: default;
+  opacity: 0.35;
+}
+.pagination > span:last-child {
+  color: var(--color-accent);
+  text-align: right;
+}
+@media (hover: hover) {
+  .readLink {
+    transition: opacity 180ms ease;
+  }
+  .readLink:hover {
+    opacity: 0.65;
+  }
+}
+@media (max-width: 60rem) {
+  .grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+@media (max-width: 48rem) {
+  .page {
+    padding: 3rem 1rem 4rem;
+  }
+  .header {
+    padding-inline: 0.5rem;
+  }
+  .featuredGrid,
+  .grid {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+  .featuredGrid {
+    margin-top: 2rem;
+  }
+  .visual,
+  .card .visual {
+    min-height: 13rem;
+  }
+  .more {
+    padding-top: 3.5rem;
+  }
+  .card {
+    min-height: 28rem;
+  }
+  .pagination {
+    grid-template-columns: 1fr;
+  }
+  .pagination > div {
+    flex-wrap: wrap;
+  }
+  .pagination > span:last-child {
+    text-align: left;
+  }
+}

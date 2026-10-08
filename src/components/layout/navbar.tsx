@@ -12,9 +12,14 @@ import styles from "./navbar.module.css";
 const navigation = [
   { label: "For Developers", href: "/developers" },
   { label: "For Agents", href: "/agents" },
-  { label: "Resources", href: "/blog" },
   { label: "Pricing", href: "/pricing" },
   { label: "About Us", href: "/about-us" },
+] as const;
+
+const resources = [
+  { label: "Blog", href: "/blog" },
+  { label: "In Media", href: "/in-media" },
+  { label: "Case Studies", href: "/case-studies" },
 ] as const;
 
 export function Navbar() {
@@ -69,7 +74,44 @@ export function Navbar() {
       </Link>
 
       <nav className={styles.navigation} aria-label="Primary navigation">
-        {navigation.map((item) => (
+        {navigation.slice(0, 2).map((item) => (
+          <Link
+            key={item.href}
+            href={item.href}
+            className={isActive(item.href) ? styles.activeLink : undefined}
+            aria-current={isActive(item.href) ? "page" : undefined}
+          >
+            {item.label}
+          </Link>
+        ))}
+        <div className={styles.resourceMenu}>
+          <Link
+            href="/blog"
+            className={
+              pathname.startsWith("/blog") ||
+              pathname.startsWith("/in-media") ||
+              pathname.startsWith("/case-studies")
+                ? styles.activeLink
+                : undefined
+            }
+          >
+            Resources <span className={styles.chevron} aria-hidden="true" />
+          </Link>
+          <div className={styles.resourceDropdown}>
+            {resources.map((item) => (
+              <Link
+                key={item.href}
+                href={item.href}
+                className={
+                  isActive(item.href) ? styles.activeResource : undefined
+                }
+              >
+                {item.label}
+              </Link>
+            ))}
+          </div>
+        </div>
+        {navigation.slice(2).map((item) => (
           <Link
             key={item.href}
             href={item.href}
@@ -112,7 +154,32 @@ export function Navbar() {
         className={`${styles.mobileNavigation} ${menuOpen ? styles.mobileNavigationOpen : ""}`}
         aria-label="Mobile navigation"
       >
-        {navigation.map((item) => (
+        {navigation.slice(0, 2).map((item) => (
+          <Link
+            key={item.href}
+            href={item.href}
+            className={isActive(item.href) ? styles.activeLink : undefined}
+            aria-current={isActive(item.href) ? "page" : undefined}
+            onClick={() => setMenuOpen(false)}
+          >
+            {item.label}
+          </Link>
+        ))}
+        <div className={styles.mobileResourceGroup}>
+          <span>Resources</span>
+          {resources.map((item) => (
+            <Link
+              key={item.href}
+              href={item.href}
+              className={isActive(item.href) ? styles.activeLink : undefined}
+              aria-current={isActive(item.href) ? "page" : undefined}
+              onClick={() => setMenuOpen(false)}
+            >
+              {item.label}
+            </Link>
+          ))}
+        </div>
+        {navigation.slice(2).map((item) => (
           <Link
             key={item.href}
             href={item.href}
