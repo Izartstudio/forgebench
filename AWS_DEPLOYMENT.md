@@ -54,22 +54,14 @@ The endpoint is uncached and returns `200` with `{ "status": "ok" }`.
 
 ### CloudFront image behavior (required for production performance)
 
-Create a dedicated behavior for `/_next/image*` in addition to the existing
-`/_next/static/*` behavior:
+Images do not depend on the server-side `/_next/image` route. Pre-compressed
+local assets are served directly through CloudFront, while Sanity-hosted images
+are resized and converted by Sanity's image CDN.
 
-- Allow only `GET` and `HEAD`.
-- Forward the `url`, `w`, and `q` query strings. These three values form the
-  optimized-image cache key.
-- Forward the `Accept` header so WebP responses are cached correctly.
-- Do not forward cookies or authorization headers.
-- Respect the origin `Cache-Control` header, with a one-year maximum TTL.
-- Enable compression and use the AWS managed `CachingOptimized` cache policy as
-  the base policy.
-
-Also cache `/images/*`, `/logos/*`, and `/icons/*`. The application sends a
-one-day browser TTL plus a one-year stale-while-revalidate window for these
-assets. Without the `/_next/image*` behavior, every AWS visitor can reach the
-Node.js image transformer and pay the cold resize/encode cost again.
+Cache `/images/*`, `/logos/*`, and `/icons/*` with the AWS managed
+`CachingOptimized` policy. The application sends a one-day browser TTL plus a
+one-year stale-while-revalidate window for these assets. Do not forward cookies
+or authorization headers for these paths.
 
 After DNS is connected, verify `/robots.txt`, `/sitemap.xml`, `/llms.txt`, the
 canonical URL, and the Open Graph image against the final hostname.
