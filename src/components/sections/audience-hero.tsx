@@ -57,6 +57,7 @@ export function AudienceHero({
                 alt={image.backAlt ?? ""}
                 fill
                 preload
+                quality={92}
                 sizes="(max-width: 767px) 110vw, 66vw"
                 className={`${styles.visualImage} ${styles.backImage}`}
               />
@@ -66,6 +67,7 @@ export function AudienceHero({
               alt={image.alt}
               fill
               preload
+              quality={92}
               sizes="(max-width: 767px) 94vw, 54vw"
               className={`${styles.visualImage} ${image.backSrc ? styles.frontImage : ""}`}
             />

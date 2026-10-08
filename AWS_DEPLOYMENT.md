@@ -52,5 +52,24 @@ The endpoint is uncached and returns `200` with `{ "status": "ok" }`.
 - Keep application routes on the Next.js origin so permanent redirects, metadata
   routes, and dynamic blog pages continue to work.
 
+### CloudFront image behavior (required for production performance)
+
+Create a dedicated behavior for `/_next/image*` in addition to the existing
+`/_next/static/*` behavior:
+
+- Allow only `GET` and `HEAD`.
+- Forward the `url`, `w`, and `q` query strings. These three values form the
+  optimized-image cache key.
+- Forward the `Accept` header so WebP responses are cached correctly.
+- Do not forward cookies or authorization headers.
+- Respect the origin `Cache-Control` header, with a one-year maximum TTL.
+- Enable compression and use the AWS managed `CachingOptimized` cache policy as
+  the base policy.
+
+Also cache `/images/*`, `/logos/*`, and `/icons/*`. The application sends a
+one-day browser TTL plus a one-year stale-while-revalidate window for these
+assets. Without the `/_next/image*` behavior, every AWS visitor can reach the
+Node.js image transformer and pay the cold resize/encode cost again.
+
 After DNS is connected, verify `/robots.txt`, `/sitemap.xml`, `/llms.txt`, the
 canonical URL, and the Open Graph image against the final hostname.

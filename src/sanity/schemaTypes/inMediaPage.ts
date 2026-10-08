@@ -188,6 +188,8 @@ export const inMediaPageType = defineType({
             defineField({
               name: "href",
               title: "Article URL",
+              description:
+                "Required external URL for the original publication.",
               type: "url",
               validation: (rule) =>
                 rule.required().uri({ scheme: ["http", "https"] }),

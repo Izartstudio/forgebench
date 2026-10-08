@@ -10,6 +10,7 @@ type MetadataOptions = {
   ogTitle?: string;
   ogDescription?: string;
   keywords?: string[];
+  image?: string;
 };
 
 export function createMetadata({
@@ -20,6 +21,7 @@ export function createMetadata({
   ogTitle,
   ogDescription,
   keywords,
+  image = "/images/social/forgebench-thumbnail.jpg",
 }: MetadataOptions = {}): Metadata {
   const canonical = new URL(path, siteConfig.url);
   const resolvedTitle = title ?? siteConfig.name;
@@ -48,7 +50,7 @@ export function createMetadata({
       description: ogDescription ?? description,
       images: [
         {
-          url: "/images/social/forgebench-thumbnail.jpg",
+          url: image,
           width: 1207,
           height: 671,
           alt: "Forgebench — Operating Plane for Enterprise AI",
@@ -59,7 +61,7 @@ export function createMetadata({
       card: "summary_large_image",
       title: ogTitle ?? resolvedTitle,
       description: ogDescription ?? description,
-      images: ["/images/social/forgebench-thumbnail.jpg"],
+      images: [image],
     },
   };
 }

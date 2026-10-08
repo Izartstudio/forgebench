@@ -30,12 +30,13 @@ function PublicationMark({ item }: { item: MediaItem }) {
   );
 }
 
-function ReadLink({ href, label }: { href: string; label: string }) {
+function ReadLink({ item, label }: { item: MediaItem; label: string }) {
   return (
     <a
       className={styles.readLink}
-      href={href}
-      {...(href !== "#" ? { target: "_blank", rel: "noreferrer" } : {})}
+      href={item.href}
+      target="_blank"
+      rel="noreferrer"
     >
       {label} <i aria-hidden="true" />
     </a>
@@ -65,7 +66,7 @@ function MediaCopy({
       <time dateTime={item.publishedAt}>{formatDate(item.publishedAt)}</time>
       <h2>{item.title}</h2>
       <p>{item.excerpt}</p>
-      <ReadLink href={item.href} label={readLabel} />
+      <ReadLink item={item} label={readLabel} />
     </>
   );
 }

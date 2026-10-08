@@ -5,8 +5,14 @@ const nextConfig: NextConfig = {
   poweredByHeader: false,
   compress: true,
   images: {
-    formats: ["image/avif", "image/webp"],
-    minimumCacheTTL: 86400,
+    // WebP keeps the visual quality of the source UI captures while avoiding
+    // AVIF's substantially slower first-request encoding on a cold AWS/Vercel
+    // image worker.
+    formats: ["image/webp"],
+    qualities: [75, 85, 92],
+    deviceSizes: [384, 640, 750, 828, 1080, 1200, 1440, 1920],
+    imageSizes: [16, 24, 32, 48, 64, 96, 128, 256, 384],
+    minimumCacheTTL: 31536000,
     remotePatterns: [
       {
         protocol: "https",
@@ -18,6 +24,20 @@ const nextConfig: NextConfig = {
   reactStrictMode: true,
   turbopack: {
     root: process.cwd(),
+  },
+  async headers() {
+    const imageCache = [
+      {
+        key: "Cache-Control",
+        value: "public, max-age=86400, stale-while-revalidate=31536000",
+      },
+    ];
+
+    return [
+      { source: "/images/:path*", headers: imageCache },
+      { source: "/logos/:path*", headers: imageCache },
+      { source: "/icons/:path*", headers: imageCache },
+    ];
   },
   async redirects() {
     return [

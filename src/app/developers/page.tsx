@@ -73,22 +73,22 @@ const integrations = [
 ] as const;
 
 const developerSlideFallbacks = [
-  "/images/developers/call-path/developer-1.png",
-  "/images/developers/call-path/developer-3.png",
-  "/images/developers/call-path/developer-guardrails.png",
-  "/images/developers/call-path/frame-4.png",
-  "/images/developers/call-path/frame-5.png",
+  "/images/developers/call-path/developer-1.webp",
+  "/images/developers/call-path/developer-3.webp",
+  "/images/developers/call-path/developer-guardrails.webp",
+  "/images/developers/call-path/frame-4.webp",
+  "/images/developers/call-path/frame-5.webp",
 ] as const;
 
 export default async function DevelopersPage() {
   const screenshots = await getPageScreenshots();
   const heroBack = resolveScreenshot(
     screenshots.developersHeroBack,
-    "/images/developers/developer-back.png",
+    "/images/developers/developer-back.webp",
   );
   const heroFront = resolveScreenshot(
     screenshots.developersHeroFront,
-    "/images/developers/developer-front.png",
+    "/images/developers/developer-front.webp",
   );
   const callPathImages = developerSlideFallbacks.map((fallback, index) =>
     resolveScreenshot(

@@ -64,6 +64,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     })),
     ...caseStudiesPage.studies.map((study) => ({
       url: new URL(`/case-studies/${study.slug}`, siteConfig.url).toString(),
+      lastModified: new Date(study.publishedAt),
       changeFrequency: "monthly" as const,
       priority: 0.6,
     })),

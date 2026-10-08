@@ -6,12 +6,14 @@ import { notFound } from "next/navigation";
 import { BlogArticleBody } from "@/components/blog/blog-article-body";
 import { Navbar } from "@/components/layout/navbar";
 import { SiteFooter } from "@/components/layout/site-footer";
+import { JsonLd } from "@/components/seo/json-ld";
 import {
   getCaseStudiesPage,
   getCaseStudy,
   getRelatedCaseStudies,
 } from "@/lib/cms/case-studies";
 import { createMetadata } from "@/lib/seo/metadata";
+import { siteConfig } from "@/lib/seo/site-config";
 
 import styles from "./page.module.css";
 
@@ -29,6 +31,7 @@ export async function generateMetadata({
         title: study.title,
         description: study.excerpt,
         path: `/case-studies/${slug}`,
+        image: study.image,
       })
     : {};
 }
@@ -41,24 +44,57 @@ export default async function CaseStudyPage({ params }: PageProps) {
     getCaseStudiesPage(),
   ]);
   if (!study) notFound();
+  const canonical = new URL(
+    `/case-studies/${study.slug}`,
+    siteConfig.url,
+  ).toString();
+  const schema = {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    headline: study.title,
+    description: study.excerpt,
+    datePublished: study.publishedAt,
+    image: study.image
+      ? new URL(study.image, siteConfig.url).toString()
+      : undefined,
+    mainEntityOfPage: canonical,
+    publisher: { "@id": `${siteConfig.url.toString()}#organization` },
+  };
 
   return (
     <>
+      <JsonLd data={schema} />
       <Navbar />
       <main id="main-content" className={styles.main}>
         <article>
           <header className={styles.hero}>
-            <div className={styles.heroCopy}>
-              <p className={styles.breadcrumb}>
-                Resources&nbsp;&nbsp;/&nbsp;&nbsp;
-                <Link href="/case-studies">Case Studies</Link>
-                &nbsp;&nbsp;/&nbsp;&nbsp;{study.title}
-              </p>
-              <h1>{study.title}</h1>
-              <p className={styles.excerpt}>{study.excerpt}</p>
-              <span className={styles.readTime}>
-                {study.readingMinutes} {page.readTimeSuffix}
-              </span>
+            <div className={styles.heroLeft}>
+              <div className={styles.heroCopy}>
+                <p className={styles.breadcrumb}>
+                  Resources&nbsp;&nbsp;/&nbsp;&nbsp;
+                  <Link href="/case-studies">Case Studies</Link>
+                  &nbsp;&nbsp;/&nbsp;&nbsp;{study.title}
+                </p>
+                <h1>{study.title}</h1>
+                <span className={styles.readTime}>
+                  {study.readingMinutes} {page.readTimeSuffix}
+                </span>
+              </div>
+              <dl className={styles.details}>
+                <dt>Details</dt>
+                <dd>
+                  <span>Industry:</span> {study.industry}
+                </dd>
+                <dd>
+                  <span>Use Case:</span> {study.useCase}
+                </dd>
+                <dd>
+                  <span>Cloud:</span> {study.cloud}
+                </dd>
+                <dd>
+                  <span>Product:</span> {study.product}
+                </dd>
+              </dl>
             </div>
             <div className={`${styles.heroImage} ${styles[study.tone]}`}>
               {study.image && (
@@ -67,12 +103,15 @@ export default async function CaseStudyPage({ params }: PageProps) {
                   alt={study.imageAlt}
                   fill
                   preload
+                  quality={92}
                   sizes="(max-width: 48rem) 100vw, 52vw"
                 />
               )}
             </div>
           </header>
-          <BlogArticleBody body={study.body} />
+          <div className={styles.articleContent}>
+            <BlogArticleBody body={study.body} navigationTitle="Contents" />
+          </div>
         </article>
 
         {related.length > 0 && (
@@ -92,6 +131,7 @@ export default async function CaseStudyPage({ params }: PageProps) {
                         src={item.image}
                         alt={item.imageAlt}
                         fill
+                        quality={85}
                         sizes="(max-width: 48rem) 100vw, 33vw"
                       />
                     )}

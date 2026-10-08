@@ -41,14 +41,16 @@ export function HomeHero() {
           alt=""
           fill
           preload
+          quality={92}
           sizes="(max-width: 767px) 100vw, 66.111vw"
           className={styles.visualImage}
         />
         <Image
-          src="/images/home/mobile-card-background.png"
+          src="/images/home/mobile-card-background.webp"
           alt=""
           fill
           loading="eager"
+          quality={92}
           sizes="100vw"
           className={styles.visualImageMobile}
         />

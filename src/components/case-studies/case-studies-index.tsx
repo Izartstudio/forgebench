@@ -14,6 +14,7 @@ function StudyVisual({ study }: { study: CaseStudy }) {
           src={study.image}
           alt={study.imageAlt}
           fill
+          quality={85}
           sizes="(max-width: 48rem) 100vw, 33vw"
         />
       )}

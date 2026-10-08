@@ -168,6 +168,54 @@
 .structuredTable figcaption {
   margin-top: 0.75rem;
 }
+.dark {
+  max-width: none;
+  grid-template-columns: 15rem minmax(0, 46rem);
+  background: #050505;
+  color: #fcfcfc;
+}
+.dark .navigation nav {
+  border-color: #4a2020;
+}
+.dark .navigation a {
+  color: #777;
+}
+.dark .navigation .active {
+  color: #fcfcfc;
+}
+.dark .content h2,
+.dark .content h3 {
+  color: #fcfcfc;
+}
+.dark .content p,
+.dark .content ul,
+.dark .content ol,
+.dark .content figcaption {
+  color: #b6b3b2;
+}
+.dark .content code {
+  background: #25191a;
+  color: #ff8b80;
+}
+.dark .content blockquote {
+  background: #1a1112;
+  color: #fcfcfc;
+}
+.dark .tableScroll {
+  border-color: #403536;
+}
+.dark .tableScroll table {
+  color: #d3d0cf;
+}
+.dark .tableScroll th {
+  background: #2a191a;
+}
+.dark .tableScroll td {
+  border-color: #403536;
+}
+.dark .tableScroll tr:nth-child(even) td {
+  background: #120e0e;
+}
 @media (max-width: 50rem) {
   .layout {
     width: 100%;
@@ -176,6 +224,9 @@
     grid-template-columns: 1fr;
     gap: 0;
     padding: 2.75rem 0 4.5rem;
+  }
+  .dark {
+    padding-inline: 1rem;
   }
 
   .navigation {

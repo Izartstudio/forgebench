@@ -109,11 +109,38 @@ export const caseStudiesPageType = defineType({
               validation: (rule) => rule.required(),
             }),
             defineField({
+              name: "industry",
+              type: "string",
+              validation: (rule) => rule.required(),
+            }),
+            defineField({
+              name: "useCase",
+              title: "Use Case",
+              type: "string",
+              validation: (rule) => rule.required(),
+            }),
+            defineField({
+              name: "cloud",
+              type: "string",
+              validation: (rule) => rule.required(),
+            }),
+            defineField({
+              name: "product",
+              type: "string",
+              validation: (rule) => rule.required(),
+            }),
+            defineField({
               name: "readingMinutes",
               title: "Reading minutes",
               type: "number",
               initialValue: 12,
               validation: (rule) => rule.required().min(1),
+            }),
+            defineField({
+              name: "publishedAt",
+              title: "Published date",
+              type: "date",
+              validation: (rule) => rule.required(),
             }),
             defineField({
               name: "href",
@@ -173,6 +200,37 @@ export const caseStudiesPageType = defineType({
                     { title: "Bulleted list", value: "bullet" },
                     { title: "Numbered list", value: "number" },
                   ],
+                  marks: {
+                    decorators: [
+                      { title: "Bold", value: "strong" },
+                      { title: "Italic", value: "em" },
+                      { title: "Underline", value: "underline" },
+                      { title: "Strikethrough", value: "strike-through" },
+                      { title: "Inline code", value: "code" },
+                    ],
+                    annotations: [
+                      {
+                        name: "link",
+                        title: "External link",
+                        type: "object",
+                        fields: [
+                          defineField({
+                            name: "href",
+                            type: "url",
+                            validation: (rule) =>
+                              rule.required().uri({
+                                scheme: ["http", "https", "mailto", "tel"],
+                              }),
+                          }),
+                          defineField({
+                            name: "openInNewTab",
+                            type: "boolean",
+                            initialValue: true,
+                          }),
+                        ],
+                      },
+                    ],
+                  },
                 }),
                 defineArrayMember({
                   type: "image",
@@ -180,6 +238,39 @@ export const caseStudiesPageType = defineType({
                   fields: [
                     defineField({ name: "alt", type: "string" }),
                     defineField({ name: "caption", type: "string" }),
+                  ],
+                }),
+                defineArrayMember({
+                  name: "table",
+                  title: "Table",
+                  type: "object",
+                  fields: [
+                    defineField({ name: "caption", type: "string" }),
+                    defineField({
+                      name: "hasHeaderRow",
+                      title: "Use first row as column headings",
+                      type: "boolean",
+                      initialValue: true,
+                    }),
+                    defineField({
+                      name: "rows",
+                      type: "array",
+                      of: [
+                        defineArrayMember({
+                          name: "row",
+                          type: "object",
+                          fields: [
+                            defineField({
+                              name: "cells",
+                              type: "array",
+                              of: [defineArrayMember({ type: "string" })],
+                              validation: (rule) => rule.required().min(1),
+                            }),
+                          ],
+                        }),
+                      ],
+                      validation: (rule) => rule.required().min(1),
+                    }),
                   ],
                 }),
               ],

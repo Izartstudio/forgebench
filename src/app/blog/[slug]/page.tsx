@@ -97,6 +97,7 @@ export default async function BlogArticlePage({ params }: PageProps) {
                 alt={`${post.title} article cover`}
                 fill
                 preload
+                quality={85}
                 sizes="(max-width: 800px) 100vw, 52vw"
               />
             </div>
@@ -117,6 +118,7 @@ export default async function BlogArticlePage({ params }: PageProps) {
                       src={item.image}
                       alt={`${item.title} article cover`}
                       fill
+                      quality={85}
                       sizes="(max-width: 720px) 100vw, 33vw"
                     />
                   </div>

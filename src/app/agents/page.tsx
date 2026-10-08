@@ -39,23 +39,23 @@ export const metadata: Metadata = createMetadata({
 });
 
 const agentSlideFallbacks = [
-  "/images/agents/agenthero1.png",
-  "/images/agents/slides/agent-2.png",
-  "/images/agents/slides/agent-3.png",
-  "/images/agents/slides/agent-4.png",
-  "/images/agents/slides/agent-5.png",
-  "/images/agents/slides/agent-6.png",
+  "/images/agents/agenthero1.webp",
+  "/images/agents/slides/agent-2.webp",
+  "/images/agents/slides/agent-3.webp",
+  "/images/agents/slides/agent-4.webp",
+  "/images/agents/slides/agent-5.webp",
+  "/images/agents/slides/agent-6.webp",
 ] as const;
 
 export default async function AgentsPage() {
   const screenshots = await getPageScreenshots();
   const heroBack = resolveScreenshot(
     screenshots.agentsHeroBack,
-    "/images/agents/agenthero1.png",
+    "/images/agents/agenthero1.webp",
   );
   const heroFront = resolveScreenshot(
     screenshots.agentsHeroFront,
-    "/images/agents/secondheroagent.png",
+    "/images/agents/secondheroagent.webp",
   );
   const callPathImages = agentSlideFallbacks.map((fallback, index) =>
     resolveScreenshot(

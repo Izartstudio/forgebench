@@ -30,6 +30,7 @@ function ArticleCard({ post }: { post: BlogPost }) {
           src={post.image}
           alt={`${post.title} article cover`}
           fill
+          quality={85}
           sizes="(max-width: 720px) 100vw, 40vw"
           className={styles.cardImage}
         />
@@ -148,6 +149,7 @@ export function BlogIndex({ posts }: { posts: BlogPost[] }) {
                 alt={`${featured.title} article cover`}
                 fill
                 preload
+                quality={85}
                 sizes="(max-width: 800px) 100vw, 34vw"
               />
             </div>
@@ -180,6 +182,7 @@ export function BlogIndex({ posts }: { posts: BlogPost[] }) {
                   src={post.image}
                   alt={`${post.title} article cover`}
                   fill
+                  quality={85}
                   sizes="(max-width: 720px) 100vw, 33vw"
                   className={styles.cardImage}
                 />

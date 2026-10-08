@@ -1,4 +1,4 @@
-import Image, { type ImageProps } from "next/image";
+import Image, { getImageProps, type ImageProps } from "next/image";
 
 type ResponsiveScreenshotProps = Omit<ImageProps, "src"> & {
   desktopSrc: string;
@@ -11,12 +11,22 @@ export function ResponsiveScreenshot({
   mobileSrc,
   mobileMedia = "(max-width: 47.9375rem)",
   alt,
+  quality = 92,
   ...imageProps
 }: ResponsiveScreenshotProps) {
+  const mobileSrcSet = mobileSrc
+    ? getImageProps({
+        ...imageProps,
+        src: mobileSrc,
+        alt,
+        quality,
+      }).props.srcSet
+    : undefined;
+
   return (
     <picture>
-      {mobileSrc && <source media={mobileMedia} srcSet={mobileSrc} />}
-      <Image src={desktopSrc} alt={alt} {...imageProps} />
+      {mobileSrcSet && <source media={mobileMedia} srcSet={mobileSrcSet} />}
+      <Image src={desktopSrc} alt={alt} quality={quality} {...imageProps} />
     </picture>
   );
 }

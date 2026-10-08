@@ -185,9 +185,13 @@ function RichText({ block }: { block: BlogTextBlock }) {
 export function BlogArticleBody({
   body,
   navigationLabels,
+  navigationTitle = "Section navigation",
+  variant = "light",
 }: {
   body: BlogBodyBlock[];
   navigationLabels?: string[];
+  navigationTitle?: string;
+  variant?: "light" | "dark";
 }) {
   const sections = useMemo(
     () =>
@@ -235,6 +239,7 @@ export function BlogArticleBody({
               src={block.url}
               alt={block.alt || block.caption || "Article illustration"}
               fill
+              quality={85}
               sizes="(max-width: 800px) 100vw, 54vw"
             />
           </div>
@@ -312,9 +317,11 @@ export function BlogArticleBody({
   }
 
   return (
-    <div className={styles.layout}>
+    <div
+      className={`${styles.layout} ${variant === "dark" ? styles.dark : ""}`}
+    >
       <aside className={styles.navigation}>
-        <p>Section navigation</p>
+        <p>{navigationTitle}</p>
         <nav>
           {sections.map((section) => (
             <a
